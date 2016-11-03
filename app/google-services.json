@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "878974923654",
+    "firebase_url": "https://tripchallenge-96be4.firebaseio.com",
+    "project_id": "tripchallenge-96be4",
+    "storage_bucket": "tripchallenge-96be4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878974923654:android:f64852100e2e735f",
+        "android_client_info": {
+          "package_name": "com.example.b00sti.tripchallenge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "878974923654-smq242ihjvjqh0at28s8hn87h4qqfmia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAntPWOVZPOOTpM1DkxtC7It7BdYict8pY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
