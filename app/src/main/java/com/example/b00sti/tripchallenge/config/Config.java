@@ -5,6 +5,4 @@ package com.example.b00sti.tripchallenge.config;
  */
 
 public class Config {
-
-    public static final String FIREBASE_URL = "https://simplifiedcoding.firebaseio.com/";
 }

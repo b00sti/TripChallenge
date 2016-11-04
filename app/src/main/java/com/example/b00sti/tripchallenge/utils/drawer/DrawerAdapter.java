@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import com.example.b00sti.tripchallenge.R;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.List;
 
 /**
@@ -40,22 +38,22 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        DrawerItem drawerItem = items.get(position);
+/*        DrawerItem drawerItem = items.get(position);
         holder.icon.setImageResource(drawerItem.getImageResource());
         holder.itemTitle.setText(drawerItem.getTitleResource());
 
         holder.itemView.setSelected(selectedTabId == drawerItem.getTabId());
 
-/*        if (holder.itemView.isSelected()) {
+*//*        if (holder.itemView.isSelected()) {
                 switchSelectedIcon(selectedTabId, holder);
 
-        }*/
+        }*//*
 
         // set image counter if item has counter > 0
         if (items.get(position).getCounter() > 0) {
             holder.counter.setVisibility(View.VISIBLE);
             holder.counter.setText(String.valueOf(drawerItem.getCounter()));
-        }
+        }*/
 
         // store notification item in list to update it when notif is received
 /*        if (items.get(position).getTabId() == DrawerUtils.NOTIFICATIONS_TAB) {
@@ -71,13 +69,13 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
-        EventBus.getDefault().register(this);
+        //EventBus.getDefault().register(this);
     }
 
     @Override
     public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
         super.onDetachedFromRecyclerView(recyclerView);
-        EventBus.getDefault().unregister(this);
+        //EventBus.getDefault().unregister(this);
     }
 
     @Override

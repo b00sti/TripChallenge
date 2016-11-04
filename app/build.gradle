@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
+//apply plugin: 'android-apt'
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
@@ -38,14 +39,13 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+/*    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
-    })
+    })*/
     compile 'com.android.support:appcompat-v7:24.2.1'
-    testCompile 'junit:junit:4.12'
-    compile 'io.requery:requery:1.0.0'
-    compile 'io.requery:requery-android:1.0.0' // for android
-    annotationProcessor 'io.requery:requery-processor:1.0.0'
+    //testCompile 'junit:junit:4.12'
+    compile "org.androidannotations:androidannotations-api:$rootProject.androidAnnotationsVersion"
+    annotationProcessor "org.androidannotations:androidannotations:$rootProject.androidAnnotationsVersion"
 
     compile "com.google.guava:guava:$rootProject.guavaVersion"
     compile "io.reactivex:rxjava:$rootProject.rxjavaVersion"
@@ -54,8 +54,14 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
     compile "com.google.firebase:firebase-database:$rootProject.firebaseDatabaseVersion"
     compile "com.google.firebase:firebase-auth:$rootProject.firebaseAuthVersion"
-/*    apt "org.androidannotations:androidannotations:$rootProject.androidAnnotationsVersion"
-    compile "org.androidannotations:androidannotations-api:$rootProject.androidAnnotationsVersion"*/
     compile "org.greenrobot:eventbus:$rootProject.eventbusVersion"
-
 }
+
+/*
+apt {
+    arguments {
+        androidManifestFile variant.outputs[0].processResources.manifestFile
+        resourcePackageName 'com.example.b00sti.tripchallenge'
+        library "true"
+    }
+}*/
