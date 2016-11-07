@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,17 +43,16 @@ import org.greenrobot.eventbus.Subscribe;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String TAG = "MainActivity";
+    public DrawerLayout drawer;
+    public ActionBarDrawerToggle toggle;
+    public RecyclerView drawerRecyclerView;
+    Toolbar toolbar;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
     private DatabaseReference mDatabase;
     private String mUserId;
-    public DrawerLayout drawer;
-    public ActionBarDrawerToggle toggle;
-    Toolbar toolbar;
-
     @DrawerUtils.DrawerTab private int drawerCurrentlySelectedTab = DrawerUtils.NO_TAB;
-
-    public RecyclerView drawerRecyclerView;
 
     private void initDrawer() {
         prepareDrawerMenuRecyclerView();
@@ -137,21 +137,35 @@ public class MainActivity extends AppCompatActivity
             final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1);
             listView.setAdapter(adapter);
 
+            Attraction venece = new Attraction("1", "Pl.św. Marka", false);
+            Attraction lisboa = new Attraction("2", "Costa del sol", true);
+
             // Add items via the Button and EditText at the bottom of the view.
             final EditText text = (EditText) findViewById(R.id.todoText);
             final Button button = (Button) findViewById(R.id.addButton);
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    mDatabase.child("users").child(mUserId).child("items").push().child("title").setValue(text.getText().toString());
+                    mDatabase.child("users").child(mUserId).child("attractions").push().child("name").setValue(venece.getName());
+                    mDatabase.child("users").child(mUserId).child("attractions").push().child("id").setValue(venece.getId());
+                    mDatabase.child("users").child(mUserId).child("attractions").push().child("isVisited").setValue("" + venece.isVisited());
+
+                    mDatabase.child("users").child(mUserId).child("attractions").push().child("name").setValue(lisboa.getName());
+                    mDatabase.child("users").child(mUserId).child("attractions").push().child("isVisited").setValue("" + lisboa.isVisited());
+                    mDatabase.child("users").child(mUserId).child("attractions").push().child("id").setValue(lisboa.getId());
+
                     text.setText("");
                 }
             });
 
             // Use Firebase to populate the list.
-            mDatabase.child("users").child(mUserId).child("items").addChildEventListener(new ChildEventListener() {
+            mDatabase.child("users").child(mUserId).child("attractions").addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    adapter.add((String) dataSnapshot.child("title").getValue());
+                    Object str = dataSnapshot.child("name").getValue();
+                    if (str != null) {
+                        adapter.add((String) str);
+                    }
+                    Log.d(TAG, "onChildAdded: " + dataSnapshot.child("name").getValue());
                 }
 
                 @Override
@@ -161,7 +175,7 @@ public class MainActivity extends AppCompatActivity
 
                 @Override
                 public void onChildRemoved(DataSnapshot dataSnapshot) {
-                    adapter.remove((String) dataSnapshot.child("title").getValue());
+                    //adapter.remove((String) dataSnapshot.child("name").getValue());
                 }
 
                 @Override
@@ -179,8 +193,8 @@ public class MainActivity extends AppCompatActivity
             // Delete items when clicked
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    mDatabase.child("users").child(mUserId).child("items")
-                            .orderByChild("title")
+                    mDatabase.child("users").child(mUserId).child("attractions")
+                            .orderByChild("name")
                             .equalTo((String) listView.getItemAtPosition(position))
                             .addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
@@ -204,9 +218,6 @@ public class MainActivity extends AppCompatActivity
 //        FirebaseUtils.setContext(this);
 //        Firebase mainRef = FirebaseUtils.getFirebaseRef();
 
-
-        Attraction venece = new Attraction("1", "Pl.św. Marka", false);
-        Attraction lisboa = new Attraction("2", "Costa del sol", true);
 
         //mainRef.child("attractions").setValue(venece);
 
