@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity
                     mDatabase.child("users").child(mUserId).child("attractions").push().child("name").setValue(lisboa.getName());
                     mDatabase.child("users").child(mUserId).child("attractions").push().child("isVisited").setValue("" + lisboa.isVisited());
                     mDatabase.child("users").child(mUserId).child("attractions").push().child("id").setValue(lisboa.getId());
-
+                    mDatabase.child("users").child(mUserId).child("attract").push().child("new").setValue(lisboa);
                     text.setText("");
                 }
             });
