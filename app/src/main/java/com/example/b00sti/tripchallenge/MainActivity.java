@@ -2,9 +2,7 @@ package com.example.b00sti.tripchallenge;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -38,15 +36,31 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+@EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
     private static final String TAG = "MainActivity";
+    @ViewById(R.id.drawer_layout)
     public DrawerLayout drawer;
     public ActionBarDrawerToggle toggle;
+    @ViewById(R.id.drawer_recycler_view)
     public RecyclerView drawerRecyclerView;
+    @ViewById(R.id.listView)
+    public ListView listView;
+    @ViewById(R.id.todoText)
+    public EditText text;
+    @ViewById(R.id.addButton)
+    public Button button;
+    @ViewById(R.id.drawer_layout)
+    public DrawerLayout drawerLay;
+    @ViewById
     Toolbar toolbar;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
@@ -54,65 +68,22 @@ public class MainActivity extends AppCompatActivity
     private String mUserId;
     @DrawerUtils.DrawerTab private int drawerCurrentlySelectedTab = DrawerUtils.NO_TAB;
 
-    private void initDrawer() {
-        prepareDrawerMenuRecyclerView();
+    @AfterViews
+    void test() {
 
-        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        toggle.setDrawerIndicatorEnabled(false);
-        toggle.setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.common_google_signin_btn_icon_dark_pressed));
-        toggle.setToolbarNavigationClickListener(view -> {
-            if (drawer.isDrawerVisible(GravityCompat.START)) {
-                drawer.closeDrawer(GravityCompat.START);
-            } else {
-                //ViewUtils.hideKeyboard(this);
-                drawer.openDrawer(GravityCompat.START);
-            }
-        });
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-    }
-
-
-    private void prepareDrawerMenuRecyclerView() {
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
-        drawerRecyclerView.setLayoutManager(layoutManager);
-        drawerRecyclerView.setHasFixedSize(true);
-
-        // set dashboard as initial tab if no tab is selected
-        if (drawerCurrentlySelectedTab < 0) drawerCurrentlySelectedTab = getDefaultTabId();
-        // IN ORDER TO CHANGE MENU ITEMS GO THERE
-        drawerRecyclerView.setAdapter(DrawerUtils.initDrawerItemsAdapter(drawerRecyclerView, drawer, drawerCurrentlySelectedTab, toolbar, this));
-    }
-
-    public
-    @DrawerUtils.DrawerTab
-    int getDefaultTabId() {
-        return DrawerUtils.DASHBOARD_TAB;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         EventBus.getDefault().register(this);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+/*        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerRecyclerView = (RecyclerView) findViewById(R.id.drawer_recycler_view) ;
+
 /*        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -133,16 +104,12 @@ public class MainActivity extends AppCompatActivity
             mUserId = mFirebaseUser.getUid();
 
             // Set up ListView
-            final ListView listView = (ListView) findViewById(R.id.listView);
             final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1);
             listView.setAdapter(adapter);
 
             Attraction venece = new Attraction("1", "Pl.św. Marka", false);
             Attraction lisboa = new Attraction("2", "Costa del sol", true);
 
-            // Add items via the Button and EditText at the bottom of the view.
-            final EditText text = (EditText) findViewById(R.id.todoText);
-            final Button button = (Button) findViewById(R.id.addButton);
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     mDatabase.child("users").child(mUserId).child("attractions").push().child("name").setValue(venece.getName());
@@ -156,6 +123,7 @@ public class MainActivity extends AppCompatActivity
                     text.setText("");
                 }
             });
+            // Add items via the Button and EditText at the bottom of the view.
 
             // Use Firebase to populate the list.
             mDatabase.child("users").child(mUserId).child("attractions").addChildEventListener(new ChildEventListener() {
@@ -228,11 +196,55 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void initDrawer() {
+        prepareDrawerMenuRecyclerView();
+
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle.setDrawerIndicatorEnabled(false);
+        toggle.setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.common_google_signin_btn_icon_dark_pressed));
+        toggle.setToolbarNavigationClickListener(view -> {
+            if (drawer.isDrawerVisible(GravityCompat.START)) {
+                drawer.closeDrawer(GravityCompat.START);
+            } else {
+                //ViewUtils.hideKeyboard(this);
+                drawer.openDrawer(GravityCompat.START);
+            }
+        });
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+    }
+
+
+    private void prepareDrawerMenuRecyclerView() {
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        drawerRecyclerView.setLayoutManager(layoutManager);
+        drawerRecyclerView.setHasFixedSize(true);
+
+        // set dashboard as initial tab if no tab is selected
+        if (drawerCurrentlySelectedTab < 0) drawerCurrentlySelectedTab = getDefaultTabId();
+        // IN ORDER TO CHANGE MENU ITEMS GO THERE
+        drawerRecyclerView.setAdapter(DrawerUtils.initDrawerItemsAdapter(drawerRecyclerView, drawer, drawerCurrentlySelectedTab, toolbar, this));
+    }
+
+    public
+    @DrawerUtils.DrawerTab
+    int getDefaultTabId() {
+        return DrawerUtils.DASHBOARD_TAB;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (drawerLay.isDrawerOpen(GravityCompat.START)) {
+            drawerLay.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
