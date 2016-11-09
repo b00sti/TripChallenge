@@ -9,6 +9,8 @@ import com.google.firebase.database.FirebaseDatabase;
  * Created by Dominik (b00sti) Pawlik on 2016-11-09
  */
 public class FirebaseManager {
+    private static final String TAG = "FirebaseManager";
+
     private static FirebaseManager ourInstance = new FirebaseManager();
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
@@ -18,7 +20,7 @@ public class FirebaseManager {
     private FirebaseManager() {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        FirebaseDatabase.getInstance().getReference();
+        mainDatabaseRef = FirebaseDatabase.getInstance().getReference();
         if (firebaseUser != null) {
             userId = firebaseUser.getUid();
         }
@@ -32,4 +34,55 @@ public class FirebaseManager {
         return !"".equals(userId);
     }
 
+    private boolean getUserUid() {
+        userId = firebaseUser.getUid();
+        return isUserLogged();
+    }
+
+    public boolean refreshUserId() {
+        if (firebaseUser != null) {
+            return getUserUid();
+        } else {
+            firebaseUser = firebaseAuth.getCurrentUser();
+            if (firebaseUser != null) {
+                return getUserUid();
+            } else {
+                firebaseAuth = FirebaseAuth.getInstance();
+                firebaseUser = firebaseAuth.getCurrentUser();
+                return getUserUid();
+            }
+        }
+    }
+
+    public FirebaseAuth getFirebaseAuth() {
+        return firebaseAuth;
+    }
+
+    public void setFirebaseAuth(FirebaseAuth firebaseAuth) {
+        this.firebaseAuth = firebaseAuth;
+    }
+
+    public FirebaseUser getFirebaseUser() {
+        return firebaseUser;
+    }
+
+    public void setFirebaseUser(FirebaseUser firebaseUser) {
+        this.firebaseUser = firebaseUser;
+    }
+
+    public DatabaseReference getMainDatabaseRef() {
+        return mainDatabaseRef;
+    }
+
+    public void setMainDatabaseRef(DatabaseReference mainDatabaseRef) {
+        this.mainDatabaseRef = mainDatabaseRef;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }

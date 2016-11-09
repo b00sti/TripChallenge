@@ -15,6 +15,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.androidannotations.annotations.EActivity;
+
+@EActivity
 public class SignUpActivity extends AppCompatActivity {
 
     protected EditText passwordEditText;

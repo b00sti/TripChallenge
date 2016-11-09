@@ -23,17 +23,15 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.b00sti.tripchallenge.data.Attraction;
+import com.example.b00sti.tripchallenge.firebase.FirebaseManager;
 import com.example.b00sti.tripchallenge.utils.FragmentSwitcher;
 import com.example.b00sti.tripchallenge.utils.drawer.DrawerAdapter;
 import com.example.b00sti.tripchallenge.utils.drawer.DrawerUtils;
 import com.example.b00sti.tripchallenge.utils.drawer.SwitchFragmentEvent;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.androidannotations.annotations.AfterViews;
@@ -47,25 +45,15 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
-    @ViewById(R.id.drawer_layout)
-    public DrawerLayout drawer;
+
+    @ViewById(R.id.drawer_layout) public DrawerLayout drawer;
+    @ViewById(R.id.drawer_recycler_view) public RecyclerView drawerRecyclerView;
+    @ViewById(R.id.listView) public ListView listView;
+    @ViewById(R.id.todoText) public EditText text;
+    @ViewById(R.id.addButton) public Button button;
+    @ViewById(R.id.drawer_layout) public DrawerLayout drawerLay;
     public ActionBarDrawerToggle toggle;
-    @ViewById(R.id.drawer_recycler_view)
-    public RecyclerView drawerRecyclerView;
-    @ViewById(R.id.listView)
-    public ListView listView;
-    @ViewById(R.id.todoText)
-    public EditText text;
-    @ViewById(R.id.addButton)
-    public Button button;
-    @ViewById(R.id.drawer_layout)
-    public DrawerLayout drawerLay;
-    @ViewById
-    Toolbar toolbar;
-    private FirebaseAuth mFirebaseAuth;
-    private FirebaseUser mFirebaseUser;
-    private DatabaseReference mDatabase;
-    private String mUserId;
+    @ViewById Toolbar toolbar;
     @DrawerUtils.DrawerTab private int drawerCurrentlySelectedTab = DrawerUtils.NO_TAB;
 
     @AfterViews
@@ -74,34 +62,11 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         EventBus.getDefault().register(this);
 
-/*        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
-
-/*        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();*/
-
-/*        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);*/
-
         initDrawer();
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        if (mFirebaseUser == null) {
-            // Not logged in, launch the Log In activity
+        if (!FirebaseManager.getInstance().isUserLogged()) {
             loadLogInView();
         } else {
-            mUserId = mFirebaseUser.getUid();
 
             // Set up ListView
             final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1);
@@ -110,20 +75,20 @@ public class MainActivity extends AppCompatActivity
             Attraction venece = new Attraction("1", "Pl.św. Marka", false);
             Attraction lisboa = new Attraction("2", "Costa del sol", true);
 
-            button.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    mDatabase.child("users").child(mUserId).child("attractions").push().child("name").setValue(venece.getName());
-                    mDatabase.child("users").child(mUserId).child("attractions").push().child("id").setValue(venece.getId());
-                    mDatabase.child("users").child(mUserId).child("attractions").push().child("isVisited").setValue("" + venece.isVisited());
+            DatabaseReference mDatabase = FirebaseManager.getInstance().getMainDatabaseRef();
+            String mUserId = FirebaseManager.getInstance().getUserId();
 
-                    mDatabase.child("users").child(mUserId).child("attractions").push().child("name").setValue(lisboa.getName());
-                    mDatabase.child("users").child(mUserId).child("attractions").push().child("isVisited").setValue("" + lisboa.isVisited());
-                    mDatabase.child("users").child(mUserId).child("attractions").push().child("id").setValue(lisboa.getId());
-                    mDatabase.child("users").child(mUserId).child("attract").push().child("new").setValue(lisboa);
-                    text.setText("");
-                }
+            button.setOnClickListener(v -> {
+                mDatabase.child("users").child(mUserId).child("attractions").push().child("name").setValue(venece.getName());
+                mDatabase.child("users").child(mUserId).child("attractions").push().child("id").setValue(venece.getId());
+                mDatabase.child("users").child(mUserId).child("attractions").push().child("isVisited").setValue("" + venece.isVisited());
+
+                mDatabase.child("users").child(mUserId).child("attractions").push().child("name").setValue(lisboa.getName());
+                mDatabase.child("users").child(mUserId).child("attractions").push().child("isVisited").setValue("" + lisboa.isVisited());
+                mDatabase.child("users").child(mUserId).child("attractions").push().child("id").setValue(lisboa.getId());
+                mDatabase.child("users").child(mUserId).child("attract").push().child("new").setValue(lisboa);
+                text.setText("");
             });
-            // Add items via the Button and EditText at the bottom of the view.
 
             // Use Firebase to populate the list.
             mDatabase.child("users").child(mUserId).child("attractions").addChildEventListener(new ChildEventListener() {
@@ -181,17 +146,7 @@ public class MainActivity extends AppCompatActivity
                 }
             });
         }
-
-
-//        FirebaseUtils.setContext(this);
-//        Firebase mainRef = FirebaseUtils.getFirebaseRef();
-
-
-        //mainRef.child("attractions").setValue(venece);
-
-
-        if (mFirebaseUser == null) {
-            // Not logged in, launch the Log In activity
+        if (!FirebaseManager.getInstance().isUserLogged()) {
             loadLogInView();
         }
     }
@@ -251,7 +206,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void loadLogInView() {
-        Intent intent = new Intent(this, LogInActivity.class);
+        Intent intent = new Intent(this, LogInActivity_.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
@@ -260,7 +215,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -288,14 +242,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
-            mFirebaseAuth.signOut();
+            FirebaseManager.getInstance().getFirebaseAuth().signOut();
             loadLogInView();
         }
 
@@ -305,11 +256,10 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
