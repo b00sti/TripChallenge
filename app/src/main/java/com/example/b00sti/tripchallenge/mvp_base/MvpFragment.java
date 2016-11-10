@@ -16,7 +16,7 @@ public abstract class MvpFragment<P extends BasePresenter> extends Fragment {
 
     private P presenter;
 
-    //todo test presenter and view
+    //todo test presenter and view 44
     @SuppressWarnings("unchecked")
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
