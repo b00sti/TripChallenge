@@ -5,29 +5,28 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.androidannotations.annotations.EBean;
+
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-09
  */
+@EBean(scope = EBean.Scope.Singleton)
 public class FirebaseManager {
     private static final String TAG = "FirebaseManager";
 
-    private static FirebaseManager ourInstance = new FirebaseManager();
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private DatabaseReference mainDatabaseRef;
     private String userId = "";
 
-    private FirebaseManager() {
+    public FirebaseManager()
+    {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         mainDatabaseRef = FirebaseDatabase.getInstance().getReference();
         if (firebaseUser != null) {
             userId = firebaseUser.getUid();
         }
-    }
-
-    public static FirebaseManager getInstance() {
-        return ourInstance;
     }
 
     public boolean isUserLogged() {

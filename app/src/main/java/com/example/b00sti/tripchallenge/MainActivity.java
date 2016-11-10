@@ -35,6 +35,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 import org.greenrobot.eventbus.EventBus;
@@ -42,29 +43,41 @@ import org.greenrobot.eventbus.Subscribe;
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener
+{
 
     private static final String TAG = "MainActivity";
 
-    @ViewById(R.id.drawer_layout) public DrawerLayout drawer;
-    @ViewById(R.id.drawer_recycler_view) public RecyclerView drawerRecyclerView;
-    @ViewById(R.id.listView) public ListView listView;
-    @ViewById(R.id.todoText) public EditText text;
-    @ViewById(R.id.addButton) public Button button;
-    @ViewById(R.id.drawer_layout) public DrawerLayout drawerLay;
+    @ViewById(R.id.drawer_layout)
+    public DrawerLayout drawer;
+    @ViewById(R.id.drawer_recycler_view)
+    public RecyclerView drawerRecyclerView;
+    @ViewById(R.id.listView)
+    public ListView listView;
+    @ViewById(R.id.todoText)
+    public EditText text;
+    @ViewById(R.id.addButton)
+    public Button button;
+    @ViewById(R.id.drawer_layout)
+    public DrawerLayout drawerLay;
     public ActionBarDrawerToggle toggle;
-    @ViewById Toolbar toolbar;
-    @DrawerUtils.DrawerTab private int drawerCurrentlySelectedTab = DrawerUtils.NO_TAB;
+    @ViewById
+    Toolbar toolbar;
+    @Bean
+    FirebaseManager firebaseManager;
+    @DrawerUtils.DrawerTab
+    private int drawerCurrentlySelectedTab = DrawerUtils.NO_TAB;
 
     @AfterViews
-    void test() {
+    void test()
+    {
 
         setSupportActionBar(toolbar);
         EventBus.getDefault().register(this);
 
         initDrawer();
 
-        if (!FirebaseManager.getInstance().isUserLogged()) {
+        if (!firebaseManager.isUserLogged()) {
             loadLogInView();
         } else {
 
@@ -75,8 +88,8 @@ public class MainActivity extends AppCompatActivity
             Attraction venece = new Attraction("1", "Pl.św. Marka", false);
             Attraction lisboa = new Attraction("2", "Costa del sol", true);
 
-            DatabaseReference mDatabase = FirebaseManager.getInstance().getMainDatabaseRef();
-            String mUserId = FirebaseManager.getInstance().getUserId();
+            DatabaseReference mDatabase = firebaseManager.getMainDatabaseRef();
+            String mUserId = firebaseManager.getUserId();
 
             button.setOnClickListener(v -> {
                 mDatabase.child("users").child(mUserId).child("attractions").push().child("name").setValue(venece.getName());
@@ -91,9 +104,11 @@ public class MainActivity extends AppCompatActivity
             });
 
             // Use Firebase to populate the list.
-            mDatabase.child("users").child(mUserId).child("attractions").addChildEventListener(new ChildEventListener() {
+            mDatabase.child("users").child(mUserId).child("attractions").addChildEventListener(new ChildEventListener()
+            {
                 @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                public void onChildAdded(DataSnapshot dataSnapshot, String s)
+                {
                     Object str = dataSnapshot.child("name").getValue();
                     if (str != null) {
                         adapter.add((String) str);
@@ -102,36 +117,44 @@ public class MainActivity extends AppCompatActivity
                 }
 
                 @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                public void onChildChanged(DataSnapshot dataSnapshot, String s)
+                {
 
                 }
 
                 @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
+                public void onChildRemoved(DataSnapshot dataSnapshot)
+                {
                     //adapter.remove((String) dataSnapshot.child("name").getValue());
                 }
 
                 @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                public void onChildMoved(DataSnapshot dataSnapshot, String s)
+                {
 
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
+                public void onCancelled(DatabaseError databaseError)
+                {
 
                 }
             });
 
 
             // Delete items when clicked
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+            {
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                {
                     mDatabase.child("users").child(mUserId).child("attractions")
                             .orderByChild("name")
                             .equalTo((String) listView.getItemAtPosition(position))
-                            .addListenerForSingleValueEvent(new ValueEventListener() {
+                            .addListenerForSingleValueEvent(new ValueEventListener()
+                            {
                                 @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                public void onDataChange(DataSnapshot dataSnapshot)
+                                {
                                     if (dataSnapshot.hasChildren()) {
                                         DataSnapshot firstChild = dataSnapshot.getChildren().iterator().next();
                                         firstChild.getRef().removeValue();
@@ -139,19 +162,21 @@ public class MainActivity extends AppCompatActivity
                                 }
 
                                 @Override
-                                public void onCancelled(DatabaseError databaseError) {
+                                public void onCancelled(DatabaseError databaseError)
+                                {
 
                                 }
                             });
                 }
             });
         }
-        if (!FirebaseManager.getInstance().isUserLogged()) {
+        if (!firebaseManager.isUserLogged()) {
             loadLogInView();
         }
     }
 
-    private void initDrawer() {
+    private void initDrawer()
+    {
         prepareDrawerMenuRecyclerView();
 
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -170,7 +195,8 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    private void prepareDrawerMenuRecyclerView() {
+    private void prepareDrawerMenuRecyclerView()
+    {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -186,18 +212,21 @@ public class MainActivity extends AppCompatActivity
 
     public
     @DrawerUtils.DrawerTab
-    int getDefaultTabId() {
+    int getDefaultTabId()
+    {
         return DrawerUtils.DASHBOARD_TAB;
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
 
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         if (drawerLay.isDrawerOpen(GravityCompat.START)) {
             drawerLay.closeDrawer(GravityCompat.START);
         } else {
@@ -205,7 +234,8 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void loadLogInView() {
+    private void loadLogInView()
+    {
         Intent intent = new Intent(this, LogInActivity_.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -214,13 +244,15 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Subscribe
-    public void onEvent(SwitchFragmentEvent event) {
+    public void onEvent(SwitchFragmentEvent event)
+    {
         this.drawerCurrentlySelectedTab = event.getDrawerItemSelected();
 
         Fragment targetFragment = event.getTargetFragment();
@@ -241,12 +273,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
 
         int id = item.getItemId();
 
         if (id == R.id.action_logout) {
-            FirebaseManager.getInstance().getFirebaseAuth().signOut();
+            firebaseManager.getFirebaseAuth().signOut();
             loadLogInView();
         }
 
@@ -255,7 +288,8 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item)
+    {
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
