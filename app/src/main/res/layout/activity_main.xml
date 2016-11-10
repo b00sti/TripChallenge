@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
+    android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -14,14 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-<!--    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer"/>-->
     <RelativeLayout
         android:id="@+id/drawer_container"
         android:layout_width="wrap_content"
@@ -31,12 +22,12 @@
 
         <LinearLayout
             android:id="@+id/drawer_top_buttons"
-            android:layout_alignParentTop="true"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
+            android:layout_alignParentTop="true"
             android:orientation="horizontal"
+            android:paddingEnd="12dp"
+            android:paddingStart="12dp"
             android:weightSum="4">
 
         </LinearLayout>
@@ -46,12 +37,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/drawer_top_buttons"
-            android:paddingTop="16dp"
             android:background="@color/colorAccent"
-            android:focusable="true"
             android:clickable="true"
+            android:focusable="true"
             android:focusableInTouchMode="true"
             android:minHeight="300dp"
+            android:paddingTop="16dp"
             android:scrollbars="vertical"
             tools:listitem="@layout/drawer_item" />
 

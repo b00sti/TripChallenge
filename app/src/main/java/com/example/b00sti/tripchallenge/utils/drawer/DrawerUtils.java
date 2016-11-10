@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.example.b00sti.tripchallenge.R;
-import com.example.b00sti.tripchallenge.ui_dashboard.DashboardFragment;
 import com.example.b00sti.tripchallenge.ui_settings.SettingsFragment;
 import com.example.b00sti.tripchallenge.utils.recyclers.RecyclerItemClickListener;
 
@@ -46,15 +45,16 @@ public class DrawerUtils {
             Fragment targetFragment;
             switch (drawerItems.get(position).getTabId()) {
                 case DASHBOARD_TAB:
-                    targetFragment = new DashboardFragment();
+                    //targetFragment = new MvpFragment();
                     break;
                 case SETTINGS_TAB:
                     targetFragment = new SettingsFragment();
                     break;
                 default:
-                    targetFragment = new DashboardFragment();
+                    //targetFragment = new MvpFragment();
                     break;
             }
+            targetFragment = new SettingsFragment();
             // post event to switch fragment
             EventBus.getDefault().post(new SwitchFragmentEvent(targetFragment, drawerItems.get(position).getTabId()));
 

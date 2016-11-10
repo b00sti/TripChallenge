@@ -19,8 +19,7 @@ public class FirebaseManager {
     private DatabaseReference mainDatabaseRef;
     private String userId = "";
 
-    public FirebaseManager()
-    {
+    FirebaseManager() {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         mainDatabaseRef = FirebaseDatabase.getInstance().getReference();
