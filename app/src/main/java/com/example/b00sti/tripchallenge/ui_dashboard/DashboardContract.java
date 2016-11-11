@@ -9,11 +9,11 @@ import com.example.b00sti.tripchallenge.mvp_base.BasePresenter;
 public interface DashboardContract {
 
     interface View {
-
+        void showProgressBar();
     }
 
     interface Presenter extends BasePresenter {
-
+        void refreshData();
     }
 
 }

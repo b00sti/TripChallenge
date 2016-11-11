@@ -10,6 +10,12 @@ import static com.google.android.gms.internal.zzs.TAG;
 
 public class DashboardPresenter implements DashboardContract.Presenter {
 
+    DashboardContract.View view;
+
+    public DashboardPresenter() {
+        Log.d(TAG, "DashboardPresenter: ");
+    }
+
     @Override
     public void subscribe(Object view) {
         Log.d(TAG, "subscribe: ");
@@ -19,4 +25,13 @@ public class DashboardPresenter implements DashboardContract.Presenter {
     public void unsubscribe() {
         Log.d(TAG, "unsubscribe: ");
     }
+
+
+    @Override
+    public void refreshData() {
+        Log.d(TAG, "refreshData: ");
+        view.showProgressBar();
+    }
+
+
 }

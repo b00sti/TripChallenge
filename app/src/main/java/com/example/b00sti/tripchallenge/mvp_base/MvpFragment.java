@@ -14,9 +14,8 @@ import static com.google.android.gms.internal.zzs.TAG;
  */
 public abstract class MvpFragment<P extends BasePresenter> extends Fragment {
 
-    private P presenter;
+    public P presenter;
 
-    //todo test presenter and view 44
     @SuppressWarnings("unchecked")
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

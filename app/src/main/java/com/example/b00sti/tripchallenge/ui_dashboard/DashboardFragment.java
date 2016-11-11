@@ -8,6 +8,7 @@ import android.view.View;
 import com.example.b00sti.tripchallenge.R;
 import com.example.b00sti.tripchallenge.mvp_base.MvpFragment;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 
 /**
@@ -32,5 +33,15 @@ public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @AfterViews
+    void refreshViews() {
+        presenter.refreshData();
+    }
+
+    @Override
+    public void showProgressBar() {
+        Log.d(TAG, "showProgressBar: ");
     }
 }
