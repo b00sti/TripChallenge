@@ -12,7 +12,8 @@ public class DashboardPresenter implements DashboardContract.Presenter {
 
     DashboardContract.View view;
 
-    public DashboardPresenter() {
+    public DashboardPresenter(DashboardContract.View view) {
+        this.view = view;
         Log.d(TAG, "DashboardPresenter: ");
     }
 
