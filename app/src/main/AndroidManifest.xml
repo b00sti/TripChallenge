@@ -18,11 +18,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LogInActivity_"></activity>
-        <activity android:name=".SignUpActivity_"></activity>
+        <activity android:name=".LogInActivity_"/>
+        <activity android:name=".SignUpActivity_"/>
 
         <activity
-            android:name=".ui_dashboard.InnerViewActivity"
+            android:name=".InnerViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:label="tak"
             android:screenOrientation="portrait"

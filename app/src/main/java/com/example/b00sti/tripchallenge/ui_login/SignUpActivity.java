@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge;
+package com.example.b00sti.tripchallenge.ui_login;
 
 
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.b00sti.tripchallenge.MainActivity_;
+import com.example.b00sti.tripchallenge.R;
 import com.example.b00sti.tripchallenge.firebase.FirebaseManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

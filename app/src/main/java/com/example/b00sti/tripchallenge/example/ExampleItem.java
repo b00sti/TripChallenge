@@ -1,17 +1,17 @@
-package com.example.b00sti.tripchallenge.data;
+package com.example.b00sti.tripchallenge.example;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-03
  */
 
-public class Item {
+public class ExampleItem {
 
     private String title;
 
-    public Item() {
+    public ExampleItem() {
     }
 
-    public Item(String title) {
+    public ExampleItem(String title) {
         this.title = title;
     }
 

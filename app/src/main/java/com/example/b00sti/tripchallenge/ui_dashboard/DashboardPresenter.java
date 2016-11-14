@@ -1,38 +1,30 @@
 package com.example.b00sti.tripchallenge.ui_dashboard;
 
-import android.util.Log;
-
-import static com.google.android.gms.internal.zzs.TAG;
+import com.example.b00sti.tripchallenge.utils.mvp_base.MvpPresenter;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-10
  */
 
-public class DashboardPresenter implements DashboardContract.Presenter {
+class DashboardPresenter extends MvpPresenter<DashboardContract.View> implements DashboardContract.Presenter {
+    private static final String TAG = "DashboardPresenter";
 
-    DashboardContract.View view;
-
-    public DashboardPresenter(DashboardContract.View view) {
-        this.view = view;
-        Log.d(TAG, "DashboardPresenter: ");
+    DashboardPresenter(DashboardContract.View view) {
+        super(view);
     }
 
     @Override
-    public void subscribe(Object view) {
-        Log.d(TAG, "subscribe: ");
+    public void refreshAllViews() {
+
+    }
+
+    @Override
+    public void subscribe() {
+
     }
 
     @Override
     public void unsubscribe() {
-        Log.d(TAG, "unsubscribe: ");
+
     }
-
-
-    @Override
-    public void refreshData() {
-        Log.d(TAG, "refreshData: ");
-        view.showProgressBar();
-    }
-
-
 }

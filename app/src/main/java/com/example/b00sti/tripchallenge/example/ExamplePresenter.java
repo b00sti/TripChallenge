@@ -1,38 +1,24 @@
 package com.example.b00sti.tripchallenge.example;
 
-import android.util.Log;
-
-import static com.google.android.gms.internal.zzs.TAG;
+import com.example.b00sti.tripchallenge.utils.mvp_base.MvpPresenter;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-10
  */
 
-public class ExamplePresenter implements ExampleContract.Presenter {
+class ExamplePresenter extends MvpPresenter<ExampleContract.View> implements ExampleContract.Presenter {
 
-    ExampleContract.View view;
-
-    public ExamplePresenter(ExampleContract.View view) {
-        this.view = view;
-        Log.d(TAG, "DashboardPresenter: ");
+    ExamplePresenter(ExampleContract.View view) {
+        super(view);
     }
 
     @Override
-    public void subscribe(Object view) {
-        Log.d(TAG, "subscribe: ");
+    public void subscribe() {
+
     }
 
     @Override
     public void unsubscribe() {
-        Log.d(TAG, "unsubscribe: ");
+
     }
-
-
-    @Override
-    public void refreshData() {
-        Log.d(TAG, "refreshData: ");
-        view.showProgressBar();
-    }
-
-
 }

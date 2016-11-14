@@ -2,13 +2,11 @@ package com.example.b00sti.tripchallenge.ui_dashboard;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 
 import com.example.b00sti.tripchallenge.R;
-import com.example.b00sti.tripchallenge.mvp_base.MvpFragment;
+import com.example.b00sti.tripchallenge.utils.mvp_base.MvpFragment;
 
-import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
 
 /**
@@ -17,16 +15,15 @@ import org.androidannotations.annotations.EFragment;
 
 @EFragment(R.layout.fragment_dashboard)
 public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> implements DashboardContract.View {
+
     private static final String TAG = "DashboardFragment";
 
     public static DashboardFragment newInstance() {
-        Log.d(TAG, "newInstance: ");
         return new DashboardFragment_();
     }
 
     @Override
     protected DashboardContract.Presenter createPresenter() {
-        Log.d(TAG, "createPresenter: ");
         return new DashboardPresenter(this);
     }
 
@@ -35,13 +32,13 @@ public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> 
         super.onViewCreated(view, savedInstanceState);
     }
 
-    @AfterViews
-    void refreshViews() {
-        presenter.refreshData();
+    @Override
+    public void showProgressBar() {
+
     }
 
     @Override
-    public void showProgressBar() {
-        Log.d(TAG, "showProgressBar: ");
+    public void hideProgressBar() {
+
     }
 }

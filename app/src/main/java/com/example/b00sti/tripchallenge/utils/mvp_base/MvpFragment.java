@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.mvp_base;
+package com.example.b00sti.tripchallenge.utils.mvp_base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,17 +20,18 @@ public abstract class MvpFragment<P extends BasePresenter> extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.d(TAG, "onViewCreated: ");
         if (presenter == null) {
             presenter = createPresenter();
+            Log.d(TAG, "onViewCreated: " + presenter + " created");
         }
-        presenter.subscribe(this);
+        presenter.subscribe();
+        Log.d(TAG, "onViewCreated: " + presenter + " subscribed");
     }
 
     @Override
     public void onDestroyView() {
-        Log.d(TAG, "onDestroyView: ");
         presenter.unsubscribe();
+        Log.d(TAG, "onDestroyView: unsubscribed");
         super.onDestroyView();
     }
 

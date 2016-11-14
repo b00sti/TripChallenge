@@ -19,7 +19,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.b00sti.tripchallenge.firebase.FirebaseManager;
-import com.example.b00sti.tripchallenge.ui_dashboard.InnerViewActivity;
 import com.example.b00sti.tripchallenge.utils.FragmentSwitcher;
 import com.example.b00sti.tripchallenge.utils.drawer.DrawerAdapter;
 import com.example.b00sti.tripchallenge.utils.drawer.DrawerUtils;

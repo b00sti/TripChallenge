@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.ui_dashboard;
+package com.example.b00sti.tripchallenge;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.b00sti.tripchallenge.R;
+import com.example.b00sti.tripchallenge.ui_dashboard.DashboardFragment;
 
 public class InnerViewActivity extends AppCompatActivity {
     public final static int EDIT_PROFILE_FRAGMENT = 0;
