@@ -11,9 +11,9 @@ import android.view.MenuItem;
 
 import com.example.b00sti.tripchallenge.R;
 
-public class InnerViewActivity extends AppCompatActivity {
+public class ExampleInnerViewActivity extends AppCompatActivity {
     public final static int EDIT_PROFILE_FRAGMENT = 0;
-    private static final String TAG = InnerViewActivity.class.getSimpleName();
+    private static final String TAG = ExampleInnerViewActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,9 +83,9 @@ public class InnerViewActivity extends AppCompatActivity {
     public void switchToFragment(int fragmentId) {
         Fragment fragment;
         switch (fragmentId) {
-            case InnerViewActivity.EDIT_PROFILE_FRAGMENT:
+            case ExampleInnerViewActivity.EDIT_PROFILE_FRAGMENT:
                 Log.d(TAG, "InnerView - Edit Profile");
-                fragment = DashboardFragment.newInstance();
+                fragment = ExampleFragment.newInstance();
                 setFragmentChange(fragment).commit();
                 break;
         }

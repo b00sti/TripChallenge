@@ -7,7 +7,6 @@ import android.view.View;
 
 import com.example.b00sti.tripchallenge.R;
 import com.example.b00sti.tripchallenge.mvp_base.MvpFragment;
-import com.example.b00sti.tripchallenge.ui_dashboard.DashboardFragment_;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -17,18 +16,18 @@ import org.androidannotations.annotations.EFragment;
  */
 
 @EFragment(R.layout.fragment_dashboard)
-public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> implements DashboardContract.View {
+public class ExampleFragment extends MvpFragment<ExampleContract.Presenter> implements ExampleContract.View {
     private static final String TAG = "DashboardFragment";
 
-    public static DashboardFragment newInstance() {
+    public static ExampleFragment newInstance() {
         Log.d(TAG, "newInstance: ");
-        return new DashboardFragment_();
+        return new ExampleFragment_();
     }
 
     @Override
-    protected DashboardContract.Presenter createPresenter() {
+    protected ExampleContract.Presenter createPresenter() {
         Log.d(TAG, "createPresenter: ");
-        return new DashboardPresenter(this);
+        return new ExamplePresenter(this);
     }
 
     @Override

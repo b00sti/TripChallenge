@@ -6,7 +6,7 @@ import com.example.b00sti.tripchallenge.mvp_base.BasePresenter;
  * Created by Dominik (b00sti) Pawlik on 2016-11-10
  */
 
-public interface DashboardContract {
+public interface ExampleContract {
 
     interface View {
         void showProgressBar();

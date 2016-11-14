@@ -27,6 +27,13 @@
             android:label="tak"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name=".ui_dashboard.ExampleInnerViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:label="tak"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
     </application>
 
 </manifest>
