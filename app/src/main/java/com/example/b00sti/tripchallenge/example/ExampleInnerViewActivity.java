@@ -85,4 +85,5 @@ public class ExampleInnerViewActivity extends AppCompatActivity {
         transaction.replace(R.id.activity_inner_view_placeholder, f);
         return transaction;
     }
+
 }

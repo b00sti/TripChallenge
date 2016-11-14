@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.b00sti.tripchallenge.ui_dashboard.DashboardFragment;
+import com.example.b00sti.tripchallenge.utils.eventbus.EventBusManager;
 
 public class InnerViewActivity extends AppCompatActivity {
     public final static int EDIT_PROFILE_FRAGMENT = 0;
@@ -18,32 +19,26 @@ public class InnerViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //initMap language
+
         setContentView(R.layout.activity_inner_view);
 
-/*        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-            if (getSupportActionBar() == null)
-                throw new AssertionError("");
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
-        }*/
-
-        // initMap first fragment displayed
         setInitialFragment(getIntent());
     }
 
-/*
     @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    protected void onStart() {
+        super.onStart();
+        EventBusManager.register(this);
     }
-*/
+
+    @Override
+    protected void onStop() {
+        EventBusManager.unregister(this);
+        super.onStop();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -55,16 +50,12 @@ public class InnerViewActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
 
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 return (true);
         }
-
 
         return super.onOptionsItemSelected(item);
     }
