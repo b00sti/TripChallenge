@@ -1,15 +1,18 @@
-package com.example.b00sti.tripchallenge.utils.drawer;
+package com.example.b00sti.tripchallenge.utils.eventbus;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+
+import com.example.b00sti.tripchallenge.utils.drawer.DrawerUtils;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-03
  */
 
+@SuppressWarnings("unused")
 public class SwitchFragmentEvent {
-    private
-    @DrawerUtils.DrawerTab int drawerSelectedTabId = DrawerUtils.NO_TAB;
+
+    @DrawerUtils.DrawerTab private int drawerSelectedTabId = DrawerUtils.NO_TAB;
     private Fragment targetFragment;
     private Bundle extras;
 
@@ -28,9 +31,8 @@ public class SwitchFragmentEvent {
         return targetFragment;
     }
 
-    public
     @DrawerUtils.DrawerTab
-    int getDrawerItemSelected() {
+    public int getDrawerItemSelected() {
         return drawerSelectedTabId;
     }
 

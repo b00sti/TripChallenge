@@ -19,10 +19,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.b00sti.tripchallenge.firebase.FirebaseManager;
+import com.example.b00sti.tripchallenge.ui_login.LogInActivity_;
 import com.example.b00sti.tripchallenge.utils.FragmentSwitcher;
 import com.example.b00sti.tripchallenge.utils.drawer.DrawerAdapter;
 import com.example.b00sti.tripchallenge.utils.drawer.DrawerUtils;
-import com.example.b00sti.tripchallenge.utils.drawer.SwitchFragmentEvent;
+import com.example.b00sti.tripchallenge.utils.eventbus.SwitchFragmentEvent;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity
     void test() {
 
         setSupportActionBar(toolbar);
-        EventBus.getDefault().register(this);
+        EventBus.getDefault().register(MainActivity.class);
 
         initDrawer();
 

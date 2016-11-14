@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.b00sti.tripchallenge.R;
+import com.example.b00sti.tripchallenge.utils.eventbus.EventBusManager;
 
 public class ExampleInnerViewActivity extends AppCompatActivity {
     public final static int EDIT_PROFILE_FRAGMENT = 0;
@@ -22,6 +23,18 @@ public class ExampleInnerViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_inner_view);
 
         setInitialFragment(getIntent());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBusManager.register(this);
+    }
+
+    @Override
+    protected void onStop() {
+        EventBusManager.unregister(this);
+        super.onStop();
     }
 
     @Override
@@ -48,7 +61,6 @@ public class ExampleInnerViewActivity extends AppCompatActivity {
     }
 
     private void setInitialFragment(Intent intent) {
-
         int fragmentId;
         if (intent.hasExtra(getString(R.string.bundle_fragment))) {
             fragmentId = intent.getIntExtra(getString(R.string.bundle_fragment), -1);

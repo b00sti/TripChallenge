@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.example.b00sti.tripchallenge.R;
 import com.example.b00sti.tripchallenge.ui_settings.SettingsFragment;
+import com.example.b00sti.tripchallenge.utils.eventbus.SwitchFragmentEvent;
 import com.example.b00sti.tripchallenge.utils.recyclers.RecyclerItemClickListener;
 
 import org.greenrobot.eventbus.EventBus;
