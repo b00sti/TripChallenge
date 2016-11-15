@@ -3,7 +3,7 @@ package com.example.b00sti.tripchallenge.utils.eventbus;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import com.example.b00sti.tripchallenge.utils.drawer.DrawerUtils;
+import com.example.b00sti.tripchallenge.utils.navigation.DrawerUtils;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-03

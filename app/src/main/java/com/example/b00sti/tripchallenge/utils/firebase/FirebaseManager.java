@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.firebase;
+package com.example.b00sti.tripchallenge.utils.firebase;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

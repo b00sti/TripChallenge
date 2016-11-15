@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.utils.drawer;
+package com.example.b00sti.tripchallenge.utils.navigation;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

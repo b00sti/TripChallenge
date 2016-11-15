@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.utils.progressbar;
+package com.example.b00sti.tripchallenge.utils.ui.progressbar;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;

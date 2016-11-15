@@ -18,12 +18,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.example.b00sti.tripchallenge.firebase.FirebaseManager;
 import com.example.b00sti.tripchallenge.ui_login.LogInActivity_;
-import com.example.b00sti.tripchallenge.utils.drawer.DrawerAdapter;
-import com.example.b00sti.tripchallenge.utils.drawer.DrawerUtils;
 import com.example.b00sti.tripchallenge.utils.eventbus.SwitchFragmentEvent;
-import com.example.b00sti.tripchallenge.utils.util.FragmentSwitcher;
+import com.example.b00sti.tripchallenge.utils.firebase.FirebaseManager;
+import com.example.b00sti.tripchallenge.utils.navigation.DrawerAdapter;
+import com.example.b00sti.tripchallenge.utils.navigation.DrawerUtils;
+import com.example.b00sti.tripchallenge.utils.navigation.FragmentSwitcher;
+import com.example.b00sti.tripchallenge.utils.navigation.FragmentSwitcherParams;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -41,8 +42,7 @@ public class MainActivity extends AppCompatActivity
     @ViewById public DrawerLayout drawer;
     @ViewById(R.id.drawer_recycler_view)
     public RecyclerView drawerRecyclerView;
-    @ViewById(R.id.listView)
-    public ListView listView;
+    @ViewById(R.id.listView) public ListView listView;
     @ViewById(R.id.todoText)
     public EditText text;
     @ViewById public Button addButton;
@@ -240,8 +240,7 @@ public class MainActivity extends AppCompatActivity
             default:
                 drawerRecyclerView.setAdapter(new DrawerAdapter(DrawerUtils.getDataSet(), this.drawerCurrentlySelectedTab, this));
         }
-        FragmentSwitcher.addFragmentToActivity(getSupportFragmentManager(), targetFragment, R.id.activity_main_placeholder);
-
+        FragmentSwitcher.switchFragment(new FragmentSwitcherParams(getSupportFragmentManager(), targetFragment, R.id.activity_main_placeholder));
     }
 
     @Override

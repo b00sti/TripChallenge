@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.utils.mvp_base;
+package com.example.b00sti.tripchallenge.utils.util.mvp_base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

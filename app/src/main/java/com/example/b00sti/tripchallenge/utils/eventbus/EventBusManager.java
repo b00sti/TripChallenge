@@ -3,7 +3,7 @@ package com.example.b00sti.tripchallenge.utils.eventbus;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
-import com.example.b00sti.tripchallenge.utils.drawer.DrawerUtils;
+import com.example.b00sti.tripchallenge.utils.navigation.DrawerUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
