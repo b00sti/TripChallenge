@@ -33,14 +33,12 @@ public class SignUpActivity extends AppCompatActivity {
     FirebaseManager firebaseManager;
 
     @AfterViews
-    void initData()
-    {
+    void initData() {
         firebaseAuth = firebaseManager.getFirebaseAuth();
     }
 
     @AfterViews
-    void onCreate()
-    {
+    void onCreate() {
         passwordEditText = (EditText) findViewById(R.id.passwordField);
         emailEditText = (EditText) findViewById(R.id.emailField);
         signUpButton = (Button) findViewById(R.id.signupButton);

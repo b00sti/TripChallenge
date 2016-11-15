@@ -25,6 +25,8 @@ import com.example.b00sti.tripchallenge.utils.navigation.DrawerAdapter;
 import com.example.b00sti.tripchallenge.utils.navigation.DrawerUtils;
 import com.example.b00sti.tripchallenge.utils.navigation.FragmentSwitcher;
 import com.example.b00sti.tripchallenge.utils.navigation.FragmentSwitcherParams;
+import com.example.b00sti.tripchallenge.utils.ui.activity_utils.ActivityUtils;
+import com.example.b00sti.tripchallenge.utils.ui.activity_utils.FragmentBuilder;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -250,18 +252,11 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.action_logout) {
             firebaseManager.getFirebaseAuth().signOut();
-            switchToEditProfile();
+            ActivityUtils.startInnerViewActivity(this, FragmentBuilder.DASHBOARD_FRAGMENT);
             //loadLogInView();
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void switchToEditProfile() {
-        Intent intent = new Intent(this, InnerViewActivity.class);
-        intent.putExtra(this.getString(R.string.bundle_fragment), InnerViewActivity.EDIT_PROFILE_FRAGMENT);
-        startActivityForResult(intent, -1);
-        //overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

@@ -23,14 +23,14 @@
         <activity android:name=".SignUpActivity_"/>
 
         <activity
-            android:name=".InnerViewActivity"
+            android:name=".utils.ui.activity_utils.InnerViewActivity_"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:label="tak"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <activity
-            android:name=".ui_dashboard.ExampleInnerViewActivity"
+            android:name=".ui_dashboard.ExampleInnerViewActivity_"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:label="tak"
             android:screenOrientation="portrait"

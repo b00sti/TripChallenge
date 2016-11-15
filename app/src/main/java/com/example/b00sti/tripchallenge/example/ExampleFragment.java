@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.example.b00sti.tripchallenge.R;
-import com.example.b00sti.tripchallenge.utils.util.mvp_base.MvpFragment;
+import com.example.b00sti.tripchallenge.utils.ui.mvp_base.MvpFragment;
 
 import org.androidannotations.annotations.EFragment;
 

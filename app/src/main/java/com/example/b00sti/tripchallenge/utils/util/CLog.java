@@ -12,7 +12,7 @@ import static android.content.ContentValues.TAG;
  * Created by Dominik (b00sti) Pawlik on 2016-11-15
  */
 
-public class LogUtils {
+public class CLog {
 
     public static <T> void logListSize(String tag, String title, List<T> list) {
         if (list == null) {
@@ -65,13 +65,13 @@ public class LogUtils {
         }
     }
 
-    public static <T> void logD1(String TAG, String info, T t) {
+    public static <T> void d(String TAG, String info, T t) {
         String s1 = null;
         if (t != null) s1 = t.toString();
         Log.d(TAG, info + " = [" + s1 + "]");
     }
 
-    public static <T, S> void logD2(String TAG, String info, T t, String info2, S s) {
+    public static <T, S> void d2(String TAG, String info, T t, String info2, S s) {
         String s1 = null;
         String s2 = null;
         if (t != null) s1 = t.toString();
@@ -79,7 +79,7 @@ public class LogUtils {
         Log.d(TAG, info + " = [" + s1 + "], " + info2 + " = [" + s2 + "]");
     }
 
-    public static <T, S, W> void logD3(String TAG, String info, T t, String info2, S s, String info3, W w) {
+    public static <T, S, W> void d3(String TAG, String info, T t, String info2, S s, String info3, W w) {
         String s1 = null;
         String s2 = null;
         String s3 = null;
@@ -89,13 +89,13 @@ public class LogUtils {
         Log.d(TAG, info + " = [" + s1 + "], " + info2 + " = [" + s2 + "], " + info3 + " = [" + s3 + "]");
     }
 
-    public static <T> void logI1(String TAG, String info, T t) {
+    public static <T> void i1(String TAG, String info, T t) {
         String s1 = null;
         if (t != null) s1 = t.toString();
         Log.i(TAG, info + " = [" + s1 + "]");
     }
 
-    public static <T, S> void logI2(String TAG, String info, T t, String info2, S s) {
+    public static <T, S> void i2(String TAG, String info, T t, String info2, S s) {
         String s1 = null;
         String s2 = null;
         if (t != null) s1 = t.toString();
@@ -103,7 +103,7 @@ public class LogUtils {
         Log.i(TAG, info + " = [" + s1 + "], " + info2 + " = [" + s2 + "]");
     }
 
-    public static <T, S, W> void logI3(String TAG, String info, T t, String info2, S s, String info3, W w) {
+    public static <T, S, W> void i3(String TAG, String info, T t, String info2, S s, String info3, W w) {
         String s1 = null;
         String s2 = null;
         String s3 = null;

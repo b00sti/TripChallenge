@@ -1,39 +1,45 @@
-package com.example.b00sti.tripchallenge;
+package com.example.b00sti.tripchallenge.utils.ui.activity_utils;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.b00sti.tripchallenge.ui_dashboard.DashboardFragment;
-import com.example.b00sti.tripchallenge.utils.eventbus.EventBusManager;
+import com.example.b00sti.tripchallenge.R;
+import com.example.b00sti.tripchallenge.utils.navigation.FragmentSwitcher;
+import com.example.b00sti.tripchallenge.utils.navigation.FragmentSwitcherParams;
+import com.example.b00sti.tripchallenge.utils.util.CLog;
 
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+
+/**
+ * Created by Dominik (b00sti) Pawlik on 2016-11-15
+ */
+
+@EActivity(R.layout.activity_inner_view)
 public class InnerViewActivity extends AppCompatActivity {
-    public final static int EDIT_PROFILE_FRAGMENT = 0;
-    private static final String TAG = InnerViewActivity.class.getSimpleName();
+    private static final String TAG = "InnerViewActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
 
-        setContentView(R.layout.activity_inner_view);
-
+    @AfterViews
+    void setInitialFragment() {
         setInitialFragment(getIntent());
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        EventBusManager.register(this);
     }
 
     @Override
     protected void onStop() {
-        EventBusManager.unregister(this);
         super.onStop();
     }
 
@@ -61,31 +67,21 @@ public class InnerViewActivity extends AppCompatActivity {
     }
 
     private void setInitialFragment(Intent intent) {
-        Log.d(TAG, "setInitialFragment: ");
-
         int fragmentId;
         if (intent.hasExtra(getString(R.string.bundle_fragment))) {
             fragmentId = intent.getIntExtra(getString(R.string.bundle_fragment), -1);
-            Log.d(TAG, "intent fragment: " + fragmentId);
+            CLog.d(TAG, "setInitialFragment with fragmentId", fragmentId);
             switchToFragment(fragmentId);
         }
     }
 
     public void switchToFragment(int fragmentId) {
-        Fragment fragment;
-        switch (fragmentId) {
-            case InnerViewActivity.EDIT_PROFILE_FRAGMENT:
-                Log.d(TAG, "InnerView - Edit Profile");
-                fragment = DashboardFragment.newInstance();
-                setFragmentChange(fragment).commit();
-                break;
-        }
+        Fragment fragment = FragmentBuilder.getInnerActivityFragment(fragmentId);
+        executeTransaction(fragment);
     }
 
-    private FragmentTransaction setFragmentChange(Fragment f) {
-
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.activity_inner_view_placeholder, f);
-        return transaction;
+    private void executeTransaction(Fragment f) {
+        FragmentSwitcher.switchFragment(new FragmentSwitcherParams(getSupportFragmentManager(), f, R.id.activity_inner_view_placeholder));
     }
+
 }

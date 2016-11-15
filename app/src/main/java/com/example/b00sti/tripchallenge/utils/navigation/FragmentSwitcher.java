@@ -3,6 +3,8 @@ package com.example.b00sti.tripchallenge.utils.navigation;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 
+import com.example.b00sti.tripchallenge.utils.util.CLog;
+
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-10-28
  */
@@ -26,5 +28,7 @@ public class FragmentSwitcher {
         }
 
         transaction.commit();
+
+        CLog.d(TAG, "switchFragment to", params.getTag());
     }
 }
