@@ -8,7 +8,6 @@ import android.view.View;
 
 import static com.google.android.gms.internal.zzs.TAG;
 
-
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-03
  */

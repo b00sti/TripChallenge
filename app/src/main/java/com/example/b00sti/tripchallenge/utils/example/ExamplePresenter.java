@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.example;
+package com.example.b00sti.tripchallenge.utils.example;
 
 import com.example.b00sti.tripchallenge.utils.ui.mvp_base.MvpPresenter;
 

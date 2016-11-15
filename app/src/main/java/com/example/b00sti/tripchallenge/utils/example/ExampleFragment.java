@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.example;
+package com.example.b00sti.tripchallenge.utils.example;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

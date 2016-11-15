@@ -10,11 +10,11 @@ import com.example.b00sti.tripchallenge.R;
  */
 
 public class ActivityUtils {
+    private static final String TAG = "ActivityUtils";
 
     public static void startInnerViewActivity(Activity context, int fragmentId) {
         Intent intent = new Intent(context, InnerViewActivity.class);
         intent.putExtra(context.getString(R.string.bundle_fragment), fragmentId);
         context.startActivityForResult(intent, -1);
     }
-
 }

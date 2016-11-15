@@ -10,6 +10,7 @@ import com.example.b00sti.tripchallenge.ui_dashboard.DashboardFragment;
 
 public class FragmentBuilder {
     public final static int DASHBOARD_FRAGMENT = 0;
+    private static final String TAG = "FragmentBuilder";
 
     public static Fragment getInnerActivityFragment(int fragmentId) {
         switch (fragmentId) {
