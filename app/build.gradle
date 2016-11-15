@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'realm-android'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 25
@@ -12,7 +15,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         jackOptions {
-            enabled true
+            enabled false
         }
     }
     buildTypes {
@@ -45,7 +48,7 @@ dependencies {
     //testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:25.0.0'
     compile "org.androidannotations:androidannotations-api:$rootProject.androidAnnotationsVersion"
-    annotationProcessor "org.androidannotations:androidannotations:$rootProject.androidAnnotationsVersion"
+    apt "org.androidannotations:androidannotations:$rootProject.androidAnnotationsVersion"
 
     compile "com.google.guava:guava:$rootProject.guavaVersion"
     compile "io.reactivex:rxjava:$rootProject.rxjavaVersion"
@@ -55,5 +58,7 @@ dependencies {
     compile "com.google.firebase:firebase-database:$rootProject.firebaseDatabaseVersion"
     compile "com.google.firebase:firebase-auth:$rootProject.firebaseAuthVersion"
     compile "org.greenrobot:eventbus:$rootProject.eventbusVersion"
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+
 }
 
