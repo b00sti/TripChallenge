@@ -1,11 +1,13 @@
 <resources>
+
+    <!-- Shared Preferences -->
+    <string name="shared_preferences_initial_permissions_never_ask_again_key" translatable="false">permissions_key</string>
+    <string name="shared_preferences_initial_permissions_never_ask_again" translatable="false">permissions</string>
+
+    <!--Strings-->
     <string name="app_name">TripChallenge</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_settings">Settings</string>
-
+    <!--Login-->
     <string name="password_hint">Password</string>
     <string name="email_hint">Email</string>
     <string name="sign_up_button_label">Sign Up</string>
@@ -20,7 +22,14 @@
     <string name="add_item">Add New Item</string>
     <string name="action_logout">Logout</string>
 
+    <!--Utils-->
     <string name="bundle_fragment">fragment</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 
 
 </resources>

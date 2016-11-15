@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.utils.helpers;
+package com.example.b00sti.tripchallenge.utils.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,7 +11,7 @@ import android.renderscript.ScriptIntrinsicBlur;
  * Created by Dominik (b00sti) Pawlik on 2016-11-15
  */
 
-public class BlurHelper {
+public class BlurUtils {
 
     private static final float BITMAP_SCALE = 0.1f;
     private static final float BLUR_RADIUS = 7.5f;

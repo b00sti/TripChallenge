@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.utils;
+package com.example.b00sti.tripchallenge.utils.util;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;

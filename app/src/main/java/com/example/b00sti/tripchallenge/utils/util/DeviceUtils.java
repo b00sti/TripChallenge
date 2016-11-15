@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.utils.helpers;
+package com.example.b00sti.tripchallenge.utils.util;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,7 +12,7 @@ import com.example.b00sti.tripchallenge.App;
  * Created by Dominik (b00sti) Pawlik on 2016-11-15
  */
 
-public class DeviceHelper {
+public class DeviceUtils {
 
     public static String getDensityInfoAsString(Context context) {
         int density = context.getResources().getDisplayMetrics().densityDpi;

@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.utils.helpers;
+package com.example.b00sti.tripchallenge.utils.util;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-15

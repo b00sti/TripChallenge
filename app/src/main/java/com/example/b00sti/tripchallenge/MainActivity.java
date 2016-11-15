@@ -20,10 +20,10 @@ import android.widget.ListView;
 
 import com.example.b00sti.tripchallenge.firebase.FirebaseManager;
 import com.example.b00sti.tripchallenge.ui_login.LogInActivity_;
-import com.example.b00sti.tripchallenge.utils.FragmentSwitcher;
 import com.example.b00sti.tripchallenge.utils.drawer.DrawerAdapter;
 import com.example.b00sti.tripchallenge.utils.drawer.DrawerUtils;
 import com.example.b00sti.tripchallenge.utils.eventbus.SwitchFragmentEvent;
+import com.example.b00sti.tripchallenge.utils.util.FragmentSwitcher;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;

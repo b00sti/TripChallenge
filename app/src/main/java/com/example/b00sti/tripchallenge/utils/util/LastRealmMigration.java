@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.utils.helpers;
+package com.example.b00sti.tripchallenge.utils.util;
 
 import android.util.Log;
 
