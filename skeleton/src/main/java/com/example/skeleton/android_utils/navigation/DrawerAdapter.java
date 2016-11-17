@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.skeleton.R;
+import com.example.skeleton.ui.recyclers.BaseAdapter;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
  * Created by Dominik (b00sti) Pawlik on 2016-11-03
  */
 
-public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder> {
+public class DrawerAdapter extends BaseAdapter<DrawerItem, DrawerAdapter.ViewHolder> {
 
     public static final String TAG = DrawerAdapter.class.getSimpleName();
     Context context;
@@ -25,6 +26,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.ViewHolder
     private View notificationTabView;
 
     public DrawerAdapter(List<DrawerItem> items, @DrawerUtils.DrawerTab int selectedTabId, Context context) {
+        super(items);
         this.items = items;
         this.selectedTabId = selectedTabId;
         this.context = context;

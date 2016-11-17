@@ -1,41 +1,17 @@
 package com.example.b00sti.tripchallenge;
 
-import android.app.Application;
-
-import com.example.skeleton.android_utils.util.LastRealmMigration;
-
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
+import com.example.skeleton.android_utils.util.BaseApp;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-15
  */
 
-public class App extends Application {
-
+public class App extends BaseApp {
     private static final String TAG = "App";
-    private static App instance;
-
-    public static App getInstance() {
-        return instance;
-    }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-        instance = this;
-        initRealmConfiguration();
-
+    protected int setRealmSchemaVersion() {
+        return 1;
     }
 
-    private void initRealmConfiguration() {
-        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this)
-                .name(getResources().getString(R.string.app_name) + ".realm")
-                .schemaVersion(1)
-//                .deleteRealmIfMigrationNeeded()
-                .migration(new LastRealmMigration())
-                .build();
-
-        Realm.setDefaultConfiguration(realmConfiguration);
-    }
 }

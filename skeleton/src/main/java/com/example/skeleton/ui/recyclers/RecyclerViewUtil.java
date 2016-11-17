@@ -11,7 +11,7 @@ import android.support.v7.widget.RecyclerView;
 
 public class RecyclerViewUtil {
 
-    public static <K extends BaseAdapter> void initDefaultRecycler(RecyclerView recyclerView, Context context, K adapter) {
+    public static <K extends BaseAdapter> void initDefaultRecycler(Context context, RecyclerView recyclerView, K adapter) {
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(layoutManager);

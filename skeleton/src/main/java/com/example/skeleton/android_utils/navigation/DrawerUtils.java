@@ -1,31 +1,33 @@
 package com.example.skeleton.android_utils.navigation;
 
-import android.content.Context;
 import android.support.annotation.IntDef;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 
 import com.example.skeleton.R;
-import com.example.skeleton.android_utils.eventbus.SwitchFragmentEvent;
-import com.example.skeleton.ui.recyclers.RecyclerItemClickListener;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.skeleton.android_utils.navigation.DrawerUtils.DRAWER_TAB_BASE.DASHBOARD_TAB;
+
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-03
  */
 
 public class DrawerUtils {
-    public static final int NO_TAB = -1;
-    public static final int DASHBOARD_TAB = 0;
-    public static final int SETTINGS_TAB = 1;
+    public static final int TAB_0 = -1;
+    public static final int TAB_1 = 1;
+    public static final int TAB_2 = 2;
+    public static final int TAB_3 = 3;
+    public static final int TAB_4 = 4;
+    public static final int TAB_5 = 5;
+    public static final int TAB_6 = 6;
+    public static final int TAB_7 = 7;
+    public static final int TAB_8 = 8;
+    public static final int TAB_9 = 9;
+    public static final int TAB_10 = 10;
+
 
     public static List<DrawerItem> getDataSet() {
         List<DrawerItem> items = new ArrayList<>();
@@ -36,41 +38,23 @@ public class DrawerUtils {
         return items;
     }
 
-    public static DrawerAdapter initDrawerItemsAdapter(RecyclerView drawerRecyclerView, final DrawerLayout drawerLayout,
-                                                       int selectedTabId, final Toolbar toolbar, final Context context) {
-
-        final List<DrawerItem> drawerItems = getDataSet();
-
-        drawerRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(context, (view, position) -> {
-            Fragment targetFragment;
-            switch (drawerItems.get(position).getTabId()) {
-                case DASHBOARD_TAB:
-                    //targetFragment = new MvpFragment();
-                    break;
-                case SETTINGS_TAB:
-                    //targetFragment = new SettingsFragment();
-                    break;
-                default:
-                    //targetFragment = new MvpFragment();
-                    break;
-            }
-            targetFragment = null;// = new SettingsFragment();
-            // post event to switch fragment
-            EventBus.getDefault().post(new SwitchFragmentEvent(targetFragment, drawerItems.get(position).getTabId()));
-
-            // set toolbar title to selected drawer item's title
-            toolbar.setTitle(getDataSet().get(position).getTitleResource());
-
-            drawerLayout.closeDrawers();
-        }));
-        // initialize adapter with selected position highlighted
-        return new DrawerAdapter(drawerItems, selectedTabId, context);
+    public enum TABS {
+        NO_TAB, DASHBOARD
     }
 
+
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({NO_TAB,
-            SETTINGS_TAB,
-            DASHBOARD_TAB,
+    @IntDef({TAB_0,
+            TAB_1,
+            TAB_2,
+            TAB_3,
+            TAB_4,
+            TAB_5,
+            TAB_6,
+            TAB_7,
+            TAB_8,
+            TAB_9,
+            TAB_10
     })
     public @interface DrawerTab {
     }
