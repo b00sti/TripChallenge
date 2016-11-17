@@ -253,6 +253,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_logout) {
             firebaseManager.getFirebaseAuth().signOut();
             ActivityUtils.startInnerViewActivity(this, FragmentBuilder.DASHBOARD_FRAGMENT);
+            //test
             //loadLogInView();
         }
 
