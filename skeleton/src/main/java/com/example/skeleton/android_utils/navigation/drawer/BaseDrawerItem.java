@@ -1,19 +1,18 @@
-package com.example.skeleton.android_utils.navigation;
+package com.example.skeleton.android_utils.navigation.drawer;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-03
  */
 
-public class DrawerItem {
+public abstract class BaseDrawerItem {
 
-    @DrawerUtils.DrawerTab
-    private int tabId;
+    @DrawerUtils.DrawerTab private int tabId;
 
     private int imageResource;
     private int titleResource;
     private int counter;
 
-    public DrawerItem(@DrawerUtils.DrawerTab int tabId, int titleResource, int imageResource) {
+    public BaseDrawerItem(@DrawerUtils.DrawerTab int tabId, int titleResource, int imageResource) {
         this.tabId = tabId;
         this.imageResource = imageResource;
         this.titleResource = titleResource;
@@ -21,7 +20,7 @@ public class DrawerItem {
     }
 
 
-    public DrawerItem(@DrawerUtils.DrawerTab int tabId, int titleResource, int imageResource, int counter) {
+    public BaseDrawerItem(@DrawerUtils.DrawerTab int tabId, int titleResource, int imageResource, int counter) {
         this.tabId = tabId;
         this.imageResource = imageResource;
         this.titleResource = titleResource;

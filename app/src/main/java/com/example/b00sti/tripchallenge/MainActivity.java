@@ -21,10 +21,10 @@ import android.widget.ListView;
 import com.example.b00sti.tripchallenge.ui_login.LogInActivity_;
 import com.example.skeleton.android_utils.eventbus.SwitchFragmentEvent;
 import com.example.skeleton.android_utils.firebase.FirebaseManager;
-import com.example.skeleton.android_utils.navigation.DrawerAdapter;
-import com.example.skeleton.android_utils.navigation.DrawerUtils;
-import com.example.skeleton.android_utils.navigation.FragmentSwitcher;
-import com.example.skeleton.android_utils.navigation.FragmentSwitcherParams;
+import com.example.skeleton.android_utils.navigation.drawer.BaseDrawerAdapter;
+import com.example.skeleton.android_utils.navigation.drawer.DrawerUtils;
+import com.example.skeleton.android_utils.navigation.fragment_switching.FragmentSwitcher;
+import com.example.skeleton.android_utils.navigation.fragment_switching.FragmentSwitcherParams;
 import com.example.skeleton.ui.activity_utils.ActivityUtils;
 import com.example.skeleton.ui.activity_utils.FragmentBuilder;
 
@@ -234,13 +234,13 @@ public class MainActivity extends AppCompatActivity
         switch (this.drawerCurrentlySelectedTab) {
             //BUTTONS
             case DrawerUtils.NO_TAB:
-                drawerRecyclerView.setAdapter(new DrawerAdapter(DrawerUtils.getDataSet(), DrawerUtils.NO_TAB, this));
+                drawerRecyclerView.setAdapter(new BaseDrawerAdapter(DrawerUtils.getDataSet(), DrawerUtils.NO_TAB, this));
                 break;
             //TABS
             case DrawerUtils.DASHBOARD_TAB:
             case DrawerUtils.SETTINGS_TAB:
             default:
-                drawerRecyclerView.setAdapter(new DrawerAdapter(DrawerUtils.getDataSet(), this.drawerCurrentlySelectedTab, this));
+                drawerRecyclerView.setAdapter(new BaseDrawerAdapter(DrawerUtils.getDataSet(), this.drawerCurrentlySelectedTab, this));
         }
         FragmentSwitcher.switchFragment(new FragmentSwitcherParams(getSupportFragmentManager(), targetFragment, R.id.activity_main_placeholder));
     }

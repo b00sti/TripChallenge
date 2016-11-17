@@ -3,7 +3,7 @@ package com.example.skeleton.android_utils.eventbus;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
-import com.example.skeleton.android_utils.navigation.DrawerUtils;
+import com.example.skeleton.android_utils.navigation.drawer.DrawerUtils;
 
 import org.greenrobot.eventbus.EventBus;
 

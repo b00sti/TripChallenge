@@ -1,5 +1,6 @@
 package com.example.skeleton.ui.recyclers;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -12,10 +13,21 @@ import java.util.List;
 public abstract class BaseAdapter<T, V extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<V> {
 
     protected List<T> dataSet = new ArrayList<>();
+    protected Context context;
+
+    public BaseAdapter() {
+
+    }
 
     public BaseAdapter(List<T> dataSet) {
         this.dataSet.clear();
         this.dataSet.addAll(dataSet);
+    }
+
+    public BaseAdapter(List<T> dataSet, Context context) {
+        this.dataSet.clear();
+        this.dataSet.addAll(dataSet);
+        this.context = context;
     }
 
     public void setDataSet(List<T> dataSet) {

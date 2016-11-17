@@ -8,8 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.skeleton.R;
-import com.example.skeleton.android_utils.navigation.FragmentSwitcher;
-import com.example.skeleton.android_utils.navigation.FragmentSwitcherParams;
+import com.example.skeleton.android_utils.navigation.fragment_switching.FragmentSwitcher;
+import com.example.skeleton.android_utils.navigation.fragment_switching.FragmentSwitcherParams;
 import com.example.skeleton.android_utils.util.CLog;
 import com.example.skeleton.ui.activity_utils.FragmentBuilder;
 

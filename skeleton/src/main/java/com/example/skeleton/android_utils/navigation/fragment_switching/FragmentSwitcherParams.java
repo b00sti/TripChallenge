@@ -1,4 +1,4 @@
-package com.example.skeleton.android_utils.navigation;
+package com.example.skeleton.android_utils.navigation.fragment_switching;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
