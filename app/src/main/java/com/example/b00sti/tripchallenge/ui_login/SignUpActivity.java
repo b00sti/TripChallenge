@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 import com.example.b00sti.tripchallenge.MainActivity_;
 import com.example.b00sti.tripchallenge.R;
-import com.example.b00sti.tripchallenge.utils.firebase.FirebaseManager;
+import com.example.skeleton.android_utils.firebase.FirebaseManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

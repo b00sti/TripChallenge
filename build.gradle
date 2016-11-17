@@ -23,6 +23,10 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+task getHomeDir << {
+    println gradle.gradleHomeDir
+}
+
 // Define versions in a single place
 ext {
     // Sdk and tools

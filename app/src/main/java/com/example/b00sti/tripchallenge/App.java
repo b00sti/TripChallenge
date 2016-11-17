@@ -2,7 +2,7 @@ package com.example.b00sti.tripchallenge;
 
 import android.app.Application;
 
-import com.example.b00sti.tripchallenge.utils.util.LastRealmMigration;
+import com.example.skeleton.android_utils.util.LastRealmMigration;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;

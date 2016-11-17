@@ -1,6 +1,7 @@
 package com.example.b00sti.tripchallenge.ui_dashboard;
 
-import com.example.b00sti.tripchallenge.utils.ui.mvp_base.MvpPresenter;
+
+import com.example.skeleton.ui.mvp_base.MvpPresenter;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-10

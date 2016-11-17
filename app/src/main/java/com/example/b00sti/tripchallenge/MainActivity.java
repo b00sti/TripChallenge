@@ -19,14 +19,14 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.b00sti.tripchallenge.ui_login.LogInActivity_;
-import com.example.b00sti.tripchallenge.utils.eventbus.SwitchFragmentEvent;
-import com.example.b00sti.tripchallenge.utils.firebase.FirebaseManager;
-import com.example.b00sti.tripchallenge.utils.navigation.DrawerAdapter;
-import com.example.b00sti.tripchallenge.utils.navigation.DrawerUtils;
-import com.example.b00sti.tripchallenge.utils.navigation.FragmentSwitcher;
-import com.example.b00sti.tripchallenge.utils.navigation.FragmentSwitcherParams;
-import com.example.b00sti.tripchallenge.utils.ui.activity_utils.ActivityUtils;
-import com.example.b00sti.tripchallenge.utils.ui.activity_utils.FragmentBuilder;
+import com.example.skeleton.android_utils.eventbus.SwitchFragmentEvent;
+import com.example.skeleton.android_utils.firebase.FirebaseManager;
+import com.example.skeleton.android_utils.navigation.DrawerAdapter;
+import com.example.skeleton.android_utils.navigation.DrawerUtils;
+import com.example.skeleton.android_utils.navigation.FragmentSwitcher;
+import com.example.skeleton.android_utils.navigation.FragmentSwitcherParams;
+import com.example.skeleton.ui.activity_utils.ActivityUtils;
+import com.example.skeleton.ui.activity_utils.FragmentBuilder;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity
     void test() {
 
         setSupportActionBar(toolbar);
-        EventBus.getDefault().register(MainActivity.class);
+        EventBus.getDefault().register(this);
 
         initDrawer();
 
