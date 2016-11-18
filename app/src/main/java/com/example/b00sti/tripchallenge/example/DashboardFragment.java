@@ -21,7 +21,7 @@ public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> 
     private static final String TAG = "DashboardFragment";
 
     public static Fragment newInstance() {
-        DashboardFragment dashboardFragment = new DashboardFragment_();
+        Fragment dashboardFragment = new DashboardFragment_();
         return dashboardFragment;
     }
 

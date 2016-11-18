@@ -10,7 +10,7 @@ import org.androidannotations.annotations.EFragment;
  * Created by Dominik (b00sti) Pawlik on 2016-11-18
  */
 
-@EFragment(R.layout.fragment_top_drawer)
+@EFragment(R.layout.fragment_bottom_drawer)
 public class DrawerBottomFragment extends Fragment {
 
     public static Fragment newInstance() {
