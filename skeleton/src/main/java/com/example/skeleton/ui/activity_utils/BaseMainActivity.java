@@ -158,7 +158,15 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
         FragmentSwitcher.switchFragment(new FragmentSwitcherParams(getSupportFragmentManager(), targetFragment, R.id.activity_main_placeholder));
     }
 
-    public A initDrawerItemsAdapter() {
+    public void setTopDrawerFragment(Fragment targetFragment) {
+        FragmentSwitcher.switchFragment(new FragmentSwitcherParams(getSupportFragmentManager(), targetFragment, R.id.drawer_top_placeholder));
+    }
+
+    public void setBottomDrawerFragment(Fragment targetFragment) {
+        FragmentSwitcher.switchFragment(new FragmentSwitcherParams(getSupportFragmentManager(), targetFragment, R.id.drawer_bottom_placeholder));
+    }
+
+    private A initDrawerItemsAdapter() {
         final List<I> drawerItems = getDrawerItems();
 
         drawerRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, (view, position) -> {

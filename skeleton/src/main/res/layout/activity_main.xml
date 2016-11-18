@@ -13,26 +13,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <RelatieLayout
+    <RelativeLayout
         android:id="@+id/drawer_container"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/colorAccent">
 
-        <LinearLayout
-            android:id="@+id/drawer_top_buttons"
+        <FrameLayout
+            android:id="@+id/drawer_top_placeholder"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:paddingEnd="12dp"
-            android:paddingStart="12dp"
-            android:weightSum="4"/>
+            android:layout_height="wrap_content"
+            android:background="@color/colorDarkBackground">
+        </FrameLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/drawer_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@+id/drawer_bottom_placeholder"
+            android:layout_below="@+id/drawer_top_placeholder"
             android:background="@color/colorAccent"
             android:clickable="true"
             android:focusable="true"
@@ -41,6 +41,14 @@
             android:paddingTop="16dp"
             android:scrollbars="vertical"/>
 
-    </RelatieLayout>
+        <FrameLayout
+            android:id="@+id/drawer_bottom_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorDarkBackground">
+        </FrameLayout>
+
+    </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>

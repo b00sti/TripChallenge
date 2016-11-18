@@ -6,9 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 
 import com.example.b00sti.tripchallenge.R;
 import com.example.b00sti.tripchallenge.ui_login.LogInActivity_;
@@ -20,7 +17,6 @@ import com.example.skeleton.ui.activity_utils.BaseMainActivity;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +24,9 @@ import java.util.List;
 @EActivity(R.layout.activity_main)
 public class MainActivity extends BaseMainActivity<DrawerItem, DrawerItemView, DrawerAdapter> {
     private static final String TAG = "MainActivity";
-    @ViewById(R.id.listView) public ListView listView;
-    @ViewById(R.id.todoText) public EditText text;
-    @ViewById public Button addButton;
+    //@ViewById(R.id.listView) public ListView listView;
+    //@ViewById(R.id.todoText) public EditText text;
+    //@ViewById public Button addButton;
     @Bean
     FragmentBuilder fragmentBuilder;
     @Bean
@@ -41,7 +37,8 @@ public class MainActivity extends BaseMainActivity<DrawerItem, DrawerItemView, D
 
     @AfterViews
     void test() {
-
+        setBottomDrawerFragment(TopFrag.newInstance());
+        setTopDrawerFragment(TopFrag.newInstance());
         /*if (!firebaseManager.isUserLogged()) {
             loadLogInView();
         } else {
