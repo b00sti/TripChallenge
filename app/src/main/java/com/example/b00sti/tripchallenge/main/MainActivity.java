@@ -36,9 +36,13 @@ public class MainActivity extends BaseMainActivity<DrawerItem, DrawerItemView, D
     DrawerAdapter drawerAdapter;
 
     @AfterViews
+    void setDrawerFragments() {
+        setBottomDrawerFragment(DrawerBottomFragment.newInstance());
+        setTopDrawerFragment(DrawerTopFragment.newInstance());
+    }
+
+    @AfterViews
     void test() {
-        setBottomDrawerFragment(TopFrag.newInstance());
-        setTopDrawerFragment(TopFrag.newInstance());
         /*if (!firebaseManager.isUserLogged()) {
             loadLogInView();
         } else {
