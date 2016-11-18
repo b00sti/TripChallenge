@@ -1,75 +1,48 @@
-package com.example.b00sti.tripchallenge;
+package com.example.b00sti.tripchallenge.main;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.design.widget.NavigationView;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.example.b00sti.tripchallenge.R;
 import com.example.b00sti.tripchallenge.ui_login.LogInActivity_;
-import com.example.skeleton.android_utils.eventbus.SwitchFragmentEvent;
 import com.example.skeleton.android_utils.firebase.FirebaseManager;
-import com.example.skeleton.android_utils.navigation.drawer.BaseDrawerAdapter;
 import com.example.skeleton.android_utils.navigation.drawer.DrawerUtils;
-import com.example.skeleton.android_utils.navigation.fragment_switching.FragmentSwitcher;
-import com.example.skeleton.android_utils.navigation.fragment_switching.FragmentSwitcherParams;
 import com.example.skeleton.ui.activity_utils.ActivityUtils;
-import com.example.skeleton.ui.activity_utils.FragmentBuilder;
+import com.example.skeleton.ui.activity_utils.BaseMainActivity;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @EActivity(R.layout.activity_main)
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-
+public class MainActivity extends BaseMainActivity<DrawerItem, DrawerItemView, DrawerAdapter> {
     private static final String TAG = "MainActivity";
-
-    @ViewById public DrawerLayout drawer;
-    @ViewById(R.id.drawer_recycler_view)
-    public RecyclerView drawerRecyclerView;
     @ViewById(R.id.listView) public ListView listView;
-    @ViewById(R.id.todoText)
-    public EditText text;
+    @ViewById(R.id.todoText) public EditText text;
     @ViewById public Button addButton;
-    @ViewById(R.id.drawer)
-    public DrawerLayout drawerLay;
-    public ActionBarDrawerToggle toggle;
-    @ViewById
-    Toolbar toolbar;
+    @Bean
+    FragmentBuilder fragmentBuilder;
     @Bean
     FirebaseManager firebaseManager;
-    @DrawerUtils.DrawerTab
-    private int drawerCurrentlySelectedTab = DrawerUtils.NO_TAB;
+
+    @Bean
+    DrawerAdapter drawerAdapter;
 
     @AfterViews
     void test() {
 
-        setSupportActionBar(toolbar);
-        EventBus.getDefault().register(this);
-
-        initDrawer();
-
-
-/*
-
-        if (!firebaseManager.isUserLogged()) {
+        /*if (!firebaseManager.isUserLogged()) {
             loadLogInView();
         } else {
 
@@ -153,62 +126,62 @@ public class MainActivity extends AppCompatActivity
         }
         if (!firebaseManager.isUserLogged()) {
             loadLogInView();
-        }
-*/
-    }
-
-    private void initDrawer() {
-        prepareDrawerMenuRecyclerView();
-
-        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        toggle.setDrawerIndicatorEnabled(false);
-        toggle.setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.common_google_signin_btn_icon_dark_pressed));
-        toggle.setToolbarNavigationClickListener(view -> {
-            if (drawer.isDrawerVisible(GravityCompat.START)) {
-                drawer.closeDrawer(GravityCompat.START);
-            } else {
-                //ViewUtils.hideKeyboard(this);
-                drawer.openDrawer(GravityCompat.START);
-            }
-        });
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-    }
-
-
-    private void prepareDrawerMenuRecyclerView() {
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
-        drawerRecyclerView.setLayoutManager(layoutManager);
-        drawerRecyclerView.setHasFixedSize(true);
-
-        // set dashboard as initial tab if no tab is selected
-        if (drawerCurrentlySelectedTab < 0) drawerCurrentlySelectedTab = getDefaultTabId();
-        // IN ORDER TO CHANGE MENU ITEMS GO THERE
-        drawerRecyclerView.setAdapter(DrawerUtils.initDrawerItemsAdapter(drawerRecyclerView, drawer, drawerCurrentlySelectedTab, toolbar, this));
-    }
-
-    public
-    @DrawerUtils.DrawerTab
-    int getDefaultTabId() {
-        return DrawerUtils.DASHBOARD_TAB;
+        }*/
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public int getHomeAsUpIndicatorAsDrawable() {
+        return R.drawable.common_plus_signin_btn_text_dark_pressed;
+    }
 
+    @Nullable
+    @Override
+    public Fragment getFragmentForTab(@DrawerUtils.DrawerTab int tab) {
+        Fragment fragment = null;
+        switch (tab) {
+            case DrawerUtils.TAB_0:
+                fragment = fragmentBuilder.newFragment(FragmentBuilder.DASHBOARD);
+                break;
+            case DrawerUtils.TAB_10:
+                break;
+            case DrawerUtils.TAB_1:
+                fragment = fragmentBuilder.newFragment(FragmentBuilder.DASHBOARD);
+                break;
+            case DrawerUtils.TAB_2:
+                fragment = fragmentBuilder.newFragment(FragmentBuilder.DASHBOARD);
+                break;
+            case DrawerUtils.TAB_3:
+                break;
+            case DrawerUtils.TAB_4:
+                break;
+            case DrawerUtils.TAB_5:
+                break;
+            case DrawerUtils.TAB_6:
+                break;
+            case DrawerUtils.TAB_7:
+                break;
+            case DrawerUtils.TAB_8:
+                break;
+            case DrawerUtils.TAB_9:
+                break;
+            case DrawerUtils.TAB_NO:
+                break;
+        }
+        return fragment;
     }
 
     @Override
-    public void onBackPressed() {
-        if (drawerLay.isDrawerOpen(GravityCompat.START)) {
-            drawerLay.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+    public List<DrawerItem> getDrawerItems() {
+        List<DrawerItem> drawerItems = new ArrayList<>();
+        drawerItems.add(new DrawerItem(DrawerUtils.TAB_0, R.string.signup_error_title, R.drawable.common_plus_signin_btn_text_dark_focused));
+        drawerItems.add(new DrawerItem(DrawerUtils.TAB_1, R.string.signup_error_message, R.drawable.common_plus_signin_btn_text_dark_focused));
+        drawerItems.add(new DrawerItem(DrawerUtils.TAB_2, R.string.login_error_title, R.drawable.common_plus_signin_btn_text_dark_focused));
+        return drawerItems;
+    }
+
+    @Override
+    public DrawerAdapter getDrawerAdapter() {
+        return drawerAdapter;
     }
 
     private void loadLogInView() {
@@ -225,26 +198,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    @Subscribe
-    public void onEvent(SwitchFragmentEvent event) {
-        this.drawerCurrentlySelectedTab = event.getDrawerItemSelected();
-
-        Fragment targetFragment = event.getTargetFragment();
-
-        switch (this.drawerCurrentlySelectedTab) {
-            //BUTTONS
-            case DrawerUtils.NO_TAB:
-                drawerRecyclerView.setAdapter(new BaseDrawerAdapter(DrawerUtils.getDataSet(), DrawerUtils.NO_TAB, this));
-                break;
-            //TABS
-            case DrawerUtils.DASHBOARD_TAB:
-            case DrawerUtils.SETTINGS_TAB:
-            default:
-                drawerRecyclerView.setAdapter(new BaseDrawerAdapter(DrawerUtils.getDataSet(), this.drawerCurrentlySelectedTab, this));
-        }
-        FragmentSwitcher.switchFragment(new FragmentSwitcherParams(getSupportFragmentManager(), targetFragment, R.id.activity_main_placeholder));
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -252,34 +205,15 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.action_logout) {
             firebaseManager.getFirebaseAuth().signOut();
-            ActivityUtils.startInnerViewActivity(this, FragmentBuilder.DASHBOARD_FRAGMENT);
-            //test
+            ActivityUtils.startInnerViewActivity(this, FragmentBuilder.DASHBOARD);
             //loadLogInView();
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
     }
 }

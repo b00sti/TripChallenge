@@ -12,7 +12,7 @@ import com.example.skeleton.android_utils.navigation.drawer.DrawerUtils;
 @SuppressWarnings("unused")
 public class SwitchFragmentEvent {
 
-    @DrawerUtils.DrawerTab private int drawerSelectedTabId = DrawerUtils.NO_TAB;
+    @DrawerUtils.DrawerTab private int drawerSelectedTabId = DrawerUtils.TAB_NO;
     private Fragment targetFragment;
     private Bundle extras;
 

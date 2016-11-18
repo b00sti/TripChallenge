@@ -2,6 +2,7 @@ package com.example.b00sti.tripchallenge.ui_dashboard;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.example.b00sti.tripchallenge.R;
@@ -18,8 +19,9 @@ public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> 
 
     private static final String TAG = "DashboardFragment";
 
-    public static DashboardFragment newInstance() {
-        return new DashboardFragment_();
+    public static Fragment newInstance() {
+        DashboardFragment dashboardFragment = new DashboardFragment_();
+        return dashboardFragment;
     }
 
     @Override

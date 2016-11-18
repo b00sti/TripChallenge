@@ -3,14 +3,11 @@ package com.example.skeleton.ui.activity_utils;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.skeleton.R;
-import com.example.skeleton.android_utils.navigation.fragment_switching.FragmentSwitcher;
-import com.example.skeleton.android_utils.navigation.fragment_switching.FragmentSwitcherParams;
 import com.example.skeleton.android_utils.util.CLog;
 
 /**
@@ -66,17 +63,19 @@ public class InnerViewActivity extends AppCompatActivity {
         if (intent.hasExtra(getString(R.string.bundle_fragment))) {
             fragmentId = intent.getIntExtra(getString(R.string.bundle_fragment), -1);
             CLog.d(TAG, "setInitialFragment with fragmentId", fragmentId);
-            switchToFragment(fragmentId);
+//            switchToFragment(fragmentId);
         }
     }
+/*
 
     public void switchToFragment(int fragmentId) {
-        Fragment fragment = FragmentBuilder.getInnerActivityFragment(fragmentId);
+        Fragment fragment = BaseFragmentBuilder.getInnerActivityFragment(fragmentId);
         executeTransaction(fragment);
     }
 
     private void executeTransaction(Fragment f) {
         FragmentSwitcher.switchFragment(new FragmentSwitcherParams(getSupportFragmentManager(), f, R.id.activity_inner_view_placeholder));
     }
+*/
 
 }

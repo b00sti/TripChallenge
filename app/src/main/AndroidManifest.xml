@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity_"
+            android:name=".main.MainActivity_"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,8 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LogInActivity_"/>
-        <activity android:name=".SignUpActivity_"/>
+        <activity android:name=".ui_login.LogInActivity_"/>
+        <activity android:name=".ui_login.SignUpActivity_"/>
 
         <activity
             android:name="com.example.skeleton.ui.activity_utils.InnerViewActivity"
