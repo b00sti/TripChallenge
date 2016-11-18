@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <RelativeLayout
+    <RelatieLayout
         android:id="@+id/drawer_container"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -24,38 +24,23 @@
             android:id="@+id/drawer_top_buttons"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_alignParentTop="true"
             android:orientation="horizontal"
             android:paddingEnd="12dp"
             android:paddingStart="12dp"
-            android:weightSum="4">
-
-        </LinearLayout>
+            android:weightSum="4"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/drawer_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/drawer_top_buttons"
             android:background="@color/colorAccent"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:minHeight="300dp"
             android:paddingTop="16dp"
-            android:scrollbars="vertical"
-            tools:listitem="@layout/drawer_item"/>
+            android:scrollbars="vertical"/>
 
-        <TextView
-            android:id="@+id/drawer_version_number_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="4dp"
-            android:textColor="@color/colorAccent"
-            tools:text="v 1.3"/>
-
-    </RelativeLayout>
+    </RelatieLayout>
 
 </android.support.v4.widget.DrawerLayout>

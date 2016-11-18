@@ -21,7 +21,6 @@ public class DrawerUtils {
     public static final int TAB_7 = 7;
     public static final int TAB_8 = 8;
     public static final int TAB_9 = 9;
-    public static final int TAB_10 = 10;
 
     @Retention(RetentionPolicy.SOURCE)
     @IntDef({TAB_NO,
@@ -35,7 +34,6 @@ public class DrawerUtils {
             TAB_7,
             TAB_8,
             TAB_9,
-            TAB_10
     })
     public @interface DrawerTab {
     }

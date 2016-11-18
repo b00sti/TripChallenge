@@ -131,7 +131,7 @@ public class MainActivity extends BaseMainActivity<DrawerItem, DrawerItemView, D
 
     @Override
     public int getHomeAsUpIndicatorAsDrawable() {
-        return R.drawable.common_plus_signin_btn_text_dark_pressed;
+        return R.drawable.common_plus_signin_btn_icon_dark_pressed;
     }
 
     @Nullable
@@ -141,8 +141,6 @@ public class MainActivity extends BaseMainActivity<DrawerItem, DrawerItemView, D
         switch (tab) {
             case DrawerUtils.TAB_0:
                 fragment = fragmentBuilder.newFragment(FragmentBuilder.DASHBOARD);
-                break;
-            case DrawerUtils.TAB_10:
                 break;
             case DrawerUtils.TAB_1:
                 fragment = fragmentBuilder.newFragment(FragmentBuilder.DASHBOARD);
@@ -173,9 +171,9 @@ public class MainActivity extends BaseMainActivity<DrawerItem, DrawerItemView, D
     @Override
     public List<DrawerItem> getDrawerItems() {
         List<DrawerItem> drawerItems = new ArrayList<>();
-        drawerItems.add(new DrawerItem(DrawerUtils.TAB_0, R.string.signup_error_title, R.drawable.common_plus_signin_btn_text_dark_focused));
-        drawerItems.add(new DrawerItem(DrawerUtils.TAB_1, R.string.signup_error_message, R.drawable.common_plus_signin_btn_text_dark_focused));
-        drawerItems.add(new DrawerItem(DrawerUtils.TAB_2, R.string.login_error_title, R.drawable.common_plus_signin_btn_text_dark_focused));
+        drawerItems.add(new DrawerItem(DrawerUtils.TAB_0, R.string.signup_error_title, R.drawable.common_google_signin_btn_icon_dark_focused));
+        drawerItems.add(new DrawerItem(DrawerUtils.TAB_1, R.string.signup_error_message, R.drawable.common_full_open_on_phone));
+        drawerItems.add(new DrawerItem(DrawerUtils.TAB_2, R.string.login_error_title, R.drawable.common_google_signin_btn_text_dark_disabled));
         return drawerItems;
     }
 

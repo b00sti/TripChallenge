@@ -1,14 +1,7 @@
 package com.example.skeleton.ui.activity_utils;
 
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
-
-import com.example.skeleton.R;
-import com.example.skeleton.android_utils.util.CLog;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-15
@@ -16,7 +9,7 @@ import com.example.skeleton.android_utils.util.CLog;
 
 public class InnerViewActivity extends AppCompatActivity {
     private static final String TAG = "InnerViewActivity";
-
+/*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +26,6 @@ public class InnerViewActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
 
     @Override
@@ -65,7 +52,7 @@ public class InnerViewActivity extends AppCompatActivity {
             CLog.d(TAG, "setInitialFragment with fragmentId", fragmentId);
 //            switchToFragment(fragmentId);
         }
-    }
+    }*/
 /*
 
     public void switchToFragment(int fragmentId) {

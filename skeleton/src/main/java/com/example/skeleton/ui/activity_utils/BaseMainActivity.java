@@ -117,9 +117,6 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
             case DrawerUtils.TAB_0:
                 tabToSelect = DrawerUtils.TAB_0;
                 break;
-            case DrawerUtils.TAB_10:
-                tabToSelect = DrawerUtils.TAB_10;
-                break;
             case DrawerUtils.TAB_1:
                 tabToSelect = DrawerUtils.TAB_1;
                 break;
