@@ -89,7 +89,7 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
 
     @DrawerUtils.DrawerTab
     public int getDefaultTabId() {
-        return DrawerUtils.TAB_0;
+        return DrawerUtils.TAB_00;
     }
 
     @Override
@@ -114,35 +114,53 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
         @DrawerUtils.DrawerTab int tabToSelect;
 
         switch (this.drawerCurrentlySelectedTab) {
-            case DrawerUtils.TAB_0:
-                tabToSelect = DrawerUtils.TAB_0;
+            case DrawerUtils.TAB_00:
+                tabToSelect = DrawerUtils.TAB_00;
                 break;
-            case DrawerUtils.TAB_1:
-                tabToSelect = DrawerUtils.TAB_1;
+            case DrawerUtils.TAB_01:
+                tabToSelect = DrawerUtils.TAB_01;
                 break;
-            case DrawerUtils.TAB_2:
-                tabToSelect = DrawerUtils.TAB_2;
+            case DrawerUtils.TAB_02:
+                tabToSelect = DrawerUtils.TAB_02;
                 break;
-            case DrawerUtils.TAB_3:
-                tabToSelect = DrawerUtils.TAB_3;
+            case DrawerUtils.TAB_03:
+                tabToSelect = DrawerUtils.TAB_03;
                 break;
-            case DrawerUtils.TAB_4:
-                tabToSelect = DrawerUtils.TAB_4;
+            case DrawerUtils.TAB_04:
+                tabToSelect = DrawerUtils.TAB_04;
                 break;
-            case DrawerUtils.TAB_5:
-                tabToSelect = DrawerUtils.TAB_5;
+            case DrawerUtils.TAB_05:
+                tabToSelect = DrawerUtils.TAB_05;
                 break;
-            case DrawerUtils.TAB_6:
-                tabToSelect = DrawerUtils.TAB_6;
+            case DrawerUtils.TAB_06:
+                tabToSelect = DrawerUtils.TAB_06;
                 break;
-            case DrawerUtils.TAB_7:
-                tabToSelect = DrawerUtils.TAB_7;
+            case DrawerUtils.TAB_07:
+                tabToSelect = DrawerUtils.TAB_07;
                 break;
-            case DrawerUtils.TAB_8:
-                tabToSelect = DrawerUtils.TAB_8;
+            case DrawerUtils.TAB_08:
+                tabToSelect = DrawerUtils.TAB_08;
                 break;
-            case DrawerUtils.TAB_9:
-                tabToSelect = DrawerUtils.TAB_9;
+            case DrawerUtils.TAB_09:
+                tabToSelect = DrawerUtils.TAB_09;
+                break;
+            case DrawerUtils.TAB_10:
+                tabToSelect = DrawerUtils.TAB_10;
+                break;
+            case DrawerUtils.TAB_11:
+                tabToSelect = DrawerUtils.TAB_11;
+                break;
+            case DrawerUtils.TAB_12:
+                tabToSelect = DrawerUtils.TAB_12;
+                break;
+            case DrawerUtils.TAB_13:
+                tabToSelect = DrawerUtils.TAB_13;
+                break;
+            case DrawerUtils.TAB_14:
+                tabToSelect = DrawerUtils.TAB_14;
+                break;
+            case DrawerUtils.TAB_15:
+                tabToSelect = DrawerUtils.TAB_15;
                 break;
             case DrawerUtils.TAB_NO:
                 tabToSelect = DrawerUtils.TAB_NO;
