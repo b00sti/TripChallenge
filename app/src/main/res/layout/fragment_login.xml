@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <ImageView
+            android:id="@+id/userIconImageView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_huge"
+            android:padding="@dimen/spacing_small"
+            tools:src="@mipmap/ic_launcher"/>
+
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_person_white_36dp"
+            android:hint="@string/email_hint"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/spacing_small"
+            android:textColorHint="@color/colorLightText"
+            tools:hint="@string/email_hint"/>
+
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_vpn_key_white_36dp"
+            android:hint="@string/password_hint"
+            android:inputType="textPassword"
+            android:padding="@dimen/spacing_small"
+            android:textColorHint="@color/colorLightText"
+            tools:hint="@string/password_hint"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/showPasswordCheckBox"
+                android:layout_width="@dimen/view_normal"
+                android:layout_height="@dimen/view_normal"
+                android:layout_toStartOf="@+id/showPasswordTextView"
+                android:buttonTint="@color/colorLightText"
+                android:checked="true"
+                android:padding="@dimen/spacing_small"/>
+
+            <TextView
+                android:id="@+id/showPasswordTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:padding="@dimen/spacing_small"
+                android:text="@string/show_password"
+                android:textColor="@color/colorLightText"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/loginImageView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/view_normal"
+            android:padding="@dimen/spacing_pretty_tiny"
+            tools:src="@mipmap/ic_launcher"/>
+
+        <TextView
+            android:id="@+id/forgotPasswordTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/spacing_small"
+            android:textColor="@color/colorLightText"
+            tools:text="@string/login_forgot_password"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -2,6 +2,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
+
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
@@ -14,14 +15,40 @@
     <dimen name="font_small">12sp</dimen>
 
     <!-- typical spacing between two views -->
-    <dimen name="spacing_huge">42dp</dimen>
-    <dimen name="spacing_large">24dp</dimen>
-    <dimen name="spacing_normal">16dp</dimen>
-    <dimen name="spacing_small">12dp</dimen>
-    <dimen name="spacing_tiny">6dp</dimen>
+    <dimen name="spacing_huge">@dimen/spacing_42dp</dimen>
+    <dimen name="spacing_large">@dimen/spacing_24dp</dimen>
+    <dimen name="spacing_normal">@dimen/spacing_16dp</dimen>
+    <dimen name="spacing_small">@dimen/spacing_12dp</dimen>
+    <dimen name="spacing_very_small">@dimen/spacing_8dp</dimen>
+    <dimen name="spacing_tiny">@dimen/spacing_6dp</dimen>
+    <dimen name="spacing_pretty_tiny">@dimen/spacing_4dp</dimen>
+    <dimen name="spacing_very_tiny">@dimen/spacing_2dp</dimen>
+    <dimen name="spacing_most_tiny">@dimen/spacing_1dp</dimen>
+
+    <dimen name="spacing_128dp">128p</dimen>
+    <dimen name="spacing_64p">64p</dimen>
+    <dimen name="spacing_48dp">48dp</dimen>
+    <dimen name="spacing_42dp">42dp</dimen>
+    <dimen name="spacing_36dp">36p</dimen>
+    <dimen name="spacing_32p">32p</dimen>
+    <dimen name="spacing_24dp">24dp</dimen>
+    <dimen name="spacing_16dp">16dp</dimen>
+    <dimen name="spacing_12dp">12dp</dimen>
+    <dimen name="spacing_8dp">8dp</dimen>
+    <dimen name="spacing_6dp">6dp</dimen>
+    <dimen name="spacing_4dp">4dp</dimen>
+    <dimen name="spacing_2dp">2dp</dimen>
+    <dimen name="spacing_1dp">1dp</dimen>
 
     <!-- typical sizes of views -->
-    <dimen name="button_height_tall">64dp</dimen>
-    <dimen name="button_height_normal">42dp</dimen>
-    <dimen name="button_height_short">32dp</dimen>
+    <dimen name="view_huge">128dp</dimen>
+    <dimen name="view_large">64dp</dimen>
+    <dimen name="view_normal">42dp</dimen>
+    <dimen name="view_small">24dp</dimen>
+    <dimen name="view_very_small">16dp</dimen>
+    <dimen name="view_tiny">12dp</dimen>
+    <dimen name="view_pretty_tiny">8dp</dimen>
+    <dimen name="view_very_tiny">4dp</dimen>
+    <dimen name="view_most_tiny">1dp</dimen>
+
 </resources>
