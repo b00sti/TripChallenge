@@ -22,12 +22,32 @@
 
         <ImageView
             android:id="@+id/userIconImageView"
-            android:layout_width="@dimen/view_huge"
-            android:layout_height="@dimen/view_huge"
+            android:layout_width="@dimen/view_large"
+            android:layout_height="@dimen/view_large"
             android:layout_gravity="center"
             android:padding="@dimen/spacing_small"
             android:src="@drawable/ic_account_box_white_36dp"
             tools:src="@drawable/ic_account_box_white_36dp"/>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppThemeWithLightHint">
+
+            <EditText
+                android:id="@+id/nickEditText"
+                style="@style/TextViewLightLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/spacing_small"
+                android:drawableStart="@drawable/ic_account_box_white_36dp"
+                android:hint="@string/nick"
+                android:inputType="text"
+                android:padding="@dimen/spacing_small"
+                tools:hint="@string/nick"/>
+
+        </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -68,34 +88,24 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/loginButton"
+            android:id="@+id/createAccountButton"
             style="@style/ButtonHalfTransparent"
             android:layout_width="match_parent"
             android:layout_height="@dimen/view_normal"
             android:layout_margin="@dimen/spacing_large"
             android:padding="@dimen/spacing_pretty_tiny"
-            android:text="@string/login_button_label"
-            tools:text="@string/login_button_label"/>
+            android:text="@string/create_account"
+            tools:text="@string/create_account"/>
 
         <TextView
-            android:id="@+id/forgotPasswordTextView"
-            style="@style/TextViewLightSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="@dimen/spacing_small"
-            android:text="@string/login_forgot_password"
-            tools:text="@string/login_forgot_password"/>
-
-        <TextView
-            android:id="@+id/createAccountTextView"
+            android:id="@+id/loginTextView"
             style="@style/TextViewLightNormal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/spacing_small"
-            android:text="@string/no_account_yet_create_one"
-            tools:text="@string/no_account_yet_create_one"/>
+            android:text="@string/already_a_member_login"
+            tools:text="@string/already_a_member_login"/>
 
     </LinearLayout>
 

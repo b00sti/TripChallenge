@@ -11,6 +11,9 @@ import android.util.DisplayMetrics;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
+
+import com.example.skeleton.R;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-15
@@ -69,5 +72,10 @@ public class ViewUtils {
         Resources resources = context.getResources();
         DisplayMetrics metrics = resources.getDisplayMetrics();
         return px / ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
+    }
+
+
+    public static void showNoConnectionToast(Context context) {
+        Toast.makeText(context, context.getResources().getString(R.string.connection_error), Toast.LENGTH_LONG).show();
     }
 }

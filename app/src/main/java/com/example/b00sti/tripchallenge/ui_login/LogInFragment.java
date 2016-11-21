@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.b00sti.tripchallenge.R;
 import com.example.skeleton.android_utils.util.ViewUtils;
@@ -68,7 +67,6 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
 
     @Override
     public void showNoConnection() {
-        Toast.makeText(context, "Connection Error", Toast.LENGTH_LONG).show();
+        ViewUtils.showNoConnectionToast(context);
     }
-
 }
