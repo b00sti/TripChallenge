@@ -23,7 +23,7 @@
         <activity android:name=".ui_login.SignUpActivity_"/>
 
         <activity
-            android:name="com.example.skeleton.ui.activity_utils.InnerViewActivity"
+            android:name="com.example.skeleton.ui.activity_utils.BaseInnerViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:label="tak"
             android:screenOrientation="portrait"

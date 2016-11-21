@@ -18,7 +18,7 @@ public class ActivityUtils {
     public static void startInnerViewActivity(@NonNull Activity context, int fragmentId) {
         checkNotNull(context);
 
-        Intent intent = new Intent(context, InnerViewActivity.class);
+        Intent intent = new Intent(context, InnerViewActivity_.class);
         intent.putExtra(context.getString(R.string.bundle_fragment), fragmentId);
         context.startActivityForResult(intent, -1);
     }
