@@ -1,4 +1,4 @@
-package com.example.skeleton.ui.activity_utils;
+package com.example.b00sti.tripchallenge.utils;
 
 import android.app.Activity;
 import android.content.Intent;

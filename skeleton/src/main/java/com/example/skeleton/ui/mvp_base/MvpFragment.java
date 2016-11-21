@@ -7,12 +7,17 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
 
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.EFragment;
+
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-03
  */
+@EFragment
 public abstract class MvpFragment<P extends BasePresenter> extends Fragment {
     private static final String TAG = "MvpFragment";
 
+    @Bean
     public P presenter;
 
     @SuppressWarnings("unchecked")

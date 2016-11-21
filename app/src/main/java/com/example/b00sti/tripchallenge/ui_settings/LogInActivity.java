@@ -36,8 +36,7 @@ public class LogInActivity extends AppCompatActivity
     FirebaseManager firebaseManager;
 
     @AfterViews
-    void initData()
-    {
+    void initData() {
         firebaseAuth = firebaseManager.getFirebaseAuth();
     }
 
