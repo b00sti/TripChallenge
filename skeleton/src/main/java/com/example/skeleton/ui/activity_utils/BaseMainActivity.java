@@ -1,6 +1,5 @@
 package com.example.skeleton.ui.activity_utils;
 
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +18,7 @@ import com.example.skeleton.android_utils.navigation.drawer.BaseDrawerItem;
 import com.example.skeleton.android_utils.navigation.drawer.DrawerUtils;
 import com.example.skeleton.android_utils.navigation.fragment_switching.FragmentSwitcher;
 import com.example.skeleton.android_utils.navigation.fragment_switching.FragmentSwitcherParams;
+import com.example.skeleton.android_utils.util.ViewUtils;
 import com.example.skeleton.ui.recyclers.RecyclerItemClickListener;
 import com.example.skeleton.ui.recyclers.RecyclerViewUtil;
 
@@ -31,8 +31,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.List;
 
 @EActivity(resName = "activity_main")
-public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View, A extends BaseDrawerAdapter<I, H>> extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View, A extends BaseDrawerAdapter<I, H>> extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     @ViewById(resName = "drawer") public DrawerLayout drawer;
@@ -67,8 +66,10 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
         toggle.setToolbarNavigationClickListener(view -> {
             if (drawer.isDrawerVisible(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
+                ViewUtils.hideKeyboard(this);
             } else {
                 drawer.openDrawer(GravityCompat.START);
+                ViewUtils.hideKeyboard(this);
             }
         });
         drawer.addDrawerListener(toggle);
@@ -203,5 +204,4 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
         drawerAdapter.setDrawerAdapterData(getDrawerItems(), drawerCurrentlySelectedTab, this);
         return drawerAdapter;
     }
-
 }

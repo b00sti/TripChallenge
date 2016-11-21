@@ -18,6 +18,11 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
     }
 
     @Override
+    public void afterNoAccount() {
+
+    }
+
+    @Override
     public void afterLogIn() {
 
     }

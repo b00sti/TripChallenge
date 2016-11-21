@@ -20,9 +20,11 @@ public class LogInContract {
 
     interface Presenter extends BasePresenter {
 
+        void afterLogIn();
+
         void afterForgotPassword();
 
-        void afterLogIn();
+        void afterNoAccount();
 
     }
 

@@ -25,12 +25,12 @@
     <dimen name="spacing_very_tiny">@dimen/spacing_2dp</dimen>
     <dimen name="spacing_most_tiny">@dimen/spacing_1dp</dimen>
 
-    <dimen name="spacing_128dp">128p</dimen>
-    <dimen name="spacing_64p">64p</dimen>
+    <dimen name="spacing_128dp">128dp</dimen>
+    <dimen name="spacing_64dp">64dp</dimen>
     <dimen name="spacing_48dp">48dp</dimen>
     <dimen name="spacing_42dp">42dp</dimen>
-    <dimen name="spacing_36dp">36p</dimen>
-    <dimen name="spacing_32p">32p</dimen>
+    <dimen name="spacing_36dp">36dp</dimen>
+    <dimen name="spacing_32dp">32dp</dimen>
     <dimen name="spacing_24dp">24dp</dimen>
     <dimen name="spacing_16dp">16dp</dimen>
     <dimen name="spacing_12dp">12dp</dimen>

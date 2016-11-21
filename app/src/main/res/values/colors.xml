@@ -34,4 +34,6 @@
     <color name="colorLightBackground">#F2F2F2</color>
     <color name="colorMediumBackground">#999999</color>
     <color name="colorDarkBackground">@color/colorDarkText</color>
+
+    <color name="halfTransparent">#88000000</color>
 </resources>

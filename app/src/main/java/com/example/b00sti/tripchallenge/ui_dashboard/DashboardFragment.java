@@ -15,7 +15,7 @@ import android.widget.ListView;
 
 import com.example.b00sti.tripchallenge.R;
 import com.example.b00sti.tripchallenge.main.FragmentBuilder;
-import com.example.b00sti.tripchallenge.ui_login.LogInActivity_;
+import com.example.b00sti.tripchallenge.ui_settings.LogInActivity_;
 import com.example.skeleton.android_utils.firebase.FirebaseManager;
 import com.example.skeleton.data.Attraction;
 import com.example.skeleton.ui.activity_utils.ActivityUtils;

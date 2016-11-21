@@ -1,9 +1,9 @@
 package com.example.b00sti.tripchallenge.ui_login;
 
-import android.content.Context;
+import android.app.Activity;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatButton;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -11,10 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.b00sti.tripchallenge.R;
+import com.example.skeleton.android_utils.util.ViewUtils;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
 
+import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.RootContext;
 import org.androidannotations.annotations.ViewById;
 
 /**
@@ -25,18 +26,29 @@ import org.androidannotations.annotations.ViewById;
 public class LogInFragment extends MvpFragment<LogInContract.Presenter> implements LogInContract.View {
     private static final String TAG = "LogInFragment";
 
-    @RootContext Context context;
-
     @ViewById(R.id.progressBar) ProgressBar progressBar;
     @ViewById(R.id.userIconImageView) ImageView userIconImageView;
     @ViewById(R.id.emailEditText) EditText emailEditText;
     @ViewById(R.id.passwordEditText) EditText passwordEditText;
-    @ViewById(R.id.showPasswordCheckBox) CheckBox showPasswordCheckBox;
-    @ViewById(R.id.loginImageView) ImageView loginImageView;
+    @ViewById(R.id.loginButton) AppCompatButton loginButton;
     @ViewById(R.id.forgotPasswordTextView) TextView forgotPasswordTextView;
+    @ViewById(R.id.createAccountTextView) TextView createAccountTextView;
+
+    Activity context;
 
     public static Fragment newInstance() {
         return (Fragment) new LogInFragment_();
+    }
+
+    @AfterInject
+    public void injectContext() {
+        context = getActivity();
+    }
+
+    @Override
+    public void onDestroyView() {
+        ViewUtils.hideKeyboard(context);
+        super.onDestroyView();
     }
 
     @Override

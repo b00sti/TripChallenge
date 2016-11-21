@@ -1,9 +1,7 @@
 package com.example.b00sti.tripchallenge.main;
 
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.MenuItem;
 
 import com.example.b00sti.tripchallenge.R;
 import com.example.skeleton.android_utils.navigation.drawer.DrawerUtils;
@@ -52,8 +50,4 @@ public class MainActivity extends BaseMainActivity<DrawerItem, DrawerItemView, D
         return drawerAdapter;
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
-    }
 }
