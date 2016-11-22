@@ -1,4 +1,4 @@
-package com.example.skeleton.ui.mvp_base;
+package com.example.b00sti.tripchallenge.test;
 
 
 import android.os.Bundle;
@@ -7,32 +7,34 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.View;
 
+import com.example.skeleton.ui.mvp_base.BasePresenter;
+
 import org.androidannotations.annotations.EFragment;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-03
  */
 @EFragment
-public abstract class MvpFragment<P extends BasePresenter> extends Fragment {
-    private static final String TAG = "MvpFragment";
+public abstract class MvpFrag<P extends BasePresenter> extends Fragment {
+    private static final String TAG = "MvpFrag";
 
-    public P presenter;
+    public P presenterInterface;
 
     @SuppressWarnings("unchecked")
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (presenter == null) {
-            presenter = createPresenter();
-            Log.d(TAG, "onViewCreated: " + presenter + " created");
+        if (presenterInterface == null) {
+            presenterInterface = createPresenter();
+            Log.d(TAG, "onViewCreated: " + presenterInterface + " created");
         }
-        presenter.subscribe();
-        Log.d(TAG, "onViewCreated: " + presenter + " subscribed");
+        presenterInterface.subscribe();
+        Log.d(TAG, "onViewCreated: " + presenterInterface + " subscribed");
     }
 
     @Override
     public void onDestroyView() {
-        presenter.unsubscribe();
+        presenterInterface.unsubscribe();
         Log.d(TAG, "onDestroyView: unsubscribed");
         super.onDestroyView();
     }

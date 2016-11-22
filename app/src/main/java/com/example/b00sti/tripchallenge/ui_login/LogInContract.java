@@ -10,7 +10,7 @@ import com.example.skeleton.ui.mvp_base.BasePresenter;
 
 public class LogInContract {
 
-    interface View {
+    public interface View {
 
         void showProgressBar();
 
@@ -22,7 +22,7 @@ public class LogInContract {
 
     }
 
-    interface Presenter extends BasePresenter {
+    public interface Presenter extends BasePresenter {
 
         void afterLogIn(String email, String password);
 

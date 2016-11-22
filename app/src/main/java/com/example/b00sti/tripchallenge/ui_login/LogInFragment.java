@@ -14,7 +14,6 @@ import com.example.skeleton.android_utils.util.ViewUtils;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
 
 import org.androidannotations.annotations.AfterInject;
-import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
@@ -38,11 +37,11 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
     Activity context;
 
 
-    @Bean
-    LogInPresenter presenter;
-    
+    /*    @Bean
+        LogInPresenter presenter;
+        */
     public static Fragment newInstance() {
-        return (Fragment) new LogInFragment_();
+        return new LogInFragment_();
     }
 
     @AfterInject

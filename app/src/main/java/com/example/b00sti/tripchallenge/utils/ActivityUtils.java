@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
+import com.example.b00sti.tripchallenge.main.InnerViewActivity_;
 import com.example.skeleton.R;
 
 import static com.google.common.base.Preconditions.checkNotNull;

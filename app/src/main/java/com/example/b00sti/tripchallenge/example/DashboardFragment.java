@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.example.b00sti.tripchallenge.R;
-import com.example.b00sti.tripchallenge.ui_dashboard.DashboardFragment_;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
 
 import org.androidannotations.annotations.EFragment;
@@ -21,7 +20,7 @@ public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> 
     private static final String TAG = "DashboardFragment";
 
     public static Fragment newInstance() {
-        return (Fragment) new DashboardFragment_();
+        return new DashboardFragment_();
     }
 
     @Override

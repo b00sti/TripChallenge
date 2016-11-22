@@ -17,7 +17,7 @@ public class DrawerHelper {
         Fragment fragment = null;
         switch (tab) {
             case DrawerUtils.TAB_00:
-                fragment = fragmentBuilder.newFragment(FragmentBuilder.DASHBOARD);
+                fragment = fragmentBuilder.newFragment(FragmentBuilder.SETTINGS);
                 break;
             case DrawerUtils.TAB_01:
                 fragment = fragmentBuilder.newFragment(FragmentBuilder.LOG_IN);
