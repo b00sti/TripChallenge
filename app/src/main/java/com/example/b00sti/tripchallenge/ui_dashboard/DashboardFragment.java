@@ -46,8 +46,7 @@ public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> 
     FirebaseManager firebaseManager;
 
     public static Fragment newInstance() {
-        Fragment dashboardFragment = new DashboardFragment_();
-        return dashboardFragment;
+        return new DashboardFragment_();
     }
 
     @AfterViews

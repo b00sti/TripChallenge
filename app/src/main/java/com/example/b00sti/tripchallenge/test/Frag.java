@@ -11,7 +11,7 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 
 /**
- * Created by b00sti on 22.11.2016.
+ * Created by b00sti on 22.11.2016
  */
 
 @EFragment(R.layout.fragment_login)
