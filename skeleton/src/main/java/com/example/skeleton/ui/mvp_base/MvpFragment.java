@@ -23,7 +23,7 @@ public abstract class MvpFragment<P extends BasePresenter> extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (presenter == null) {
-            presenter = createPresenter();
+            presenter = setPresenterView();
             Log.d(TAG, "onViewCreated: " + presenter + " created");
         }
         presenter.subscribe();
@@ -37,5 +37,5 @@ public abstract class MvpFragment<P extends BasePresenter> extends Fragment {
         super.onDestroyView();
     }
 
-    protected abstract P createPresenter();
+    protected abstract P setPresenterView();
 }

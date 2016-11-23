@@ -35,7 +35,7 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
     Activity context;
 
     public static Fragment newInstance() {
-        return (Fragment) new SignInFragment_();
+        return new SignInFragment_();
     }
 
     @AfterInject
@@ -65,7 +65,7 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
     }
 
     @Override
-    protected SignInContract.Presenter createPresenter() {
+    protected SignInContract.Presenter setPresenterView() {
         return new SignInPresenter(this);
     }
 }

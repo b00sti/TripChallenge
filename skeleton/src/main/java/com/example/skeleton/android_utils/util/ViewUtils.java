@@ -78,4 +78,12 @@ public class ViewUtils {
     public static void showNoConnectionToast(Context context) {
         Toast.makeText(context, context.getResources().getString(R.string.connection_error), Toast.LENGTH_LONG).show();
     }
+
+    public static void showToast(Context context, int message) {
+        Toast.makeText(context, context.getResources().getString(message), Toast.LENGTH_LONG).show();
+    }
+
+    public static void showToast(Context context, String message) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+    }
 }
