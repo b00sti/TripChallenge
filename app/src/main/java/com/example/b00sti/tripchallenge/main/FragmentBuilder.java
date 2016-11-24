@@ -3,6 +3,7 @@ package com.example.b00sti.tripchallenge.main;
 import android.support.annotation.IntDef;
 import android.support.v4.app.Fragment;
 
+import com.example.b00sti.tripchallenge.test.Frag;
 import com.example.b00sti.tripchallenge.ui_dashboard.DashboardFragment;
 import com.example.b00sti.tripchallenge.ui_login.LogInFragment;
 import com.example.b00sti.tripchallenge.ui_signin.SignInFragment;
@@ -30,7 +31,7 @@ public class FragmentBuilder extends BaseFragmentBuilder {
             case DASHBOARD:
                 return DashboardFragment.newInstance();
             case SETTINGS:
-                return DashboardFragment.newInstance();
+                return Frag.newInstance();
             case LOG_IN:
                 return LogInFragment.newInstance();
             case SIGN_IN:

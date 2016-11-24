@@ -1,41 +1,35 @@
 package com.example.b00sti.tripchallenge.ui_login;
 
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-
-import com.example.b00sti.tripchallenge.R;
 import com.example.b00sti.tripchallenge.main.FragmentBuilder;
 import com.example.b00sti.tripchallenge.utils.ActivityUtils;
 import com.example.skeleton.android_utils.eventbus.EventBusManager;
-import com.example.skeleton.android_utils.eventbus.SwitchFragmentEvent;
-import com.example.skeleton.android_utils.firebase.FirebaseManager;
-import com.example.skeleton.android_utils.navigation.drawer.DrawerUtils;
 import com.example.skeleton.ui.mvp_base.MvpPresenter;
 import com.google.firebase.auth.FirebaseAuth;
-
-import org.androidannotations.annotations.AfterInject;
-import org.androidannotations.annotations.Bean;
-import org.androidannotations.annotations.EBean;
-import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by b00sti on 20.11.2016.
  */
 
-@EBean
+//@EBean
 public class LogInPresenter extends MvpPresenter<LogInContract.View> implements LogInContract.Presenter {
 
-    @Bean
-    FragmentBuilder fragmentBuilder;
-    @Bean
-    FirebaseManager firebaseManager;
+    /*    @Bean
+        FragmentBuilder fragmentBuilder;
+        @Bean
+        FirebaseManager firebaseManager;*/
     private FirebaseAuth firebaseAuth;
 
-    @AfterInject
-    void init() {
-        firebaseAuth = firebaseManager.getFirebaseAuth();
+    public LogInPresenter(LogInContract.View view) {
+        super(view);
     }
 
+    /*
+        @AfterInject
+        void init() {
+            firebaseAuth = firebaseManager.getFirebaseAuth();
+        }
+
+     */
     @Override
     public void afterForgotPassword() {
 
@@ -48,6 +42,7 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
 
     @Override
     public void afterLogIn(String email, String password) {
+/*
 
         email = email.trim();
         password = password.trim();
@@ -75,6 +70,7 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
                         }
                     });
         }
+*/
 
     }
 
@@ -86,16 +82,5 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
     @Override
     public void unsubscribe() {
         EventBusManager.register(view.getCtx());
-    }
-
-    @Override
-    public void setView() {
-
-    }
-
-
-    @Override
-    public LogInContract.View setPresenterView() {
-        return view;
     }
 }

@@ -1,14 +1,15 @@
-package com.example.skeleton.ui.mvp_base;
+package com.example.b00sti.tripchallenge.test;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-14
  */
 
-public abstract class MvpPresenter<P> {
+public abstract class MvpPres<P> {
 
     public P view;
 
-    public MvpPresenter(P view) {
+    public void setView(P view) {
         this.view = view;
     }
+
 }

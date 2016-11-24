@@ -46,14 +46,11 @@ public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> 
     FirebaseManager firebaseManager;
 
     public static Fragment newInstance() {
-        Fragment dashboardFragment = new DashboardFragment_();
-        return dashboardFragment;
+        return new DashboardFragment_();
     }
 
     @AfterViews
     void test() {
-        presenter.setView();
-
         if (!firebaseManager.isUserLogged()) {
             loadLogInView();
         } else {
@@ -139,6 +136,11 @@ public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> 
         if (!firebaseManager.isUserLogged()) {
             loadLogInView();
         }
+    }
+
+    @Override
+    protected DashboardContract.Presenter setPresenterView() {
+        return new DashboardPresenter(this);
     }
 
     @Override

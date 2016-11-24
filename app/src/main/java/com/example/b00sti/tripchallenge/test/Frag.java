@@ -1,30 +1,29 @@
-package com.example.b00sti.tripchallenge.ui_login;
+package com.example.b00sti.tripchallenge.test;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.b00sti.tripchallenge.R;
+import com.example.b00sti.tripchallenge.ui_login.LogInContract;
 import com.example.skeleton.android_utils.util.ViewUtils;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
 
-import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
 /**
- * Created by b00sti on 20.11.2016
+ * Created by b00sti on 22.11.2016
  */
 
 @EFragment(R.layout.fragment_login)
-public class LogInFragment extends MvpFragment<LogInContract.Presenter> implements LogInContract.View {
-    private static final String TAG = "LogInFragment";
+public class Frag extends MvpFragment<LogInContract.Presenter> implements LogInContract.View {
 
     @ViewById(R.id.progressBar) ProgressBar progressBar;
     @ViewById(R.id.userIconImageView) ImageView userIconImageView;
@@ -34,25 +33,11 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
     @ViewById(R.id.forgotPasswordTextView) TextView forgotPasswordTextView;
     @ViewById(R.id.createAccountTextView) TextView createAccountTextView;
 
-    Activity context;
+    @Bean
+    Present present;
 
-
-    /*    @Bean
-        LogInPresenter presenter;
-        */
     public static Fragment newInstance() {
-        return new LogInFragment_();
-    }
-
-    @AfterInject
-    public void injectContext() {
-        context = getActivity();
-    }
-
-    @Override
-    public void onDestroyView() {
-        ViewUtils.hideKeyboard(context);
-        super.onDestroyView();
+        return new Frag_();
     }
 
     @Click(R.id.loginButton)
@@ -64,34 +49,35 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
     void clickedForgotPassword() {
         presenter.afterForgotPassword();
     }
-
+    
     @Click(R.id.createAccountTextView)
     void clickedNoAccount() {
         presenter.afterNoAccount();
     }
 
     @Override
-    protected LogInContract.Presenter setPresenterView() {
-        return new LogInPresenter(this);
-    }
-
-    @Override
     public void showProgressBar() {
-        progressBar.setVisibility(View.VISIBLE);
+        ViewUtils.showToast(getActivity(), "Show progress");
     }
 
     @Override
     public void hideProgressBar() {
-        progressBar.setVisibility(View.GONE);
+        ViewUtils.showToast(getActivity(), "Hide progress");
     }
 
     @Override
     public void showNoConnection() {
-        ViewUtils.showNoConnectionToast(context);
+
     }
 
     @Override
     public Activity getCtx() {
-        return context;
+        return null;
+    }
+
+    @Override
+    protected LogInContract.Presenter setPresenterView() {
+        present.setView(this);
+        return present;
     }
 }
