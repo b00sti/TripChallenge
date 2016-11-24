@@ -33,7 +33,7 @@ public class FragmentSwitcherParams {
         this.frameId = frameId;
         checkNotNull(fragmentManager);
         checkNotNull(targetFragment);
-        tag = fragmentManager.getClass().getName();
+        tag = targetFragment.getClass().getName();
     }
 
     @NonNull

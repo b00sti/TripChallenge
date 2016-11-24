@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -23,6 +24,8 @@ import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
 import org.androidannotations.annotations.res.ColorRes;
 import org.greenrobot.eventbus.EventBus;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by b00sti on 20.11.2016
@@ -116,7 +119,8 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
 
     @Override
     public void afterNoAccount() {
-        ActivityUtils.startInnerViewActivity(ctx, FragmentBuilder.SIGN_IN);
+        Log.d(TAG, "afterNoAccount: ");
+        ActivityUtils.startInnerViewActivity(ctx, FragmentBuilder.LOG_IN);
     }
 
     @Override
