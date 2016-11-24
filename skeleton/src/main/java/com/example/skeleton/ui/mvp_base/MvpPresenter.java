@@ -8,7 +8,8 @@ public abstract class MvpPresenter<P> {
 
     public P view;
 
-    public MvpPresenter(P view) {
+    public void setView(P view) {
         this.view = view;
     }
+
 }

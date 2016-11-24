@@ -12,7 +12,7 @@ import android.view.Menu;
 import android.view.View;
 
 import com.example.skeleton.R;
-import com.example.skeleton.android_utils.eventbus.SwitchFragmentEvent;
+import com.example.skeleton.android_utils.eventbus.SwitchDrawerFragmentEvent;
 import com.example.skeleton.android_utils.navigation.drawer.BaseDrawerAdapter;
 import com.example.skeleton.android_utils.navigation.drawer.BaseDrawerItem;
 import com.example.skeleton.android_utils.navigation.drawer.DrawerUtils;
@@ -108,7 +108,7 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
     }
 
     @Subscribe
-    public void onEvent(SwitchFragmentEvent event) {
+    public void onEvent(SwitchDrawerFragmentEvent event) {
 
         this.drawerCurrentlySelectedTab = event.getDrawerItemSelected();
         Fragment targetFragment = event.getTargetFragment();
@@ -171,7 +171,7 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
         }
 
         A drawerAdapter = getDrawerAdapter();
-        drawerAdapter.setDrawerAdapterData(getDrawerItems(), tabToSelect, this);
+        drawerAdapter.setDrawerAdapterData(getDrawerItems(), tabToSelect);
         drawerRecyclerView.setAdapter(drawerAdapter);
 
         FragmentSwitcher.switchFragment(new FragmentSwitcherParams(getSupportFragmentManager(), targetFragment, R.id.activity_main_placeholder));
@@ -192,7 +192,7 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
             Fragment targetFragment = getFragmentForTab(position);
 
             // post event to switch fragment
-            EventBus.getDefault().post(new SwitchFragmentEvent(targetFragment, drawerItems.get(position).getTabId()));
+            EventBus.getDefault().post(new SwitchDrawerFragmentEvent(targetFragment, drawerItems.get(position).getTabId()));
 
             // set toolbar title to selected drawer item's title
             toolbar.setTitle(getDrawerItems().get(position).getTitleResource());
@@ -201,7 +201,7 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
         }));
         // initialize adapter with selected position highlighted
         A drawerAdapter = getDrawerAdapter();
-        drawerAdapter.setDrawerAdapterData(getDrawerItems(), drawerCurrentlySelectedTab, this);
+        drawerAdapter.setDrawerAdapterData(getDrawerItems(), drawerCurrentlySelectedTab);
         return drawerAdapter;
     }
 }

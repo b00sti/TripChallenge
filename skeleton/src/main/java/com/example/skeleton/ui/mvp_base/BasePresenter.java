@@ -9,5 +9,4 @@ public interface BasePresenter {
 
     void unsubscribe();
 
-    void setView();
 }

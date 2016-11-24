@@ -72,7 +72,7 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
 
     @Override
     protected LogInContract.Presenter setPresenterView() {
-        return new LogInPresenter(this);
+        return new LogInPresenter();
     }
 
     @Override

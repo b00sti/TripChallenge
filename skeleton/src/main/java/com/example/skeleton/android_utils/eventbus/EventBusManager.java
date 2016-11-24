@@ -27,7 +27,7 @@ public class EventBusManager {
         }
     }
 
-    public static void postSwitchFragment(@NonNull Fragment targetFragment, @DrawerUtils.DrawerTab int drawerSelectedTabId) {
-        EventBus.getDefault().post(new SwitchFragmentEvent(targetFragment, drawerSelectedTabId));
+    public static void postSwitchDrawerFragment(@NonNull Fragment targetFragment, @DrawerUtils.DrawerTab int drawerSelectedTabId) {
+        EventBus.getDefault().post(new SwitchDrawerFragmentEvent(targetFragment, drawerSelectedTabId));
     }
 }

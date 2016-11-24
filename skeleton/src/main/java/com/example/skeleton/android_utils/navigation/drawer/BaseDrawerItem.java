@@ -7,7 +7,6 @@ package com.example.skeleton.android_utils.navigation.drawer;
 public abstract class BaseDrawerItem {
 
     @DrawerUtils.DrawerTab private int tabId;
-
     private int imageResource;
     private int titleResource;
     private int counter;

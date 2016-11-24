@@ -66,6 +66,8 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
 
     @Override
     protected SignInContract.Presenter setPresenterView() {
-        return new SignInPresenter(this);
+        return new SignInPresenter(
+
+        );
     }
 }

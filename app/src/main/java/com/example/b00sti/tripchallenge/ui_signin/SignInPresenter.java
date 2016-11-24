@@ -8,10 +8,6 @@ import com.example.skeleton.ui.mvp_base.MvpPresenter;
 
 public class SignInPresenter extends MvpPresenter<SignInContract.View> implements SignInContract.Presenter {
 
-    public SignInPresenter(SignInContract.View view) {
-        super(view);
-    }
-
     @Override
     public void afterSignIn() {
 
@@ -31,4 +27,5 @@ public class SignInPresenter extends MvpPresenter<SignInContract.View> implement
     public void unsubscribe() {
 
     }
+
 }

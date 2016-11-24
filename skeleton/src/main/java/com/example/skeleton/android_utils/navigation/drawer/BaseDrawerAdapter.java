@@ -1,6 +1,5 @@
 package com.example.skeleton.android_utils.navigation.drawer;
 
-import android.content.Context;
 import android.view.View;
 
 import com.example.skeleton.ui.recyclers.BaseAdapter;
@@ -16,9 +15,8 @@ public abstract class BaseDrawerAdapter<I extends BaseDrawerItem, V extends View
 
     protected int selectedTabId;
 
-    public void setDrawerAdapterData(List<I> items, @DrawerUtils.DrawerTab int selectedTabId, Context context) {
+    public void setDrawerAdapterData(List<I> items, @DrawerUtils.DrawerTab int selectedTabId) {
         setDataSet(items);
-        context = context;
         this.selectedTabId = selectedTabId;
     }
 }

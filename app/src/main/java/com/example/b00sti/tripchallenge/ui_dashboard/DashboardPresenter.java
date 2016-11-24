@@ -10,10 +10,6 @@ import com.example.skeleton.ui.mvp_base.MvpPresenter;
 class DashboardPresenter extends MvpPresenter<DashboardContract.View> implements DashboardContract.Presenter {
     private static final String TAG = "DashboardPresenter";
 
-    DashboardPresenter(DashboardContract.View view) {
-        super(view);
-    }
-
     @Override
     public void refreshAllViews() {
 
@@ -28,4 +24,5 @@ class DashboardPresenter extends MvpPresenter<DashboardContract.View> implements
     public void unsubscribe() {
 
     }
+
 }

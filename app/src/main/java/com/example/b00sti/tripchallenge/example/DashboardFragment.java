@@ -25,7 +25,7 @@ public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> 
 
     @Override
     protected DashboardContract.Presenter setPresenterView() {
-        return new DashboardPresenter(this);
+        return new DashboardPresenter();
     }
 
     @Override

@@ -19,10 +19,6 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
         FirebaseManager firebaseManager;*/
     private FirebaseAuth firebaseAuth;
 
-    public LogInPresenter(LogInContract.View view) {
-        super(view);
-    }
-
     /*
         @AfterInject
         void init() {
@@ -59,7 +55,7 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
                     .addOnCompleteListener(view.getCtx(), task -> {
                         if (task.isSuccessful()) {
                             Fragment targetFragment = fragmentBuilder.newFragment(FragmentBuilder.DASHBOARD);
-                            EventBus.getDefault().post(new SwitchFragmentEvent(targetFragment, DrawerUtils.TAB_00));
+                            EventBus.getDefault().post(new SwitchDrawerFragmentEvent(targetFragment, DrawerUtils.TAB_00));
                         } else {
                             AlertDialog.Builder builder = new AlertDialog.Builder(view.getCtx());
                             builder.setMessage(task.getException().getMessage())
@@ -83,4 +79,5 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
     public void unsubscribe() {
         EventBusManager.register(view.getCtx());
     }
+
 }
