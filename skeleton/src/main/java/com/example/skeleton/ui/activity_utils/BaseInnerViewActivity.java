@@ -53,10 +53,10 @@ public abstract class BaseInnerViewActivity extends AppCompatActivity {
         }
     }
 
-    public abstract Fragment getFragment(int fragmentId);
+    public abstract Fragment setFragment(int fragmentId);
 
     public void switchToFragment(int fragmentId) {
-        Fragment fragment = getFragment(fragmentId);
+        Fragment fragment = setFragment(fragmentId);
         FragmentSwitcher.switchFragment(new FragmentSwitcherParams(getSupportFragmentManager(), fragment, R.id.activity_inner_view_placeholder));
     }
 }

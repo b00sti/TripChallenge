@@ -1,50 +1,132 @@
 package com.example.b00sti.tripchallenge.ui_login;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.support.v4.app.Fragment;
+import android.text.InputType;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.example.b00sti.tripchallenge.R;
 import com.example.b00sti.tripchallenge.main.FragmentBuilder;
 import com.example.b00sti.tripchallenge.utils.ActivityUtils;
-import com.example.skeleton.android_utils.eventbus.EventBusManager;
+import com.example.skeleton.android_utils.eventbus.SwitchDrawerFragmentEvent;
+import com.example.skeleton.android_utils.firebase.FirebaseManager;
+import com.example.skeleton.android_utils.navigation.drawer.DrawerUtils;
+import com.example.skeleton.android_utils.util.ViewUtils;
 import com.example.skeleton.ui.mvp_base.MvpPresenter;
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.EBean;
+import org.androidannotations.annotations.RootContext;
+import org.greenrobot.eventbus.EventBus;
+
 /**
- * Created by b00sti on 20.11.2016.
+ * Created by b00sti on 20.11.2016
  */
 
-//@EBean
+@EBean
 public class LogInPresenter extends MvpPresenter<LogInContract.View> implements LogInContract.Presenter {
 
-    /*    @Bean
-        FragmentBuilder fragmentBuilder;
-        @Bean
-        FirebaseManager firebaseManager;*/
+    @Bean
+    FragmentBuilder fragmentBuilder;
+
+    @Bean
+    FirebaseManager firebaseManager;
+
+    @RootContext
+    Activity ctx;
+
     private FirebaseAuth firebaseAuth;
 
-    /*
-        @AfterInject
-        void init() {
-            firebaseAuth = firebaseManager.getFirebaseAuth();
-        }
+    @AfterInject
+    void init() {
+        firebaseAuth = firebaseManager.getFirebaseAuth();
+    }
 
-     */
     @Override
     public void afterForgotPassword() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+
+        builder.setTitle("Reset Password");
+
+// Set up the input
+        final TextView textView = new TextView(ctx);
+        textView.setPadding(26, 26, 26, 26);
+        textView.setText("Please enter the email your account was setup with");
+        final EditText input = new EditText(ctx);
+        input.setPadding(16, 16, 16, 16);
+        input.setHint("Email");
+
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        builder.setView(input);
+
+// Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String email = input.getText().toString();
+                if (email.isEmpty()) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+                    builder.setMessage(R.string.login_error_message)
+                            .setTitle(R.string.login_error_title)
+                            .setPositiveButton(android.R.string.ok, null);
+                    AlertDialog dialog2 = builder.create();
+                    dialog2.show();
+                } else {
+                    firebaseAuth.sendPasswordResetEmail(email)
+                            .addOnCompleteListener(ctx, task -> {
+                                if (task.isSuccessful()) {
+                                    ViewUtils.hideKeyboard(ctx);
+                                    ViewUtils.showToast(ctx, "Check your email !");
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+                                    builder.setMessage("Check your email for the link to reset your password")
+                                            .setTitle("Password Request Send")
+                                            .setPositiveButton(android.R.string.ok, null);
+                                    AlertDialog dialog2 = builder.create();
+                                    dialog2.show();
+                                } else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+                                    Exception exception = task.getException();
+                                    String message = exception != null ? exception.getMessage() : "";
+                                    builder.setMessage(message)
+                                            .setTitle(R.string.login_error_title)
+                                            .setPositiveButton(android.R.string.ok, null);
+                                    AlertDialog dialog3 = builder.create();
+                                    dialog3.show();
+                                }
+                            });
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
 
     }
 
     @Override
     public void afterNoAccount() {
-        ActivityUtils.startInnerViewActivity(view.getCtx(), FragmentBuilder.SIGN_IN);
+        ActivityUtils.startInnerViewActivity(ctx, FragmentBuilder.SIGN_IN);
     }
 
     @Override
     public void afterLogIn(String email, String password) {
-/*
 
         email = email.trim();
         password = password.trim();
 
         if (email.isEmpty() || password.isEmpty()) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(view.getCtx());
+            AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
             builder.setMessage(R.string.login_error_message)
                     .setTitle(R.string.login_error_title)
                     .setPositiveButton(android.R.string.ok, null);
@@ -52,13 +134,15 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
             dialog.show();
         } else {
             firebaseAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(view.getCtx(), task -> {
+                    .addOnCompleteListener(ctx, task -> {
                         if (task.isSuccessful()) {
                             Fragment targetFragment = fragmentBuilder.newFragment(FragmentBuilder.DASHBOARD);
                             EventBus.getDefault().post(new SwitchDrawerFragmentEvent(targetFragment, DrawerUtils.TAB_00));
                         } else {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(view.getCtx());
-                            builder.setMessage(task.getException().getMessage())
+                            AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+                            Exception exception = task.getException();
+                            String message = exception != null ? exception.getMessage() : "";
+                            builder.setMessage(message)
                                     .setTitle(R.string.login_error_title)
                                     .setPositiveButton(android.R.string.ok, null);
                             AlertDialog dialog = builder.create();
@@ -66,18 +150,15 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
                         }
                     });
         }
-*/
 
     }
 
     @Override
     public void subscribe() {
-        EventBusManager.register(view.getCtx());
     }
 
     @Override
     public void unsubscribe() {
-        EventBusManager.register(view.getCtx());
     }
 
 }

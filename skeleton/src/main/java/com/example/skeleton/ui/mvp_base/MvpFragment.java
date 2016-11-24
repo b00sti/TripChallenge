@@ -1,6 +1,7 @@
 package com.example.skeleton.ui.mvp_base;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ public abstract class MvpFragment<P extends BasePresenter> extends Fragment {
     private static final String TAG = "MvpFragment";
 
     public P presenter;
+    public Activity ctx;
 
     @SuppressWarnings("unchecked")
     @Override

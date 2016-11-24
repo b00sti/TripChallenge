@@ -35,23 +35,23 @@ public class MainActivity extends BaseMainActivity<DrawerItem, DrawerItemView, D
     }
 
     @Override
-    public int getHomeAsUpIndicatorAsDrawable() {
+    public int setHomeAsUpIndicatorAsDrawable() {
         return R.drawable.common_plus_signin_btn_icon_dark_pressed;
     }
 
     @Nullable
     @Override
-    public Fragment getFragmentForTab(@DrawerUtils.DrawerTab int tab) {
+    public Fragment setFragmentForTab(@DrawerUtils.DrawerTab int tab) {
         return DrawerHelper.getFragmentForTab(fragmentBuilder, tab);
     }
 
     @Override
-    public List<DrawerItem> getDrawerItems() {
+    public List<DrawerItem> setDrawerItems() {
         return DrawerHelper.getDrawerItems();
     }
 
     @Override
-    public DrawerAdapter getDrawerAdapter() {
+    public DrawerAdapter setDrawerAdapter() {
         return drawerAdapter;
     }
 

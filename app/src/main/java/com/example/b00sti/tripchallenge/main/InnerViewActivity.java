@@ -19,7 +19,7 @@ public class InnerViewActivity extends BaseInnerViewActivity {
     FragmentBuilder fragmentBuilder;
 
     @Override
-    public Fragment getFragment(@FragmentBuilder.FragBuild int fragmentId) {
+    public Fragment setFragment(@FragmentBuilder.FragBuild int fragmentId) {
         return fragmentBuilder.newFragment(fragmentId);
     }
 

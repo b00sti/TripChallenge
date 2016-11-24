@@ -1,7 +1,5 @@
 package com.example.b00sti.tripchallenge.ui_login;
 
-import android.app.Activity;
-
 import com.example.skeleton.ui.mvp_base.BasePresenter;
 
 /**
@@ -17,8 +15,6 @@ public class LogInContract {
         void hideProgressBar();
 
         void showNoConnection();
-
-        Activity getCtx();
 
     }
 

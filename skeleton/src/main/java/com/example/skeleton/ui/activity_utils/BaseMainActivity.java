@@ -40,13 +40,13 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
     @ViewById(resName = "toolbar") public Toolbar toolbar;
     @DrawerUtils.DrawerTab private int drawerCurrentlySelectedTab = DrawerUtils.TAB_NO;
 
-    public abstract int getHomeAsUpIndicatorAsDrawable();
+    public abstract int setHomeAsUpIndicatorAsDrawable();
 
-    public abstract Fragment getFragmentForTab(@DrawerUtils.DrawerTab int tab);
+    public abstract Fragment setFragmentForTab(@DrawerUtils.DrawerTab int tab);
 
-    public abstract List<I> getDrawerItems();
+    public abstract List<I> setDrawerItems();
 
-    public abstract A getDrawerAdapter();
+    public abstract A setDrawerAdapter();
 
     @AfterViews
     public void init() {
@@ -62,7 +62,7 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
 
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         toggle.setDrawerIndicatorEnabled(false);
-        toggle.setHomeAsUpIndicator(ContextCompat.getDrawable(this, getHomeAsUpIndicatorAsDrawable()));
+        toggle.setHomeAsUpIndicator(ContextCompat.getDrawable(this, setHomeAsUpIndicatorAsDrawable()));
         toggle.setToolbarNavigationClickListener(view -> {
             if (drawer.isDrawerVisible(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);
@@ -170,8 +170,8 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
                 tabToSelect = this.drawerCurrentlySelectedTab;
         }
 
-        A drawerAdapter = getDrawerAdapter();
-        drawerAdapter.setDrawerAdapterData(getDrawerItems(), tabToSelect);
+        A drawerAdapter = setDrawerAdapter();
+        drawerAdapter.setDrawerAdapterData(setDrawerItems(), tabToSelect);
         drawerRecyclerView.setAdapter(drawerAdapter);
 
         FragmentSwitcher.switchFragment(new FragmentSwitcherParams(getSupportFragmentManager(), targetFragment, R.id.activity_main_placeholder));
@@ -186,22 +186,22 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
     }
 
     private A initDrawerItemsAdapter() {
-        final List<I> drawerItems = getDrawerItems();
+        final List<I> drawerItems = setDrawerItems();
 
         drawerRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, (view, position) -> {
-            Fragment targetFragment = getFragmentForTab(position);
+            Fragment targetFragment = setFragmentForTab(position);
 
             // post event to switch fragment
             EventBus.getDefault().post(new SwitchDrawerFragmentEvent(targetFragment, drawerItems.get(position).getTabId()));
 
             // set toolbar title to selected drawer item's title
-            toolbar.setTitle(getDrawerItems().get(position).getTitleResource());
+            toolbar.setTitle(setDrawerItems().get(position).getTitleResource());
 
             drawer.closeDrawers();
         }));
         // initialize adapter with selected position highlighted
-        A drawerAdapter = getDrawerAdapter();
-        drawerAdapter.setDrawerAdapterData(getDrawerItems(), drawerCurrentlySelectedTab);
+        A drawerAdapter = setDrawerAdapter();
+        drawerAdapter.setDrawerAdapterData(setDrawerItems(), drawerCurrentlySelectedTab);
         return drawerAdapter;
     }
 }

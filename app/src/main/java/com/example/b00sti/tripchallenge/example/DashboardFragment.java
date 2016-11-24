@@ -1,13 +1,11 @@
 package com.example.b00sti.tripchallenge.example;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.View;
 
 import com.example.b00sti.tripchallenge.R;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
 
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 
 /**
@@ -16,8 +14,10 @@ import org.androidannotations.annotations.EFragment;
 
 @EFragment(R.layout.fragment_dashboard)
 public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> implements DashboardContract.View {
-
     private static final String TAG = "DashboardFragment";
+
+    @Bean
+    DashboardPresenter presenter;
 
     public static Fragment newInstance() {
         return new DashboardFragment_();
@@ -25,12 +25,8 @@ public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> 
 
     @Override
     protected DashboardContract.Presenter setPresenterView() {
-        return new DashboardPresenter();
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+        presenter.setView(this);
+        return presenter;
     }
 
     @Override
