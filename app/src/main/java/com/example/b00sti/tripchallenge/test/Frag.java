@@ -49,7 +49,7 @@ public class Frag extends MvpFragment<LogInContract.Presenter> implements LogInC
     void clickedForgotPassword() {
         presenter.afterForgotPassword();
     }
-    
+
     @Click(R.id.createAccountTextView)
     void clickedNoAccount() {
         presenter.afterNoAccount();
