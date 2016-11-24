@@ -49,7 +49,7 @@
     </style>
 
     <style name="ButtonHalfTransparent">
-        <item name="android:background">@color/halfTransparent</item>
+        <item name="android:background">@color/mediumTransparent</item>
         <item name="android:textColor">@color/colorLightText</item>
         <item name="android:gravity">center</item>
     </style>

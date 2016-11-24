@@ -36,6 +36,7 @@
     <string name="nick">Nick</string>
     <string name="already_a_member_login">Already a member? Login</string>
     <string name="create_account">CREATE ACCOUNT</string>
+    <string name="enter_email">Please enter the email your account was setup with</string>
 
 
 </resources>

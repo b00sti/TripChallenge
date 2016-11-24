@@ -19,18 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui_login.LogInActivity_"/>
-        <activity android:name=".ui_login.SignUpActivity_"/>
 
         <activity
-            android:name="com.example.skeleton.ui.activity_utils.BaseInnerViewActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize|locale"
-            android:label="tak"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.example.skeleton.android_utils.example.ExampleInnerViewActivity"
+            android:name=".main.InnerViewActivity_"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:label="tak"
             android:screenOrientation="portrait"

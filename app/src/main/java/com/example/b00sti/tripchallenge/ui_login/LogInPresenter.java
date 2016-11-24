@@ -4,9 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.support.v4.app.Fragment;
-import android.text.InputType;
+import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.b00sti.tripchallenge.R;
 import com.example.b00sti.tripchallenge.main.FragmentBuilder;
@@ -22,6 +21,7 @@ import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
+import org.androidannotations.annotations.res.ColorRes;
 import org.greenrobot.eventbus.EventBus;
 
 /**
@@ -40,6 +40,9 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
     @RootContext
     Activity ctx;
 
+    @ColorRes(R.color.colorLightText)
+    int lightTextColor;
+
     private FirebaseAuth firebaseAuth;
 
     @AfterInject
@@ -51,19 +54,12 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
     public void afterForgotPassword() {
         AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
 
-        builder.setTitle("Reset Password");
-
-// Set up the input
-        final TextView textView = new TextView(ctx);
-        textView.setPadding(26, 26, 26, 26);
-        textView.setText("Please enter the email your account was setup with");
-        final EditText input = new EditText(ctx);
-        input.setPadding(16, 16, 16, 16);
-        input.setHint("Email");
-
-// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
-        builder.setView(input);
+        //builder.setTitle("Reset Password");
+        View view = View.inflate(ctx, R.layout.dialog_forgot_password, null);
+        View view2 = View.inflate(ctx, R.layout.dialog_title, null);
+        EditText input = (EditText) view.findViewById(R.id.dialog_editText);
+        builder.setView(view);
+        builder.setCustomTitle(view2);
 
 // Set up the buttons
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -110,7 +106,11 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
             }
         });
 
-        builder.show();
+        AlertDialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
+        dialog.show();
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(lightTextColor);
+        dialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(lightTextColor);
 
     }
 

@@ -35,5 +35,7 @@
     <color name="colorMediumBackground">#999999</color>
     <color name="colorDarkBackground">@color/colorDarkText</color>
 
-    <color name="halfTransparent">#88000000</color>
+    <color name="darkTransparent">#aa000000</color>
+    <color name="mediumTransparent">#88000000</color>
+    <color name="lightTransparent">#22000000</color>
 </resources>
