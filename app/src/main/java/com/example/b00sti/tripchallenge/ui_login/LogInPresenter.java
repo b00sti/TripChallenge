@@ -10,7 +10,7 @@ import com.example.skeleton.android_utils.eventbus.EventBusManager;
 import com.example.skeleton.android_utils.eventbus.SwitchFragmentEvent;
 import com.example.skeleton.android_utils.firebase.FirebaseManager;
 import com.example.skeleton.android_utils.navigation.drawer.DrawerUtils;
-import com.example.skeleton.ui.mvp_base.setView;
+import com.example.skeleton.ui.mvp_base.MvpPresenter;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.androidannotations.annotations.AfterInject;
@@ -23,17 +23,13 @@ import org.greenrobot.eventbus.EventBus;
  */
 
 @EBean
-public class LogInPresenter extends setView<LogInContract.View> implements LogInContract.Presenter {
+public class LogInPresenter extends MvpPresenter<LogInContract.View> implements LogInContract.Presenter {
 
     @Bean
     FragmentBuilder fragmentBuilder;
     @Bean
     FirebaseManager firebaseManager;
     private FirebaseAuth firebaseAuth;
-
-    public LogInPresenter(LogInContract.View view) {
-        super(view);
-    }
 
     @AfterInject
     void init() {
@@ -90,5 +86,16 @@ public class LogInPresenter extends setView<LogInContract.View> implements LogIn
     @Override
     public void unsubscribe() {
         EventBusManager.register(view.getCtx());
+    }
+
+    @Override
+    public void setView() {
+
+    }
+
+
+    @Override
+    public LogInContract.View setPresenterView() {
+        return view;
     }
 }

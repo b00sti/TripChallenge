@@ -52,6 +52,8 @@ public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> 
 
     @AfterViews
     void test() {
+        presenter.setView();
+
         if (!firebaseManager.isUserLogged()) {
             loadLogInView();
         } else {
@@ -137,11 +139,6 @@ public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> 
         if (!firebaseManager.isUserLogged()) {
             loadLogInView();
         }
-    }
-
-    @Override
-    protected DashboardContract.Presenter createPresenter() {
-        return new DashboardPresenter(this);
     }
 
     @Override

@@ -14,7 +14,7 @@ import org.androidannotations.annotations.EFragment;
  * Created by Dominik (b00sti) Pawlik on 2016-11-03
  */
 @EFragment
-public abstract class MvpFragment<P extends BasePresenter> extends Fragment {
+public abstract class MvpFragment<P extends MvpPresenter> extends Fragment {
     private static final String TAG = "MvpFragment";
 
     @Bean
@@ -24,20 +24,23 @@ public abstract class MvpFragment<P extends BasePresenter> extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (presenter == null) {
+/*        if (presenter == null) {
             presenter = createPresenter();
             Log.d(TAG, "onViewCreated: " + presenter + " created");
-        }
-        presenter.subscribe();
+        }*/
+
+        presenter.subscriben();
+        setViewToPresenter();
+
         Log.d(TAG, "onViewCreated: " + presenter + " subscribed");
     }
 
     @Override
     public void onDestroyView() {
-        presenter.unsubscribe();
+        presenter.unsubscriben();
         Log.d(TAG, "onDestroyView: unsubscribed");
         super.onDestroyView();
     }
 
-    protected abstract P createPresenter();
+    protected abstract void setViewToPresenter();
 }

@@ -14,7 +14,6 @@ import com.example.skeleton.android_utils.util.ViewUtils;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
 
 import org.androidannotations.annotations.AfterInject;
-import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
@@ -37,10 +36,6 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
 
     Activity context;
 
-
-    @Bean
-    LogInPresenter presenter;
-    
     public static Fragment newInstance() {
         return (Fragment) new LogInFragment_();
     }
@@ -56,6 +51,11 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
         super.onDestroyView();
     }
 
+    @Override
+    protected void setViewToPresenter() {
+        presenter.setView(this);
+    }
+
     @Click(R.id.loginButton)
     void clickedLogIn() {
         presenter.afterLogIn(emailEditText.getText().toString(), passwordEditText.getText().toString());
@@ -69,11 +69,6 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
     @Click(R.id.createAccountTextView)
     void clickedNoAccount() {
         presenter.afterNoAccount();
-    }
-
-    @Override
-    protected LogInContract.Presenter createPresenter() {
-        return new LogInPresenter(this);
     }
 
     @Override
