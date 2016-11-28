@@ -8,7 +8,7 @@ import android.widget.TextView;
 import com.example.b00sti.tripchallenge.R;
 import com.example.b00sti.tripchallenge.main.FragmentBuilder;
 import com.example.b00sti.tripchallenge.utils.ActivityUtils;
-import com.example.b00sti.tripchallenge.utils.helpers.DialogCreator;
+import com.example.b00sti.tripchallenge.utils.helpers.FastDialog;
 import com.example.skeleton.android_utils.eventbus.SwitchDrawerFragmentEvent;
 import com.example.skeleton.android_utils.firebase.FirebaseManager;
 import com.example.skeleton.android_utils.navigation.drawer.DrawerUtils;
@@ -51,7 +51,7 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
     @Override
     public void afterForgotPassword() {
 
-        DialogCreator forgotPasswordDialog = new DialogCreator(ctx);
+        FastDialog forgotPasswordDialog = new FastDialog(ctx);
         forgotPasswordDialog.setTitle("Forgot");
         forgotPasswordDialog.setMessage("Enter Email");
         forgotPasswordDialog.setMessageViewId(R.layout.dialog_forgot_password);
@@ -61,19 +61,16 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
         forgotPasswordDialog.setPositiveButtonListener((dialogInterface, i) -> {
             String email = input.getText().toString();
             if (email.isEmpty()) {
-                new DialogCreator(ctx).show(R.string.login_error_title, R.string.login_error_message, (dialogInterface1, i1) -> {
-                }, null);
+                FastDialog.create(ctx).show(R.string.login_error_title, R.string.login_error_message, FastDialog.emptyListener(), null);
             } else {
                 firebaseAuth.sendPasswordResetEmail(email)
                         .addOnCompleteListener(ctx, task -> {
                             if (task.isSuccessful()) {
-                                new DialogCreator(ctx).show("Password Request Send", "Check your email for the link to reset your password", (dialogInterface1, i1) -> {
-                                }, null);
+                                FastDialog.create(ctx).show("Password Request Send", "Check your email for the link to reset your password", FastDialog.emptyListener(), null);
                             } else {
                                 Exception exception = task.getException();
                                 String exceptionMessage = exception != null ? exception.getMessage() : "";
-                                new DialogCreator(ctx).show(R.string.login_error_title, exceptionMessage, (dialogInterface1, i1) -> {
-                                }, null);
+                                FastDialog.create(ctx).show(R.string.login_error_title, exceptionMessage, FastDialog.emptyListener(), null);
                             }
                         });
             }
@@ -95,7 +92,7 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
         password = password.trim();
 
         if (email.isEmpty() || password.isEmpty()) {
-            new DialogCreator(ctx).show(R.string.login_error_title, R.string.login_error_message, (dialogInterface1, i1) -> {
+            FastDialog.create(ctx).show(R.string.login_error_title, R.string.login_error_message, (dialogInterface1, i1) -> {
             }, null);
         } else {
             firebaseAuth.signInWithEmailAndPassword(email, password)
@@ -106,7 +103,7 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
                         } else {
                             Exception exception = task.getException();
                             String exceptionMessage = exception != null ? exception.getMessage() : "";
-                            new DialogCreator(ctx).show(R.string.login_error_title, exceptionMessage, (dialogInterface1, i1) -> {
+                            FastDialog.create(ctx).show(R.string.login_error_title, exceptionMessage, (dialogInterface1, i1) -> {
                             }, null);
                         }
                     });

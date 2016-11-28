@@ -15,10 +15,10 @@ import com.example.skeleton.android_utils.util.ViewUtils;
  * Created by b00sti on 27.11.2016
  */
 
-public class DialogCreator {
+public class FastDialog {
 
     Activity ctx;
-    AlertDialog.Builder builder;
+    private AlertDialog.Builder builder;
     private DialogInterface.OnClickListener positiveButtonListener;
     private DialogInterface.OnClickListener negativeButtonListener;
     private View messageView;
@@ -35,10 +35,20 @@ public class DialogCreator {
     private String title = "";
     private String message = "";
 
-    public DialogCreator(Activity ctx) {
+    public FastDialog(Activity ctx) {
         this.ctx = ctx;
         positiveButtonText = ctx.getResources().getString(android.R.string.ok);
         negativeButtonText = ctx.getResources().getString(android.R.string.cancel);
+    }
+
+    public static FastDialog create(Activity ctx) {
+        return new FastDialog(ctx);
+    }
+
+    public static DialogInterface.OnClickListener emptyListener() {
+        return (dialogInterface, i) -> {
+
+        };
     }
 
     private View getView(View view, int id) {

@@ -5,7 +5,6 @@ import android.view.MenuItem;
 
 import com.example.b00sti.tripchallenge.R;
 
-import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 
@@ -19,11 +18,6 @@ public class InnerViewActivity extends com.example.skeleton.ui.activity_utils.Ba
 
     @Bean
     FragmentBuilder fragmentBuilder;
-
-    @AfterViews
-    void a() {
-        setInitialFragment(getIntent());
-    }
 
     @Override
     public Fragment setFragment(@FragmentBuilder.FragBuild int fragmentId) {

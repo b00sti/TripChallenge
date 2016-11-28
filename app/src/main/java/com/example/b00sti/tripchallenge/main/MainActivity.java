@@ -4,6 +4,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.example.b00sti.tripchallenge.R;
+import com.example.b00sti.tripchallenge.ui_login.LogInFragment;
+import com.example.skeleton.android_utils.eventbus.SwitchDrawerFragmentEvent;
 import com.example.skeleton.android_utils.navigation.drawer.DrawerUtils;
 import com.example.skeleton.ui.activity_utils.BaseMainActivity;
 
@@ -27,6 +29,7 @@ public class MainActivity extends BaseMainActivity<DrawerItem, DrawerItemView, D
     void setDrawerFragments() {
         setBottomDrawerFragment(DrawerBottomFragment.newInstance());
         setTopDrawerFragment(DrawerTopFragment.newInstance());
+        onEvent(new SwitchDrawerFragmentEvent(LogInFragment.newInstance(), DrawerUtils.TAB_00));
     }
 
     @AfterViews

@@ -29,7 +29,11 @@ public class FragmentSwitcher {
                 transaction.addSharedElement(sharedElement.view, sharedElement.name);
             }
         }
-        transaction.setCustomAnimations(params.getCustomEnterAnim(), params.getCustomExitAnim());
+
+        if (params.getCustomEnterAnim() != 0 && params.getCustomExitAnim() != 0) {
+            transaction.setCustomAnimations(params.getCustomEnterAnim(), params.getCustomExitAnim());
+        }
+
         transaction.replace(params.getFrameId(), fragment, params.getTag());
         if (params.isCommitAllowingStateLoss()) {
             transaction.commitAllowingStateLoss();
@@ -53,7 +57,11 @@ public class FragmentSwitcher {
                 transaction.addSharedElement(sharedElement.view, sharedElement.name);
             }
         }
-        transaction.setCustomAnimations(params.getCustomEnterAnim(), params.getCustomExitAnim());
+
+        if (params.getCustomEnterAnim() != 0 && params.getCustomExitAnim() != 0) {
+            transaction.setCustomAnimations(params.getCustomEnterAnim(), params.getCustomExitAnim());
+        }
+
         transaction.replace(params.getFrameId(), fragment, params.getTag());
         if (params.isCommitAllowingStateLoss()) {
             transaction.commitAllowingStateLoss();
