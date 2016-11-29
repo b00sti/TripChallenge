@@ -257,6 +257,13 @@ public class AnimUtils {
         return new ScaleAnimation(fromXscale, 1.0f, fromYscale, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
     }
 
+    public static ScaleAnimation enterScaleAnim(float fromXscale, float fromYscale, int duration) {
+        ScaleAnimation animation = enterScaleAnim(fromXscale, fromYscale);
+        animation.setDuration(duration);
+        return animation;
+    }
+
+
     public interface EndCallback {
         void onEnd();
     }

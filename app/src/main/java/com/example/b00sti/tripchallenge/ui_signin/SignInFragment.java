@@ -38,26 +38,26 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
 
     @Bean
     SignInPresenter presenter;
-    
+
     public static Fragment newInstance() {
         return new SignInFragment_();
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
         setEnterAnimation();
     }
 
     private void setEnterAnimation() {
         float from = 0.5f;
-        ScaleAnimation animation = AnimUtils.enterScaleAnim(from, from);
-        userIconImageView.setAnimation(animation);
-        emailEditText.setAnimation(animation);
-        passwordEditText.setAnimation(animation);
-        createAccountButton.setAnimation(animation);
-        loginTextView.setAnimation(animation);
-        nickEditText.setAnimation(animation);
+        ScaleAnimation animation = AnimUtils.enterScaleAnim(from, from, 1000);
+        userIconImageView.startAnimation(animation);
+        emailEditText.startAnimation(animation);
+        passwordEditText.startAnimation(animation);
+        createAccountButton.startAnimation(animation);
+        loginTextView.startAnimation(animation);
+        nickEditText.startAnimation(animation);
     }
 
     @AfterInject
