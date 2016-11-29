@@ -1,18 +1,22 @@
 package com.example.b00sti.tripchallenge.ui_signin;
 
-import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
+import android.view.animation.ScaleAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.b00sti.tripchallenge.R;
+import com.example.skeleton.android_utils.util.AnimUtils;
 import com.example.skeleton.android_utils.util.ViewUtils;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
+import com.example.skeleton.ui.progressbar.ProgressBarUtils;
 
 import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
@@ -32,42 +36,69 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
     @ViewById(R.id.createAccountButton) AppCompatButton createAccountButton;
     @ViewById(R.id.loginTextView) TextView loginTextView;
 
-    Activity context;
-
+    @Bean
+    SignInPresenter presenter;
+    
     public static Fragment newInstance() {
         return new SignInFragment_();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        setEnterAnimation();
+    }
+
+    private void setEnterAnimation() {
+        float from = 0.5f;
+        ScaleAnimation animation = AnimUtils.enterScaleAnim(from, from);
+        userIconImageView.setAnimation(animation);
+        emailEditText.setAnimation(animation);
+        passwordEditText.setAnimation(animation);
+        createAccountButton.setAnimation(animation);
+        loginTextView.setAnimation(animation);
+        nickEditText.setAnimation(animation);
+    }
+
     @AfterInject
     public void injectContext() {
-        context = getActivity();
+        ctx = getActivity();
+    }
+
+    @Click(R.id.createAccountButton)
+    public void clickCreateAccount() {
+        presenter.afterSignIn(emailEditText.getText().toString(), passwordEditText.getText().toString());
+    }
+
+    @Click(R.id.loginTextView)
+    public void clickLogin() {
+        presenter.afterLogIn();
     }
 
     @Override
     public void onDestroyView() {
-        ViewUtils.hideKeyboard(context);
+        ViewUtils.hideKeyboard(ctx);
         super.onDestroyView();
     }
 
     @Override
     public void showProgressBar() {
-
+        ProgressBarUtils.show(progressBar);
     }
 
     @Override
     public void hideProgressBar() {
-
+        ProgressBarUtils.hide(progressBar);
     }
 
     @Override
     public void showNoConnection() {
-        ViewUtils.showNoConnectionToast(context);
+        ViewUtils.showNoConnectionToast(ctx);
     }
 
     @Override
     protected SignInContract.Presenter setPresenterView() {
-        return new SignInPresenter(
-
-        );
+        presenter.setView(this);
+        return presenter;
     }
 }

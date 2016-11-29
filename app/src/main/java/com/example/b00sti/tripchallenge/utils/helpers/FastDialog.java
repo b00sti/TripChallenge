@@ -215,12 +215,20 @@ public class FastDialog {
         return message;
     }
 
+    public void setMessage(int message) {
+        this.message = getString(message);
+    }
+
     public void setMessage(String message) {
         this.message = message;
     }
 
     public String getTitle() {
         return title;
+    }
+
+    public void setTitle(int title) {
+        this.title = getString(title);
     }
 
     public void setTitle(String title) {

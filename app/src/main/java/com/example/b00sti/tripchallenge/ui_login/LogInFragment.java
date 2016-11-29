@@ -2,15 +2,17 @@ package com.example.b00sti.tripchallenge.ui_login;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
-import android.view.View;
+import android.view.animation.ScaleAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.b00sti.tripchallenge.R;
+import com.example.skeleton.android_utils.util.AnimUtils;
 import com.example.skeleton.android_utils.util.ViewUtils;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
+import com.example.skeleton.ui.progressbar.ProgressBarUtils;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Bean;
@@ -39,6 +41,23 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
 
     public static Fragment newInstance() {
         return new LogInFragment_();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        setEnterAnimation();
+    }
+
+    private void setEnterAnimation() {
+        float from = 0.5f;
+        ScaleAnimation animation = AnimUtils.enterScaleAnim(from, from);
+        userIconImageView.setAnimation(animation);
+        emailEditText.setAnimation(animation);
+        passwordEditText.setAnimation(animation);
+        loginButton.setAnimation(animation);
+        forgotPasswordTextView.setAnimation(animation);
+        createAccountTextView.setAnimation(animation);
     }
 
     @AfterInject
@@ -75,12 +94,12 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
 
     @Override
     public void showProgressBar() {
-        progressBar.setVisibility(View.VISIBLE);
+        ProgressBarUtils.show(progressBar);
     }
 
     @Override
     public void hideProgressBar() {
-        progressBar.setVisibility(View.GONE);
+        ProgressBarUtils.hide(progressBar);
     }
 
     @Override

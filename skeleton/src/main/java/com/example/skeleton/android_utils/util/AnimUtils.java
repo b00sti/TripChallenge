@@ -15,6 +15,7 @@ import android.transition.Transition;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import com.example.skeleton.java_utils.outside.WeakHandler;
@@ -246,6 +247,14 @@ public class AnimUtils {
         if (!out) view.setVisibility(View.VISIBLE);
 
         view.startAnimation(animation);
+    }
+
+    public static ScaleAnimation exitScaleAnim(float toXscale, float toYscale) {
+        return new ScaleAnimation(1.0f, toXscale, 1.0f, toYscale, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+    }
+
+    public static ScaleAnimation enterScaleAnim(float fromXscale, float fromYscale) {
+        return new ScaleAnimation(fromXscale, 1.0f, fromYscale, 1.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
     }
 
     public interface EndCallback {
