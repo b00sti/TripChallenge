@@ -3,6 +3,7 @@ package com.example.b00sti.tripchallenge.ui_login;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
+import android.view.animation.ScaleAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -45,34 +46,6 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
         return new LogInFragment_();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        setEnterAnimation();
-    }
-
-    private void setEnterAnimation() {
-        float init = 0.75f;
-        int duration = 1000;
-        userIconImageView.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
-        loginButton.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
-        forgotPasswordTextView.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
-        createAccountTextView.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
-        emailEditTextL.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
-        passwordEditTextL.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
-    }
-
-    @AfterInject
-    public void injectContext() {
-        ctx = getActivity();
-    }
-
-    @Override
-    public void onDestroyView() {
-        ViewUtils.hideKeyboard(ctx);
-        super.onDestroyView();
-    }
-
     @Click(R.id.loginButton)
     void clickedLogIn() {
         presenter.afterLogIn(emailEditText.getText().toString(), passwordEditText.getText().toString());
@@ -95,6 +68,23 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        setEnterAnimation();
+    }
+
+    @AfterInject
+    public void injectContext() {
+        ctx = getActivity();
+    }
+
+    @Override
+    public void onDestroyView() {
+        ViewUtils.hideKeyboard(ctx);
+        super.onDestroyView();
+    }
+
+    @Override
     public void showProgressBar() {
         ProgressBarUtils.show(progressBar);
     }
@@ -107,6 +97,21 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
     @Override
     public void showNoConnection() {
         ViewUtils.showNoConnectionToast(ctx);
+    }
+
+    private void setEnterAnimation() {
+        userIconImageView.startAnimation(getAnim());
+        loginButton.startAnimation(getAnim());
+        forgotPasswordTextView.startAnimation(getAnim());
+        createAccountTextView.startAnimation(getAnim());
+        emailEditTextL.startAnimation(getAnim());
+        passwordEditTextL.startAnimation(getAnim());
+    }
+
+    private ScaleAnimation getAnim() {
+        float init = 0.75f;
+        int duration = 1000;
+        return AnimUtils.enterScaleAnim(init, init, duration);
     }
 
 }

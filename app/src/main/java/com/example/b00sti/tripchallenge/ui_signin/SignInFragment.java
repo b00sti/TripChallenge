@@ -3,6 +3,7 @@ package com.example.b00sti.tripchallenge.ui_signin;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
+import android.view.animation.ScaleAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -41,31 +42,9 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
 
     @Bean
     SignInPresenter presenter;
-
+    
     public static Fragment newInstance() {
         return new SignInFragment_();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        setEnterAnimation();
-    }
-
-    private void setEnterAnimation() {
-        float init = 0.75f;
-        int duration = 1000;
-        userIconImageView.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
-        emailEditTextL.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
-        passwordEditTextL.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
-        nickEditTextL.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
-        createAccountButton.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
-        loginTextView.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
-    }
-
-    @AfterInject
-    public void injectContext() {
-        ctx = getActivity();
     }
 
     @Click(R.id.createAccountButton)
@@ -76,6 +55,23 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
     @Click(R.id.loginTextView)
     public void clickLogin() {
         presenter.afterLogIn();
+    }
+
+    @AfterInject
+    public void injectContext() {
+        ctx = getActivity();
+    }
+
+    @Override
+    protected SignInContract.Presenter setPresenterView() {
+        presenter.setView(this);
+        return presenter;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setEnterAnimation();
     }
 
     @Override
@@ -99,9 +95,20 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
         ViewUtils.showNoConnectionToast(ctx);
     }
 
-    @Override
-    protected SignInContract.Presenter setPresenterView() {
-        presenter.setView(this);
-        return presenter;
+    private void setEnterAnimation() {
+        userIconImageView.startAnimation(getAnim());
+        emailEditTextL.startAnimation(getAnim());
+        passwordEditTextL.startAnimation(getAnim());
+        nickEditTextL.startAnimation(getAnim());
+        createAccountButton.startAnimation(getAnim());
+        loginTextView.startAnimation(getAnim());
     }
+
+    private ScaleAnimation getAnim() {
+        float init = 0.75f;
+        int duration = 1000;
+        return AnimUtils.enterScaleAnim(init, init, duration);
+    }
+
+
 }
