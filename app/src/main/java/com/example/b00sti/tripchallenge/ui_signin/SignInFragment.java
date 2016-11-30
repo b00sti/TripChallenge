@@ -4,6 +4,7 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -102,7 +103,7 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
     }
 
     private void setEnterAnimation() {
-        userIconImageView.startAnimation(getAnim());
+        userIconImageView.startAnimation(getHandlingEdittextsFocus());
         emailEditTextL.startAnimation(getAnim());
         passwordEditTextL.startAnimation(getAnim());
         nickEditTextL.startAnimation(getAnim());
@@ -115,11 +116,43 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
         divider3.startAnimation(getAnim());
     }
 
+    private ScaleAnimation getHandlingEdittextsFocus() {
+        ScaleAnimation animation = getAnim();
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                nickEditText.setFocusable(false);
+                emailEditText.setFocusable(false);
+                passwordEditText.setFocusable(false);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                nickEditText.setEnabled(true);
+                emailEditText.setEnabled(true);
+                passwordEditText.setEnabled(true);
+                nickEditText.setFocusable(true);
+                emailEditText.setFocusable(true);
+                passwordEditText.setFocusable(true);
+                nickEditText.setFocusableInTouchMode(true);
+                emailEditText.setFocusableInTouchMode(true);
+                passwordEditText.setFocusableInTouchMode(true);
+                nickEditText.requestFocus();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        return animation;
+    }
+
     private ScaleAnimation getAnim() {
         float init = 0.75f;
         int duration = 1000;
         return AnimUtils.enterScaleAnim(init, init, duration);
     }
-
 
 }
