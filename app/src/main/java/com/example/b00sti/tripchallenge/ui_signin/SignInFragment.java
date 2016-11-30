@@ -3,6 +3,7 @@ package com.example.b00sti.tripchallenge.ui_signin;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
+import android.view.View;
 import android.view.animation.ScaleAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -39,10 +40,15 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
     @ViewById(R.id.passwordEditTextL) TextInputLayout passwordEditTextL;
     @ViewById(R.id.createAccountButton) AppCompatButton createAccountButton;
     @ViewById(R.id.loginTextView) TextView loginTextView;
+    @ViewById(R.id.gmailButton) AppCompatButton gmailButton;
+    @ViewById(R.id.facebookButton) AppCompatButton facebookButton;
+    @ViewById(R.id.divider1) View divider1;
+    @ViewById(R.id.divider2) TextView divider2;
+    @ViewById(R.id.divider3) View divider3;
 
     @Bean
     SignInPresenter presenter;
-    
+
     public static Fragment newInstance() {
         return new SignInFragment_();
     }
@@ -102,6 +108,11 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
         nickEditTextL.startAnimation(getAnim());
         createAccountButton.startAnimation(getAnim());
         loginTextView.startAnimation(getAnim());
+        gmailButton.startAnimation(getAnim());
+        facebookButton.startAnimation(getAnim());
+        divider1.startAnimation(getAnim());
+        divider2.startAnimation(getAnim());
+        divider3.startAnimation(getAnim());
     }
 
     private ScaleAnimation getAnim() {
