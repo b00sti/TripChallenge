@@ -40,6 +40,7 @@
     <string name="enter_email">Please enter the email your account was setup with</string>
     <string name="request_password_send">Password Request Send</string>
     <string name="check_email">Check your email for the link to reset your password</string>
+    <string name="or">OR</string>
 
 
 </resources>

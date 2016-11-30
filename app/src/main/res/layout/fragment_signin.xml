@@ -8,18 +8,15 @@
     android:background="@drawable/gradient_background"
     android:fitsSystemWindows="true">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone"/>
+    <include layout="@layout/progress_bar_layout"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="@dimen/spacing_12dp"
+        android:layout_marginTop="@dimen/spacing_12dp"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin"
         android:weightSum="1">
@@ -51,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:drawablePadding="@dimen/spacing_small"
+                android:drawablePadding="@dimen/spacing_12dp"
                 android:drawableStart="@drawable/ic_account_box_white_18dp"
                 android:inputType="text"
                 tools:hint="@string/nick"/>
@@ -73,7 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:drawablePadding="@dimen/spacing_small"
+                android:drawablePadding="@dimen/spacing_12dp"
                 android:drawableStart="@drawable/ic_email_white_18dp"
                 android:inputType="textEmailAddress"
                 tools:hint="@string/email_hint"/>
@@ -97,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:drawablePadding="@dimen/spacing_small"
+                android:drawablePadding="@dimen/spacing_12dp"
                 android:drawableStart="@drawable/ic_vpn_key_white_18dp"
                 android:inputType="textPassword"
                 tools:hint="@string/password_hint"/>
@@ -110,58 +107,22 @@
             android:layout_width="fill_parent"
             android:layout_height="@dimen/view_normal"
             android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/spacing_12dp"
             android:layout_marginEnd="@dimen/spacing_24dp"
             android:layout_marginStart="@dimen/spacing_24dp"
-            android:layout_marginTop="@dimen/spacing_24dp"
+            android:layout_marginTop="@dimen/spacing_12dp"
             android:gravity="center"
             android:padding="@dimen/spacing_pretty_tiny"
             android:text="@string/create_account"
             tools:text="@string/create_account"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_24dp"
-            android:layout_marginTop="@dimen/spacing_24dp"
-            android:orientation="horizontal"
-            android:weightSum="12">
-
-            <View
-                android:id="@+id/divider1"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_gravity="center"
-                android:layout_weight="5"
-                android:background="@color/colorLightDivider">
-
-            </View>
-
-            <TextView
-                android:id="@+id/divider2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:text="OR"
-                android:textColor="@color/colorLightText"
-                />
-
-            <View
-                android:id="@+id/divider3"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_gravity="center"
-                android:layout_weight="5"
-                android:background="@color/colorLightDivider">
-
-            </View>
-        </LinearLayout>
+        <include layout="@layout/divider_with_text"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_small"
+            android:layout_marginBottom="@dimen/spacing_12dp"
+            android:layout_marginTop="@dimen/spacing_12dp"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatButton
@@ -170,11 +131,11 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/view_normal"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/spacing_very_tiny"
+                android:layout_margin="@dimen/spacing_4dp"
                 android:layout_weight="1"
                 android:background="@android:color/holo_red_light"
                 android:gravity="center"
-                android:padding="@dimen/spacing_pretty_tiny"
+                android:padding="@dimen/spacing_4dp"
                 android:text="Gmail"
                 tools:text="Gmail"/>
 
@@ -185,11 +146,11 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/view_normal"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/spacing_very_tiny"
+                android:layout_margin="@dimen/spacing_4dp"
                 android:layout_weight="1"
                 android:background="@color/colorPrimary"
                 android:gravity="center"
-                android:padding="@dimen/spacing_pretty_tiny"
+                android:padding="@dimen/spacing_4dp"
                 android:text="Facebook"
                 tools:text="Facebook"/>
 
@@ -202,7 +163,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/spacing_24dp"
+            android:layout_marginBottom="@dimen/spacing_12dp"
+            android:layout_marginTop="@dimen/spacing_12dp"
             android:gravity="center"
             android:padding="@dimen/spacing_4dp"
             android:text="@string/already_a_member_login"
