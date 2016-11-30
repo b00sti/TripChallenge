@@ -1,8 +1,8 @@
 package com.example.b00sti.tripchallenge.ui_login;
 
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
-import android.view.animation.ScaleAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -35,6 +35,8 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
     @ViewById(R.id.loginButton) AppCompatButton loginButton;
     @ViewById(R.id.forgotPasswordTextView) TextView forgotPasswordTextView;
     @ViewById(R.id.createAccountTextView) TextView createAccountTextView;
+    @ViewById(R.id.emailEditTextL) TextInputLayout emailEditTextL;
+    @ViewById(R.id.passwordEditTextL) TextInputLayout passwordEditTextL;
 
     @Bean
     LogInPresenter presenter;
@@ -43,22 +45,21 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
         return new LogInFragment_();
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
         setEnterAnimation();
     }
-    
+
     private void setEnterAnimation() {
-        float from = 0.5f;
-        ScaleAnimation animation = AnimUtils.enterScaleAnim(from, from, 1000);
-        userIconImageView.startAnimation(animation);
-        emailEditText.startAnimation(animation);
-        passwordEditText.startAnimation(animation);
-        loginButton.startAnimation(animation);
-        forgotPasswordTextView.startAnimation(animation);
-        createAccountTextView.startAnimation(animation);
+        float init = 0.75f;
+        int duration = 1000;
+        userIconImageView.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
+        loginButton.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
+        forgotPasswordTextView.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
+        createAccountTextView.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
+        emailEditTextL.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
+        passwordEditTextL.startAnimation(AnimUtils.enterScaleAnim(init, init, duration));
     }
 
     @AfterInject
