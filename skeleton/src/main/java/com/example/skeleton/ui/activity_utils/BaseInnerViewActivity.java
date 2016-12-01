@@ -1,6 +1,7 @@
 package com.example.skeleton.ui.activity_utils;
 
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ public abstract class BaseInnerViewActivity extends AppCompatActivity {
     public void setFragment() {
         setInitialFragment(getIntent());
         setTitle(getIntent());
+        setActionBar();
     }
 
     @Override
@@ -65,5 +67,12 @@ public abstract class BaseInnerViewActivity extends AppCompatActivity {
     private void switchToFragment(int fragmentId) {
         Fragment fragment = setFragment(fragmentId);
         FragmentSwitcher.switchFragment(new FragmentSwitcherParams(getSupportFragmentManager(), fragment, R.id.activity_inner_view_placeholder), this);
+    }
+
+    private void setActionBar() {
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 }

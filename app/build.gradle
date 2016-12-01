@@ -58,5 +58,6 @@ dependencies {
     compile "com.google.firebase:firebase-auth:$rootProject.firebaseAuthVersion"
     compile "org.greenrobot:eventbus:$rootProject.eventbusVersion"
     compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.16.1'
 }
 

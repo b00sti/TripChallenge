@@ -18,15 +18,13 @@
         android:layout_marginBottom="@dimen/spacing_12dp"
         android:layout_marginTop="@dimen/spacing_12dp"
         android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin"
-        android:weightSum="1">
+        android:padding="@dimen/activity_horizontal_margin">
 
         <ImageView
             android:id="@+id/userIconImageView"
             android:layout_width="match_parent"
-            android:layout_height="73dp"
+            android:layout_height="@dimen/view_large"
             android:layout_gravity="center"
-            android:layout_weight="0.02"
             android:src="@drawable/logo"
             tools:src="@drawable/logo"/>
 
@@ -116,6 +114,12 @@
 
         <include layout="@layout/divider_with_text"/>
 
+        <TextView
+            style="@style/TextViewLightSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Sign up with"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -125,6 +129,7 @@
             android:layout_marginTop="@dimen/spacing_12dp"
             android:orientation="horizontal">
 
+
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/gmailButton"
                 style="@style/ButtonHalfTransparent"
@@ -133,12 +138,63 @@
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/spacing_4dp"
                 android:layout_weight="1"
-                android:background="@android:color/holo_red_light"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:padding="@dimen/spacing_4dp"
-                android:text="Gmail"
-                tools:text="Gmail"/>
+                android:text="Facebook"
+                android:visibility="gone"
+                tools:text="Facebook"/>
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/spacing_1dp"
+                android:layout_weight="1"
+                android:background="@drawable/google_login_background"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/common_google_signin_btn_icon_light_normal"/>
+
+                <TextView
+                    android:id="@+id/gmailButtons"
+                    style="@style/TextViewLightSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_4dp"
+                    android:paddingBottom="4dp"
+                    android:paddingTop="4dp"
+                    android:text="Google"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="Google"/>
+
+
+            </LinearLayout>
+
+            <com.facebook.login.widget.LoginButton
+                xmlns:facebook="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/loginFacebookButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/spacing_1dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="4dp"
+                android:paddingTop="5dp"
+                android:text="Facebook"
+                android:textSize="16sp"
+                facebook:com_facebook_login_text="Facebook"
+                facebook:paddingStart="12dp"
+                />
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/facebookButton"
@@ -152,6 +208,7 @@
                 android:gravity="center"
                 android:padding="@dimen/spacing_4dp"
                 android:text="Facebook"
+                android:visibility="gone"
                 tools:text="Facebook"/>
 
         </LinearLayout>

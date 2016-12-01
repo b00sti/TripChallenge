@@ -79,8 +79,11 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
     public void onResume() {
         super.onResume();
         setEnterAnimation();
-    }
 
+        if (getActivity().getActionBar() != null) {
+            getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+    }
     @Override
     public void onDestroyView() {
         ViewUtils.hideKeyboard(ctx);
