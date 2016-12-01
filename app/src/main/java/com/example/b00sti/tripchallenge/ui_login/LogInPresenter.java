@@ -86,7 +86,7 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
 
     @Override
     public void afterNoAccount() {
-        ActivityUtils.startInnerViewActivity(ctx, FragmentBuilder.SIGN_IN);
+        ActivityUtils.startInnerViewActivity(ctx, FragmentBuilder.SIGN_IN, "Sign Up");
     }
 
     @Override

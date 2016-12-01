@@ -25,6 +25,7 @@ public abstract class BaseInnerViewActivity extends AppCompatActivity {
     @AfterViews
     public void setFragment() {
         setInitialFragment(getIntent());
+        setTitle(getIntent());
     }
 
     @Override
@@ -44,7 +45,14 @@ public abstract class BaseInnerViewActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void setInitialFragment(Intent intent) {
+    private void setTitle(Intent intent) {
+        if (intent.hasExtra("name")) {
+            String s = intent.getStringExtra("name");
+            setTitle(s);
+        }
+    }
+
+    private void setInitialFragment(Intent intent) {
         int fragmentId;
         if (intent.hasExtra(getString(R.string.bundle_fragment))) {
             fragmentId = intent.getIntExtra(getString(R.string.bundle_fragment), -1);

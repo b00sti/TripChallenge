@@ -68,7 +68,7 @@ public class SignInPresenter extends MvpPresenter<SignInContract.View> implement
 
     @Override
     public void afterLogIn() {
-        ActivityUtils.startInnerViewActivity(ctx, FragmentBuilder.LOG_IN);
+        ActivityUtils.startInnerViewActivity(ctx, FragmentBuilder.LOG_IN, "Log In");
     }
 
     @Override
