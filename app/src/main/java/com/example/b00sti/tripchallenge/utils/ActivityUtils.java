@@ -17,12 +17,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class ActivityUtils {
     private static final String TAG = "ActivityUtils";
 
-    public static void startInnerViewActivity(@NonNull Activity context, int fragmentId) {
+    public static void startInnerViewActivity(@NonNull Activity context, int fragmentId, String title) {
         Log.d(TAG, "startInnerViewActivity() called with: context = [" + context + "], fragmentId = [" + fragmentId + "]");
         checkNotNull(context);
 
         Intent intent = new Intent(context, InnerViewActivity_.class);
         intent.putExtra(context.getString(R.string.bundle_fragment), fragmentId);
+        intent.putExtra("name", title);
         context.startActivityForResult(intent, -1);
     }
 }

@@ -172,7 +172,7 @@ public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> 
 
         if (id == R.id.action_logout) {
             firebaseManager.getFirebaseAuth().signOut();
-            ActivityUtils.startInnerViewActivity(getActivity(), FragmentBuilder.DASHBOARD);
+            ActivityUtils.startInnerViewActivity(getActivity(), FragmentBuilder.DASHBOARD, "Sign In");
             //loadLogInView();
         }
 

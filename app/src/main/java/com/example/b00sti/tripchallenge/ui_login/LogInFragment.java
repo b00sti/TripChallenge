@@ -1,16 +1,19 @@
 package com.example.b00sti.tripchallenge.ui_login;
 
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
-import android.view.View;
+import android.view.animation.ScaleAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.b00sti.tripchallenge.R;
+import com.example.skeleton.android_utils.util.AnimUtils;
 import com.example.skeleton.android_utils.util.ViewUtils;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
+import com.example.skeleton.ui.progressbar.ProgressBarUtils;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Bean;
@@ -33,23 +36,14 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
     @ViewById(R.id.loginButton) AppCompatButton loginButton;
     @ViewById(R.id.forgotPasswordTextView) TextView forgotPasswordTextView;
     @ViewById(R.id.createAccountTextView) TextView createAccountTextView;
+    @ViewById(R.id.emailEditTextL) TextInputLayout emailEditTextL;
+    @ViewById(R.id.passwordEditTextL) TextInputLayout passwordEditTextL;
 
     @Bean
     LogInPresenter presenter;
 
     public static Fragment newInstance() {
         return new LogInFragment_();
-    }
-
-    @AfterInject
-    public void injectContext() {
-        ctx = getActivity();
-    }
-
-    @Override
-    public void onDestroyView() {
-        ViewUtils.hideKeyboard(ctx);
-        super.onDestroyView();
     }
 
     @Click(R.id.loginButton)
@@ -74,18 +68,50 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        setEnterAnimation();
+    }
+
+    @AfterInject
+    public void injectContext() {
+        ctx = getActivity();
+    }
+
+    @Override
+    public void onDestroyView() {
+        ViewUtils.hideKeyboard(ctx);
+        super.onDestroyView();
+    }
+
+    @Override
     public void showProgressBar() {
-        progressBar.setVisibility(View.VISIBLE);
+        ProgressBarUtils.show(progressBar);
     }
 
     @Override
     public void hideProgressBar() {
-        progressBar.setVisibility(View.GONE);
+        ProgressBarUtils.hide(progressBar);
     }
 
     @Override
     public void showNoConnection() {
         ViewUtils.showNoConnectionToast(ctx);
+    }
+
+    private void setEnterAnimation() {
+        userIconImageView.startAnimation(getAnim());
+        loginButton.startAnimation(getAnim());
+        forgotPasswordTextView.startAnimation(getAnim());
+        createAccountTextView.startAnimation(getAnim());
+        emailEditTextL.startAnimation(getAnim());
+        passwordEditTextL.startAnimation(getAnim());
+    }
+
+    private ScaleAnimation getAnim() {
+        float init = 0.75f;
+        int duration = 1000;
+        return AnimUtils.enterScaleAnim(init, init, duration);
     }
 
 }

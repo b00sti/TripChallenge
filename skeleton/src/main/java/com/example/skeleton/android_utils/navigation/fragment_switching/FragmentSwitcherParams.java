@@ -5,8 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
-import com.example.skeleton.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +21,8 @@ public class FragmentSwitcherParams {
     private String tag;
     private Bundle bundle = null;
     private boolean commitAllowingStateLoss = false;
-    private int customEnterAnim = R.anim.alpha_in;
-    private int customExitAnim = R.anim.alpha_out;
+    private int customEnterAnim;
+    private int customExitAnim;
     private List<SharedElement> sharedElements = new ArrayList<>();
 
     public FragmentSwitcherParams(@NonNull FragmentManager fragmentManager, @NonNull Fragment targetFragment, int frameId) {

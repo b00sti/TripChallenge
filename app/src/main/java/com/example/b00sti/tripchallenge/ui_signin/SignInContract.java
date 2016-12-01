@@ -20,7 +20,7 @@ public class SignInContract {
 
     interface Presenter extends BasePresenter {
 
-        void afterSignIn();
+        void afterSignIn(String email, String password);
 
         void afterLogIn();
 
