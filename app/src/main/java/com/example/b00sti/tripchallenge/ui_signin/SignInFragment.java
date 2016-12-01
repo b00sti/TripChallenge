@@ -8,6 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.example.skeleton.android_utils.util.AnimUtils;
 import com.example.skeleton.android_utils.util.ViewUtils;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
 import com.example.skeleton.ui.progressbar.ProgressBarUtils;
+import com.facebook.login.widget.LoginButton;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Bean;
@@ -46,6 +48,10 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
     @ViewById(R.id.divider1) View divider1;
     @ViewById(R.id.divider2) TextView divider2;
     @ViewById(R.id.divider3) View divider3;
+    @ViewById(R.id.signupWithTextView) TextView signupWithTextView;
+    @ViewById(R.id.signupGoogle) LinearLayout signupGoogle;
+    @ViewById(R.id.signupFacebook) LoginButton signupFacebook;
+
 
     @Bean
     SignInPresenter presenter;
@@ -117,6 +123,9 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
         divider1.startAnimation(getAnim());
         divider2.startAnimation(getAnim());
         divider3.startAnimation(getAnim());
+        signupWithTextView.startAnimation(getAnim());
+        signupGoogle.startAnimation(getAnim());
+        signupFacebook.startAnimation(getAnim());
     }
 
     private ScaleAnimation getHandlingEdittextsFocus() {

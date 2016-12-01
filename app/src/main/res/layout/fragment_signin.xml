@@ -115,11 +115,13 @@
         <include layout="@layout/divider_with_text"/>
 
         <TextView
+            android:id="@+id/signupWithTextView"
             style="@style/TextViewLightSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Sign up with"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -146,6 +148,7 @@
                 tools:text="Facebook"/>
 
             <LinearLayout
+                android:id="@+id/signupGoogle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/spacing_1dp"
@@ -167,9 +170,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:gravity="center"
                     android:padding="@dimen/spacing_4dp"
                     android:paddingBottom="4dp"
+                    android:paddingStart="20dp"
                     android:paddingTop="4dp"
                     android:text="Google"
                     android:textSize="16sp"
@@ -181,7 +184,7 @@
 
             <com.facebook.login.widget.LoginButton
                 xmlns:facebook="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/loginFacebookButton"
+                android:id="@+id/signupFacebook"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -189,11 +192,10 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:paddingBottom="4dp"
-                android:paddingTop="5dp"
-                android:text="Facebook"
+                android:paddingTop="4dp"
                 android:textSize="16sp"
                 facebook:com_facebook_login_text="Facebook"
-                facebook:paddingStart="12dp"
+                facebook:paddingStart="16dp"
                 />
 
             <android.support.v7.widget.AppCompatButton
