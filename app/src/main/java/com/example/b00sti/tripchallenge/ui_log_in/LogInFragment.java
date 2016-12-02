@@ -30,14 +30,14 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
     private static final String TAG = "LogInFragment";
 
     @ViewById(R.id.progressBar) ProgressBar progressBar;
-    @ViewById(R.id.userIconImageView) ImageView userIconImageView;
-    @ViewById(R.id.emailEditText) EditText emailEditText;
-    @ViewById(R.id.passwordEditText) EditText passwordEditText;
+    @ViewById(R.id.userIconIV) ImageView userIconImageView;
+    @ViewById(R.id.emailET) EditText emailEditText;
+    @ViewById(R.id.passwordET) EditText passwordEditText;
     @ViewById(R.id.loginButton) AppCompatButton loginButton;
     @ViewById(R.id.forgotPasswordTextView) TextView forgotPasswordTextView;
     @ViewById(R.id.createAccountTextView) TextView createAccountTextView;
-    @ViewById(R.id.emailEditTextL) TextInputLayout emailEditTextL;
-    @ViewById(R.id.passwordEditTextL) TextInputLayout passwordEditTextL;
+    @ViewById(R.id.emailETL) TextInputLayout emailEditTextL;
+    @ViewById(R.id.passwordETL) TextInputLayout passwordEditTextL;
 
     @Bean
     LogInPresenter presenter;

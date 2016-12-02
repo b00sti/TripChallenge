@@ -7,7 +7,7 @@
     <include layout="@layout/divider_with_text"/>
 
     <TextView
-        android:id="@+id/topTextView"
+        android:id="@+id/topTV"
         style="@style/TextViewLightSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         layout="@layout/fb_google_layout"/>
 
     <TextView
-        android:id="@+id/bottomTextView"
+        android:id="@+id/bottomTV"
         style="@style/TextViewLightNormal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

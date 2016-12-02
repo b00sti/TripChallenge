@@ -13,7 +13,7 @@
     tools:showIn="@layout/fragment_signin">
 
     <View
-        android:id="@+id/divider1"
+        android:id="@+id/divider1V"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_gravity="center"
@@ -23,7 +23,7 @@
     </View>
 
     <TextView
-        android:id="@+id/divider2"
+        android:id="@+id/divider2V"
         style="@style/TextViewLightNormal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
         />
 
     <View
-        android:id="@+id/divider3"
+        android:id="@+id/divider3V"
         style="@style/TextViewLightNormal"
         android:layout_width="0dp"
         android:layout_height="1dp"

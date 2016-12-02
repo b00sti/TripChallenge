@@ -34,21 +34,21 @@ public class SignUpFragment extends MvpFragment<SignUpContract.Presenter> implem
     private static final String TAG = "SignUpFragment";
 
     @ViewById(R.id.progressBar) ProgressBar progressBar;
-    @ViewById(R.id.userIconImageView) ImageView userIconImageView;
-    @ViewById(R.id.nickEditText) EditText nickEditText;
-    @ViewById(R.id.emailEditText) EditText emailEditText;
-    @ViewById(R.id.passwordEditText) EditText passwordEditText;
-    @ViewById(R.id.nickEditTextL) TextInputLayout nickEditTextL;
-    @ViewById(R.id.emailEditTextL) TextInputLayout emailEditTextL;
-    @ViewById(R.id.passwordEditTextL) TextInputLayout passwordEditTextL;
-    @ViewById(R.id.createAccountButton) AppCompatButton createAccountButton;
-    @ViewById(R.id.bottomTextView) TextView loginTextView;
-    @ViewById(R.id.divider1) View divider1;
-    @ViewById(R.id.divider2) TextView divider2;
-    @ViewById(R.id.divider3) View divider3;
-    @ViewById(R.id.topTextView) TextView signUpWithTextView;
+    @ViewById(R.id.userIconIV) ImageView userIconIV;
+    @ViewById(R.id.nickET) EditText nickET;
+    @ViewById(R.id.emailET) EditText emailET;
+    @ViewById(R.id.passwordET) EditText passwordET;
+    @ViewById(R.id.nickETL) TextInputLayout nickETL;
+    @ViewById(R.id.emailETL) TextInputLayout emailETL;
+    @ViewById(R.id.passwordETL) TextInputLayout passwordETL;
+    @ViewById(R.id.createAccountB) AppCompatButton createAccountB;
+    @ViewById(R.id.bottomTV) TextView bottomTV;
+    @ViewById(R.id.divider1V) View divider1V;
+    @ViewById(R.id.divider2V) TextView divider2V;
+    @ViewById(R.id.divider3V) View divider3V;
+    @ViewById(R.id.topTV) TextView topTV;
     @ViewById(R.id.googleButtonL) LinearLayout signUpGoogle;
-    @ViewById(R.id.facebookLoginButton) LoginButton signUpFacebook;
+    @ViewById(R.id.facebookLoginB) LoginButton signUpFacebook;
 
     @Bean
     SignUpPresenter presenter;
@@ -57,12 +57,12 @@ public class SignUpFragment extends MvpFragment<SignUpContract.Presenter> implem
         return new SignUpFragment_();
     }
 
-    @Click(R.id.createAccountButton)
+    @Click(R.id.createAccountB)
     public void clickCreateAccount() {
-        presenter.afterSignIn(emailEditText.getText().toString(), passwordEditText.getText().toString());
+        presenter.afterSignIn(emailET.getText().toString(), passwordET.getText().toString());
     }
 
-    @Click(R.id.bottomTextView)
+    @Click(R.id.bottomTV)
     public void clickLogin() {
         presenter.afterLogIn();
     }
@@ -109,16 +109,16 @@ public class SignUpFragment extends MvpFragment<SignUpContract.Presenter> implem
     }
 
     private void setEnterAnimation() {
-        userIconImageView.startAnimation(getHandlingEdittextsFocus());
-        emailEditTextL.startAnimation(getAnim());
-        passwordEditTextL.startAnimation(getAnim());
-        nickEditTextL.startAnimation(getAnim());
-        createAccountButton.startAnimation(getAnim());
-        loginTextView.startAnimation(getAnim());
-        divider1.startAnimation(getAnim());
-        divider2.startAnimation(getAnim());
-        divider3.startAnimation(getAnim());
-        signUpWithTextView.startAnimation(getAnim());
+        userIconIV.startAnimation(getHandlingEdittextsFocus());
+        emailETL.startAnimation(getAnim());
+        passwordETL.startAnimation(getAnim());
+        nickETL.startAnimation(getAnim());
+        createAccountB.startAnimation(getAnim());
+        bottomTV.startAnimation(getAnim());
+        divider1V.startAnimation(getAnim());
+        divider2V.startAnimation(getAnim());
+        divider3V.startAnimation(getAnim());
+        topTV.startAnimation(getAnim());
         signUpGoogle.startAnimation(getAnim());
         signUpFacebook.startAnimation(getAnim());
     }
@@ -128,23 +128,23 @@ public class SignUpFragment extends MvpFragment<SignUpContract.Presenter> implem
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                nickEditText.setFocusable(false);
-                emailEditText.setFocusable(false);
-                passwordEditText.setFocusable(false);
+                nickET.setFocusable(false);
+                emailET.setFocusable(false);
+                passwordET.setFocusable(false);
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                nickEditText.setEnabled(true);
-                emailEditText.setEnabled(true);
-                passwordEditText.setEnabled(true);
-                nickEditText.setFocusable(true);
-                emailEditText.setFocusable(true);
-                passwordEditText.setFocusable(true);
-                nickEditText.setFocusableInTouchMode(true);
-                emailEditText.setFocusableInTouchMode(true);
-                passwordEditText.setFocusableInTouchMode(true);
-                nickEditText.requestFocus();
+                nickET.setEnabled(true);
+                emailET.setEnabled(true);
+                passwordET.setEnabled(true);
+                nickET.setFocusable(true);
+                emailET.setFocusable(true);
+                passwordET.setFocusable(true);
+                nickET.setFocusableInTouchMode(true);
+                emailET.setFocusableInTouchMode(true);
+                passwordET.setFocusableInTouchMode(true);
+                nickET.requestFocus();
             }
 
             @Override

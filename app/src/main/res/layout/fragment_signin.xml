@@ -14,7 +14,7 @@
     <include layout="@layout/progress_bar_layout"/>
 
     <LinearLayout
-        android:id="@+id/topLayout"
+        android:id="@+id/topLayoutL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -25,7 +25,7 @@
         <include layout="@layout/app_logo"/>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/nickEditTextL"
+            android:id="@+id/nickETL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -35,7 +35,7 @@
             >
 
             <EditText
-                android:id="@+id/nickEditText"
+                android:id="@+id/nickET"
                 style="@style/TextViewLightSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
                 android:drawablePadding="@dimen/spacing_12dp"
                 android:drawableStart="@drawable/ic_account_box_white_18dp"
                 android:inputType="text"
-                android:labelFor="@id/topLayout"
+                android:labelFor="@id/topLayoutL"
                 tools:hint="@string/nick"/>
 
         </android.support.design.widget.TextInputLayout>
@@ -51,7 +51,7 @@
         <include layout="@layout/email_password_edit_texts"/>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/createAccountButton"
+            android:id="@+id/createAccountB"
             style="@style/ButtonHalfTransparent"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/view_normal"
@@ -68,10 +68,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/bottomLayout"
+        android:id="@+id/bottomLayoutL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/topLayout"
+        android:layout_below="@id/topLayoutL"
         android:orientation="vertical">
 
         <include layout="@layout/sign_in_out_bottom_layout"/>
