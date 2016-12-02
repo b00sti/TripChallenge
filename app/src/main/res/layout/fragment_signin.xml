@@ -1,32 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/gradient_background"
-    android:fitsSystemWindows="true">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_gradient"
+    android:fitsSystemWindows="true"
+    android:paddingBottom="@dimen/spacing_12dp"
+    android:paddingEnd="@dimen/spacing_24dp"
+    android:paddingStart="@dimen/spacing_24dp"
+    android:paddingTop="@dimen/spacing_12dp">
 
     <include layout="@layout/progress_bar_layout"/>
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:id="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="@dimen/spacing_12dp"
-        android:layout_marginTop="@dimen/spacing_12dp"
         android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:paddingTop="@dimen/spacing_24dp">
 
-        <ImageView
-            android:id="@+id/userIconImageView"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/view_large"
-            android:layout_gravity="center"
-            android:src="@drawable/logo"
-            tools:src="@drawable/logo"/>
+        <include layout="@layout/app_logo"/>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/nickEditTextL"
@@ -47,55 +43,12 @@
                 android:drawablePadding="@dimen/spacing_12dp"
                 android:drawableStart="@drawable/ic_account_box_white_18dp"
                 android:inputType="text"
+                android:labelFor="@id/topLayout"
                 tools:hint="@string/nick"/>
 
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/emailEditTextL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:hint="@string/email_hint"
-            android:theme="@style/AppThemeWithLightHint">
-
-            <EditText
-                android:id="@+id/emailEditText"
-                style="@style/TextViewLightSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:drawablePadding="@dimen/spacing_12dp"
-                android:drawableStart="@drawable/ic_email_white_18dp"
-                android:inputType="textEmailAddress"
-                tools:hint="@string/email_hint"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/passwordEditTextL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:hint="@string/password_hint"
-            android:theme="@style/AppThemeWithLightHint"
-            app:passwordToggleDrawable="@drawable/ic_remove_red_eye_white_18dp"
-            app:passwordToggleTint="@color/colorLightText">
-
-            <EditText
-                android:id="@+id/passwordEditText"
-                style="@style/TextViewLightSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:drawablePadding="@dimen/spacing_12dp"
-                android:drawableStart="@drawable/ic_vpn_key_white_18dp"
-                android:inputType="textPassword"
-                tools:hint="@string/password_hint"/>
-
-        </android.support.design.widget.TextInputLayout>
+        <include layout="@layout/email_password_edit_texts"/>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/createAccountButton"
@@ -112,121 +65,16 @@
             android:text="@string/create_account"
             tools:text="@string/create_account"/>
 
-        <include layout="@layout/divider_with_text"/>
+    </LinearLayout>
 
-        <TextView
-            android:id="@+id/signupWithTextView"
-            style="@style/TextViewLightSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Sign up with"/>
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topLayout"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/spacing_12dp"
-            android:layout_marginEnd="@dimen/spacing_24dp"
-            android:layout_marginStart="@dimen/spacing_24dp"
-            android:layout_marginTop="@dimen/spacing_12dp"
-            android:orientation="horizontal">
-
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/gmailButton"
-                style="@style/ButtonHalfTransparent"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/view_normal"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/spacing_4dp"
-                android:layout_weight="1"
-                android:background="@color/colorPrimary"
-                android:gravity="center"
-                android:padding="@dimen/spacing_4dp"
-                android:text="Facebook"
-                android:visibility="gone"
-                tools:text="Facebook"/>
-
-            <LinearLayout
-                android:id="@+id/signupGoogle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/spacing_1dp"
-                android:layout_weight="1"
-                android:background="@drawable/google_login_background"
-                android:orientation="horizontal"
-                >
-
-                <ImageView
-                    android:layout_width="19dp"
-                    android:layout_height="19dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:src="@drawable/common_google_signin_btn_icon_light_normal"/>
-
-                <TextView
-                    android:id="@+id/gmailButtons"
-                    style="@style/TextViewLightSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:padding="@dimen/spacing_4dp"
-                    android:paddingBottom="4dp"
-                    android:paddingStart="20dp"
-                    android:paddingTop="4dp"
-                    android:text="Google"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    tools:text="Google"/>
-
-
-            </LinearLayout>
-
-            <com.facebook.login.widget.LoginButton
-                xmlns:facebook="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/signupFacebook"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/spacing_1dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:paddingBottom="4dp"
-                android:paddingTop="4dp"
-                android:textSize="16sp"
-                facebook:com_facebook_login_text="Facebook"
-                facebook:paddingStart="16dp"
-                />
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/facebookButton"
-                style="@style/ButtonHalfTransparent"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/view_normal"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/spacing_4dp"
-                android:layout_weight="1"
-                android:background="@color/colorPrimary"
-                android:gravity="center"
-                android:padding="@dimen/spacing_4dp"
-                android:text="Facebook"
-                android:visibility="gone"
-                tools:text="Facebook"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/loginTextView"
-            style="@style/TextViewLightNormal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/spacing_12dp"
-            android:layout_marginTop="@dimen/spacing_12dp"
-            android:gravity="center"
-            android:padding="@dimen/spacing_4dp"
-            android:text="@string/already_a_member_login"
-            tools:text="@string/already_a_member_login"/>
+        <include layout="@layout/sign_in_out_bottom_layout"/>
 
     </LinearLayout>
 

@@ -4,8 +4,8 @@ import android.support.annotation.IntDef;
 import android.support.v4.app.Fragment;
 
 import com.example.b00sti.tripchallenge.ui_dashboard.DashboardFragment;
-import com.example.b00sti.tripchallenge.ui_login.LogInFragment;
-import com.example.b00sti.tripchallenge.ui_signin.SignInFragment;
+import com.example.b00sti.tripchallenge.ui_log_in.LogInFragment;
+import com.example.b00sti.tripchallenge.ui_sign_up.SignUpFragment;
 import com.example.skeleton.ui.activity_utils.BaseFragmentBuilder;
 
 import org.androidannotations.annotations.EBean;
@@ -34,7 +34,7 @@ public class FragmentBuilder extends BaseFragmentBuilder {
             case LOG_IN:
                 return LogInFragment.newInstance();
             case SIGN_IN:
-                return SignInFragment.newInstance();
+                return SignUpFragment.newInstance();
             default:
                 return DashboardFragment.newInstance();
         }

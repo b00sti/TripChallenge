@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.ui_signin;
+package com.example.b00sti.tripchallenge.ui_sign_up;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
@@ -24,7 +24,7 @@ import org.greenrobot.eventbus.EventBus;
  */
 
 @EBean
-public class SignInPresenter extends MvpPresenter<SignInContract.View> implements SignInContract.Presenter {
+public class SignUpPresenter extends MvpPresenter<SignUpContract.View> implements SignUpContract.Presenter {
 
     @Bean
     FragmentBuilder fragmentBuilder;

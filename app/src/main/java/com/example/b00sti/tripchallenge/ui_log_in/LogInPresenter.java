@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.ui_login;
+package com.example.b00sti.tripchallenge.ui_log_in;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;

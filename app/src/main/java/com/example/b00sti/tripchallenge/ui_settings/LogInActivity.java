@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.b00sti.tripchallenge.R;
 import com.example.b00sti.tripchallenge.main.MainActivity_;
-import com.example.b00sti.tripchallenge.ui_signin.SignUpActivity_;
+import com.example.b00sti.tripchallenge.ui_sign_up.SignUpActivity_;
 import com.example.skeleton.android_utils.firebase.FirebaseManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools"
+       tools:showIn="@layout/fragment_signin">
+
+
+    <include layout="@layout/divider_with_text"/>
+
+    <TextView
+        android:id="@+id/topTextView"
+        style="@style/TextViewLightSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/sign_up_with"/>
+
+    <include
+        layout="@layout/fb_google_layout"/>
+
+    <TextView
+        android:id="@+id/bottomTextView"
+        style="@style/TextViewLightNormal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/spacing_48dp"
+        android:layout_marginTop="@dimen/spacing_12dp"
+        android:gravity="center"
+        android:padding="@dimen/spacing_4dp"
+        android:text="@string/already_a_member_login"
+        tools:text="@string/already_a_member_login"/>
+</merge>

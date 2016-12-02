@@ -102,7 +102,7 @@ public class FastDialog {
         ViewUtils.hideKeyboard(ctx);
 
         AlertDialog dialog = builder.create();
-        dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_dialog);
         dialog.show();
         int buttonsColor = ContextCompat.getColor(ctx, R.color.colorLightText);
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(buttonsColor);
@@ -215,23 +215,23 @@ public class FastDialog {
         return message;
     }
 
-    public void setMessage(int message) {
-        this.message = getString(message);
-    }
-
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public void setMessage(int message) {
+        this.message = getString(message);
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(int title) {
-        this.title = getString(title);
-    }
-
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void setTitle(int title) {
+        this.title = getString(title);
     }
 }

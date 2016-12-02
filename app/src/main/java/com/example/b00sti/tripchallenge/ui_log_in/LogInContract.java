@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.ui_login;
+package com.example.b00sti.tripchallenge.ui_log_in;
 
 import com.example.skeleton.ui.mvp_base.BasePresenter;
 

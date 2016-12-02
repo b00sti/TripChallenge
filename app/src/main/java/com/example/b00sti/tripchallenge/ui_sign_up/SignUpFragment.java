@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.ui_signin;
+package com.example.b00sti.tripchallenge.ui_sign_up;
 
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -30,8 +30,8 @@ import org.androidannotations.annotations.ViewById;
  */
 
 @EFragment(R.layout.fragment_signin)
-public class SignInFragment extends MvpFragment<SignInContract.Presenter> implements SignInContract.View {
-    private static final String TAG = "SignInFragment";
+public class SignUpFragment extends MvpFragment<SignUpContract.Presenter> implements SignUpContract.View {
+    private static final String TAG = "SignUpFragment";
 
     @ViewById(R.id.progressBar) ProgressBar progressBar;
     @ViewById(R.id.userIconImageView) ImageView userIconImageView;
@@ -42,22 +42,19 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
     @ViewById(R.id.emailEditTextL) TextInputLayout emailEditTextL;
     @ViewById(R.id.passwordEditTextL) TextInputLayout passwordEditTextL;
     @ViewById(R.id.createAccountButton) AppCompatButton createAccountButton;
-    @ViewById(R.id.loginTextView) TextView loginTextView;
-    @ViewById(R.id.gmailButton) AppCompatButton gmailButton;
-    @ViewById(R.id.facebookButton) AppCompatButton facebookButton;
+    @ViewById(R.id.bottomTextView) TextView loginTextView;
     @ViewById(R.id.divider1) View divider1;
     @ViewById(R.id.divider2) TextView divider2;
     @ViewById(R.id.divider3) View divider3;
-    @ViewById(R.id.signupWithTextView) TextView signupWithTextView;
-    @ViewById(R.id.signupGoogle) LinearLayout signupGoogle;
-    @ViewById(R.id.signupFacebook) LoginButton signupFacebook;
-
+    @ViewById(R.id.topTextView) TextView signUpWithTextView;
+    @ViewById(R.id.googleButtonL) LinearLayout signUpGoogle;
+    @ViewById(R.id.facebookLoginButton) LoginButton signUpFacebook;
 
     @Bean
-    SignInPresenter presenter;
+    SignUpPresenter presenter;
 
     public static Fragment newInstance() {
-        return new SignInFragment_();
+        return new SignUpFragment_();
     }
 
     @Click(R.id.createAccountButton)
@@ -65,7 +62,7 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
         presenter.afterSignIn(emailEditText.getText().toString(), passwordEditText.getText().toString());
     }
 
-    @Click(R.id.loginTextView)
+    @Click(R.id.bottomTextView)
     public void clickLogin() {
         presenter.afterLogIn();
     }
@@ -76,7 +73,7 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
     }
 
     @Override
-    protected SignInContract.Presenter setPresenterView() {
+    protected SignUpContract.Presenter setPresenterView() {
         presenter.setView(this);
         return presenter;
     }
@@ -118,14 +115,12 @@ public class SignInFragment extends MvpFragment<SignInContract.Presenter> implem
         nickEditTextL.startAnimation(getAnim());
         createAccountButton.startAnimation(getAnim());
         loginTextView.startAnimation(getAnim());
-        gmailButton.startAnimation(getAnim());
-        facebookButton.startAnimation(getAnim());
         divider1.startAnimation(getAnim());
         divider2.startAnimation(getAnim());
         divider3.startAnimation(getAnim());
-        signupWithTextView.startAnimation(getAnim());
-        signupGoogle.startAnimation(getAnim());
-        signupFacebook.startAnimation(getAnim());
+        signUpWithTextView.startAnimation(getAnim());
+        signUpGoogle.startAnimation(getAnim());
+        signUpFacebook.startAnimation(getAnim());
     }
 
     private ScaleAnimation getHandlingEdittextsFocus() {

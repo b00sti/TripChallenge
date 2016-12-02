@@ -38,4 +38,8 @@
     <color name="darkTransparent">#aa000000</color>
     <color name="mediumTransparent">#88000000</color>
     <color name="lightTransparent">#22000000</color>
+
+    <color name="red_normal">#f44336</color>
+    <color name="red_light">#ffcdd2</color>
+    <color name="red_dark">#c62828</color>
 </resources>

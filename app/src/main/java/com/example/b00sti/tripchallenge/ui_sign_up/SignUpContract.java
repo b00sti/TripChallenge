@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.ui_signin;
+package com.example.b00sti.tripchallenge.ui_sign_up;
 
 import com.example.skeleton.ui.mvp_base.BasePresenter;
 
@@ -6,7 +6,7 @@ import com.example.skeleton.ui.mvp_base.BasePresenter;
  * Created by b00sti on 20.11.2016.
  */
 
-public class SignInContract {
+public class SignUpContract {
 
     interface View {
 

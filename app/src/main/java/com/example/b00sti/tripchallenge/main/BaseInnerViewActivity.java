@@ -9,7 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.b00sti.tripchallenge.R;
-import com.example.b00sti.tripchallenge.ui_login.LogInFragment;
+import com.example.b00sti.tripchallenge.ui_log_in.LogInFragment;
 import com.example.skeleton.android_utils.navigation.fragment_switching.FragmentSwitcher;
 import com.example.skeleton.android_utils.navigation.fragment_switching.FragmentSwitcherParams;
 import com.example.skeleton.android_utils.util.ViewUtils;
@@ -58,8 +58,6 @@ public class BaseInnerViewActivity extends AppCompatActivity {
     public Fragment setFragment(int fragmentId) {
         return LogInFragment.newInstance();
     }
-
-    ;
 
     private void switchToFragment(int fragmentId) {
         Log.d(TAG, "switchToFragment: ");

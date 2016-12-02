@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<com.facebook.login.widget.LoginButton
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/facebookLoginButton"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/spacing_1dp"
+    android:layout_weight="1"
+    android:gravity="center"
+    android:paddingBottom="4dp"
+    android:paddingTop="4dp"
+    android:textSize="@dimen/font_normal_small"
+    facebook:com_facebook_login_text="@string/facebook"
+    facebook:paddingStart="@dimen/spacing_16dp"
+    tools:showIn="@layout/fragment_signin"/>

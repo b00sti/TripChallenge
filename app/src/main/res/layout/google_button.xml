@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/googleButtonL"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/spacing_1dp"
+    android:layout_weight="1"
+    android:background="@drawable/bg_google_login"
+    android:clickable="true"
+    android:orientation="horizontal"
+    tools:showIn="@layout/fragment_signin">
+
+    <ImageView
+        android:layout_width="19dp"
+        android:layout_height="19dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:clickable="false"
+        android:src="@drawable/common_google_signin_btn_icon_light_normal"/>
+
+    <TextView
+        android:id="@+id/gmailTextView"
+        style="@style/TextViewLightSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="false"
+        android:padding="@dimen/spacing_4dp"
+        android:paddingEnd="@dimen/spacing_1dp"
+        android:paddingStart="20dp"
+        android:text="@string/google"
+        android:textSize="@dimen/font_normal_small"
+        android:textStyle="bold"
+        tools:text="Google"/>
+
+</LinearLayout>

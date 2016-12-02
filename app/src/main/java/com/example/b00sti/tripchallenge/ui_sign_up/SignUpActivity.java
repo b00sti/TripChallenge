@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.ui_signin;
+package com.example.b00sti.tripchallenge.ui_sign_up;
 
 
 import android.content.Intent;
