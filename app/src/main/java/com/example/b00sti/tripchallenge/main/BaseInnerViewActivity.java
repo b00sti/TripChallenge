@@ -14,17 +14,22 @@ import com.example.skeleton.android_utils.navigation.fragment_switching.Fragment
 import com.example.skeleton.android_utils.navigation.fragment_switching.FragmentSwitcherParams;
 import com.example.skeleton.android_utils.util.ViewUtils;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 
 @EActivity(R.layout.activity_inner_view)
 public class BaseInnerViewActivity extends AppCompatActivity {
     private static final String TAG = "BaseInnerViewActivity";
 
+    @AfterViews
+    public void init() {
+        setInitialFragment(getIntent());
+        setActivityTitle();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        Log.d(TAG, "onCreate: ");
         setInitialFragment(getIntent());
     }
 
@@ -32,6 +37,12 @@ public class BaseInnerViewActivity extends AppCompatActivity {
     public void onBackPressed() {
         ViewUtils.hideKeyboard(this);
         super.onBackPressed();
+    }
+
+    private void setActivityTitle() {
+        Intent intent = getIntent();
+        String title = intent.getStringExtra("name");
+        setTitle(title);
     }
 
     @Override
@@ -47,7 +58,6 @@ public class BaseInnerViewActivity extends AppCompatActivity {
     }
 
     public void setInitialFragment(Intent intent) {
-        Log.d(TAG, "setInitialFragment: ");
         int fragmentId;
         if (intent.hasExtra(getString(com.example.skeleton.R.string.bundle_fragment))) {
             fragmentId = intent.getIntExtra(getString(com.example.skeleton.R.string.bundle_fragment), -1);
@@ -60,7 +70,6 @@ public class BaseInnerViewActivity extends AppCompatActivity {
     }
 
     private void switchToFragment(int fragmentId) {
-        Log.d(TAG, "switchToFragment: ");
         Fragment fragment = setFragment(fragmentId);
         Log.d(TAG, "switchToFragment: " + fragment.getTag());
         FragmentSwitcher.switchFragment(new FragmentSwitcherParams(getSupportFragmentManager(), fragment, com.example.skeleton.R.id.activity_inner_view_placeholder));

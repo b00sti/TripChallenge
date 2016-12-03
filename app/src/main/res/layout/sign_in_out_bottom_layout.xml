@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
        xmlns:tools="http://schemas.android.com/tools"
-       tools:showIn="@layout/fragment_signin">
+       tools:showIn="@layout/fragment_sign_up">
 
 
     <include layout="@layout/divider_with_text"/>

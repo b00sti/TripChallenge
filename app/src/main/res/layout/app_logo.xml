@@ -7,7 +7,7 @@
     android:layout_height="@dimen/view_large"
     android:layout_gravity="center"
     android:src="@drawable/logo"
-    tools:showIn="@layout/fragment_signin"
+    tools:showIn="@layout/fragment_sign_up"
     tools:src="@drawable/logo"/>
 
         

@@ -29,7 +29,7 @@ import org.androidannotations.annotations.ViewById;
  * Created by b00sti on 20.11.2016.
  */
 
-@EFragment(R.layout.fragment_signin)
+@EFragment(R.layout.fragment_sign_up)
 public class SignUpFragment extends MvpFragment<SignUpContract.Presenter> implements SignUpContract.View {
     private static final String TAG = "SignUpFragment";
 

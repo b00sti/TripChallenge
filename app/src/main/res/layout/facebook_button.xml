@@ -17,4 +17,4 @@
     android:textSize="@dimen/font_normal_small"
     facebook:com_facebook_login_text="@string/facebook"
     facebook:paddingStart="@dimen/spacing_16dp"
-    tools:showIn="@layout/fragment_signin"/>
+    tools:showIn="@layout/fragment_sign_up"/>

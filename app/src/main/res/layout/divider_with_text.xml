@@ -10,7 +10,7 @@
     android:layout_marginTop="@dimen/spacing_24dp"
     android:orientation="horizontal"
     android:weightSum="12"
-    tools:showIn="@layout/fragment_signin">
+    tools:showIn="@layout/fragment_sign_up">
 
     <View
         android:id="@+id/divider1V"

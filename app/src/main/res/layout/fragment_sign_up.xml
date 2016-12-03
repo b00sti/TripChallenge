@@ -71,7 +71,8 @@
         android:id="@+id/bottomLayoutL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/topLayoutL"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/topLayoutL"
         android:orientation="vertical">
 
         <include layout="@layout/sign_in_out_bottom_layout"/>

@@ -12,7 +12,7 @@
     android:background="@drawable/bg_google_login"
     android:clickable="true"
     android:orientation="horizontal"
-    tools:showIn="@layout/fragment_signin">
+    tools:showIn="@layout/fragment_sign_up">
 
     <ImageView
         android:layout_width="19dp"

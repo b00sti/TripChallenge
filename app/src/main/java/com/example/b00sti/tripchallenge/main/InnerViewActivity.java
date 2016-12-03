@@ -13,11 +13,11 @@ import org.androidannotations.annotations.EActivity;
  */
 
 @EActivity(R.layout.activity_inner_view)
-public class InnerViewActivity extends com.example.skeleton.ui.activity_utils.BaseInnerViewActivity {
+public class InnerViewActivity extends BaseInnerViewActivity {
     private static final String TAG = "InnerViewActivity";
 
     @Bean
-    FragmentBuilder fragmentBuilder;
+    public FragmentBuilder fragmentBuilder;
 
     @Override
     public Fragment setFragment(@FragmentBuilder.FragBuild int fragmentId) {
