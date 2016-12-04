@@ -24,7 +24,15 @@
 
         <include layout="@layout/app_logo"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_8dp"/>
+
         <include layout="@layout/email_password_edit_texts"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_8dp"/>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/loginB"

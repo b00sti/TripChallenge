@@ -45,6 +45,7 @@
     <string name="google">Google</string>
     <string name="facebook">Facebook</string>
     <string name="sign_up_with">Sign up with</string>
+    <string name="log_in_with">Log in with</string>
     <string name="fragment_title_sign_up">Sign Up</string>
     <string name="fragment_title_login">Log In</string>
 

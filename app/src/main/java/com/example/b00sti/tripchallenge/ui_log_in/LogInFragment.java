@@ -20,6 +20,7 @@ import com.example.skeleton.ui.progressbar.ProgressBarUtils;
 import com.facebook.login.widget.LoginButton;
 
 import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
@@ -29,7 +30,7 @@ import org.androidannotations.annotations.ViewById;
  * Created by b00sti on 20.11.2016
  */
 
-@EFragment(R.layout.fragment_login)
+@EFragment(R.layout.fragment_log_in)
 public class LogInFragment extends MvpFragment<LogInContract.Presenter> implements LogInContract.View {
     private static final String TAG = "LogInFragment";
 
@@ -54,6 +55,12 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
 
     public static Fragment newInstance() {
         return new LogInFragment_();
+    }
+
+    @AfterViews
+    void initViews() {
+        topTV.setText(ctx.getResources().getString(R.string.log_in_with));
+        bottomTV.setText(ctx.getResources().getString(R.string.no_account_yet_create_one));
     }
 
     @Click(R.id.loginButton)

@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 
 import com.example.b00sti.tripchallenge.R;
 import com.example.b00sti.tripchallenge.main.FragmentBuilder;
+import com.example.b00sti.tripchallenge.ui_log_in.LogInActivity_;
 import com.example.b00sti.tripchallenge.utils.ActivityUtils;
 import com.example.b00sti.tripchallenge.utils.helpers.FastDialog;
 import com.example.skeleton.android_utils.eventbus.SwitchDrawerFragmentEvent;
@@ -68,7 +69,7 @@ public class SignUpPresenter extends MvpPresenter<SignUpContract.View> implement
 
     @Override
     public void afterLogIn() {
-        ActivityUtils.startInnerViewActivity(ctx, FragmentBuilder.LOG_IN, ctx.getString(R.string.fragment_title_login));
+        ActivityUtils.startInnerViewActivity(ctx, FragmentBuilder.LOG_IN, ctx.getString(R.string.fragment_title_login), LogInActivity_.class);
     }
 
     @Override

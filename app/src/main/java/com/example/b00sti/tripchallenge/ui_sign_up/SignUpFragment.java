@@ -20,6 +20,7 @@ import com.example.skeleton.ui.progressbar.ProgressBarUtils;
 import com.facebook.login.widget.LoginButton;
 
 import org.androidannotations.annotations.AfterInject;
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
@@ -57,6 +58,12 @@ public class SignUpFragment extends MvpFragment<SignUpContract.Presenter> implem
         return new SignUpFragment_();
     }
 
+    @AfterViews
+    void initViews() {
+        topTV.setText(ctx.getResources().getString(R.string.sign_up_with));
+        bottomTV.setText(ctx.getResources().getString(R.string.already_a_member_login));
+    }
+
     @Click(R.id.createAccountB)
     public void clickCreateAccount() {
         presenter.afterSignIn(emailET.getText().toString(), passwordET.getText().toString());
@@ -82,11 +89,8 @@ public class SignUpFragment extends MvpFragment<SignUpContract.Presenter> implem
     public void onResume() {
         super.onResume();
         setEnterAnimation();
-
-        if (getActivity().getActionBar() != null) {
-            getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-        }
     }
+
     @Override
     public void onDestroyView() {
         ViewUtils.hideKeyboard(ctx);
