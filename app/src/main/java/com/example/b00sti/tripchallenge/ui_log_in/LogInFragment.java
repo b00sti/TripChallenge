@@ -3,9 +3,12 @@ package com.example.b00sti.tripchallenge.ui_log_in;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
+import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -14,6 +17,7 @@ import com.example.skeleton.android_utils.util.AnimUtils;
 import com.example.skeleton.android_utils.util.ViewUtils;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
 import com.example.skeleton.ui.progressbar.ProgressBarUtils;
+import com.facebook.login.widget.LoginButton;
 
 import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.Bean;
@@ -30,14 +34,20 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
     private static final String TAG = "LogInFragment";
 
     @ViewById(R.id.progressBar) ProgressBar progressBar;
-    @ViewById(R.id.userIconIV) ImageView userIconImageView;
-    @ViewById(R.id.emailET) EditText emailEditText;
-    @ViewById(R.id.passwordET) EditText passwordEditText;
-    @ViewById(R.id.loginButton) AppCompatButton loginButton;
-    @ViewById(R.id.forgotPasswordTextView) TextView forgotPasswordTextView;
-    @ViewById(R.id.createAccountTextView) TextView createAccountTextView;
-    @ViewById(R.id.emailETL) TextInputLayout emailEditTextL;
-    @ViewById(R.id.passwordETL) TextInputLayout passwordEditTextL;
+    @ViewById(R.id.userIconIV) ImageView userIconIV;
+    @ViewById(R.id.emailET) EditText emailET;
+    @ViewById(R.id.passwordET) EditText passwordET;
+    @ViewById(R.id.emailETL) TextInputLayout emailETL;
+    @ViewById(R.id.passwordETL) TextInputLayout passwordETL;
+    @ViewById(R.id.loginB) AppCompatButton loginB;
+    @ViewById(R.id.bottomTV) TextView bottomTV;
+    @ViewById(R.id.divider1V) View divider1V;
+    @ViewById(R.id.divider2V) TextView divider2V;
+    @ViewById(R.id.divider3V) View divider3V;
+    @ViewById(R.id.topTV) TextView topTV;
+    @ViewById(R.id.googleButtonL) LinearLayout signUpGoogle;
+    @ViewById(R.id.facebookLoginB) LoginButton signUpFacebook;
+    @ViewById(R.id.forgotPasswordTV) TextView forgotPasswordTV;
 
     @Bean
     LogInPresenter presenter;
@@ -48,15 +58,15 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
 
     @Click(R.id.loginButton)
     void clickedLogIn() {
-        presenter.afterLogIn(emailEditText.getText().toString(), passwordEditText.getText().toString());
+        presenter.afterLogIn(emailET.getText().toString(), passwordET.getText().toString());
     }
 
-    @Click(R.id.forgotPasswordTextView)
+    @Click(R.id.forgotPasswordTV)
     void clickedForgotPassword() {
         presenter.afterForgotPassword();
     }
 
-    @Click(R.id.createAccountTextView)
+    @Click(R.id.bottomTV)
     void clickedNoAccount() {
         presenter.afterNoAccount();
     }
@@ -100,12 +110,47 @@ public class LogInFragment extends MvpFragment<LogInContract.Presenter> implemen
     }
 
     private void setEnterAnimation() {
-        userIconImageView.startAnimation(getAnim());
-        loginButton.startAnimation(getAnim());
-        forgotPasswordTextView.startAnimation(getAnim());
-        createAccountTextView.startAnimation(getAnim());
-        emailEditTextL.startAnimation(getAnim());
-        passwordEditTextL.startAnimation(getAnim());
+        userIconIV.startAnimation(getHandlingEdittextsFocus());
+        emailETL.startAnimation(getAnim());
+        passwordETL.startAnimation(getAnim());
+        forgotPasswordTV.startAnimation(getAnim());
+        loginB.startAnimation(getAnim());
+        bottomTV.startAnimation(getAnim());
+        divider1V.startAnimation(getAnim());
+        divider2V.startAnimation(getAnim());
+        divider3V.startAnimation(getAnim());
+        topTV.startAnimation(getAnim());
+        signUpGoogle.startAnimation(getAnim());
+        signUpFacebook.startAnimation(getAnim());
+    }
+
+    private ScaleAnimation getHandlingEdittextsFocus() {
+        ScaleAnimation animation = getAnim();
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                emailET.setFocusable(false);
+                passwordET.setFocusable(false);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                emailET.setEnabled(true);
+                passwordET.setEnabled(true);
+                emailET.setFocusable(true);
+                passwordET.setFocusable(true);
+                emailET.setFocusableInTouchMode(true);
+                passwordET.setFocusableInTouchMode(true);
+                emailET.requestFocus();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        return animation;
     }
 
     private ScaleAnimation getAnim() {

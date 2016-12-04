@@ -2,85 +2,47 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@drawable/bg_gradient"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:paddingBottom="@dimen/spacing_12dp"
+    android:paddingEnd="@dimen/spacing_24dp"
+    android:paddingStart="@dimen/spacing_24dp"
+    android:paddingTop="@dimen/spacing_12dp">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="gone"/>
+    <include layout="@layout/progress_bar_layout"/>
 
     <LinearLayout
+        android:id="@+id/topLayoutL"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:paddingTop="@dimen/spacing_24dp">
 
-        <ImageView
-            android:id="@+id/userIconIV"
-            android:layout_width="@dimen/view_huge"
-            android:layout_height="@dimen/view_huge"
-            android:layout_gravity="center"
-            android:padding="@dimen/spacing_small"
-            android:src="@drawable/ic_account_box_white_36dp"
-            tools:src="@drawable/ic_account_box_white_36dp"/>
+        <include layout="@layout/app_logo"/>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/emailETL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/email_hint"
-            android:theme="@style/AppThemeWithLightHint">
-
-            <EditText
-                android:id="@+id/emailET"
-                style="@style/TextViewLightLarge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="@dimen/spacing_small"
-                android:drawableStart="@drawable/ic_email_white_36dp"
-                android:inputType="textEmailAddress"
-                android:padding="@dimen/spacing_small"
-                tools:hint="@string/email_hint"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/passwordETL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/password_hint"
-            android:theme="@style/AppThemeWithLightHint">
-
-            <EditText
-                android:id="@+id/passwordET"
-                style="@style/TextViewLightLarge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="@dimen/spacing_small"
-                android:drawableStart="@drawable/ic_vpn_key_white_36dp"
-                android:inputType="textPassword"
-                android:padding="@dimen/spacing_small"
-                tools:hint="@string/password_hint"/>
-
-        </android.support.design.widget.TextInputLayout>
+        <include layout="@layout/email_password_edit_texts"/>
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/loginButton"
+            android:id="@+id/loginB"
             style="@style/ButtonHalfTransparent"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="@dimen/view_normal"
-            android:layout_margin="@dimen/spacing_large"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/spacing_12dp"
+            android:layout_marginEnd="@dimen/spacing_24dp"
+            android:layout_marginStart="@dimen/spacing_24dp"
+            android:layout_marginTop="@dimen/spacing_12dp"
+            android:gravity="center"
             android:padding="@dimen/spacing_pretty_tiny"
             android:text="@string/login_button_label"
             tools:text="@string/login_button_label"/>
 
         <TextView
-            android:id="@+id/forgotPasswordTextView"
+            android:id="@+id/forgotPasswordTV"
             style="@style/TextViewLightSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,15 +51,17 @@
             android:text="@string/login_forgot_password"
             tools:text="@string/login_forgot_password"/>
 
-        <TextView
-            android:id="@+id/createAccountTextView"
-            style="@style/TextViewLightNormal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="@dimen/spacing_small"
-            android:text="@string/no_account_yet_create_one"
-            tools:text="@string/no_account_yet_create_one"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomLayoutL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/topLayoutL"
+        android:orientation="vertical">
+
+        <include layout="@layout/sign_in_out_bottom_layout"/>
 
     </LinearLayout>
 
