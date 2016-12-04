@@ -3,6 +3,7 @@ package com.example.b00sti.tripchallenge.main;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -14,15 +15,19 @@ import com.example.skeleton.android_utils.util.ViewUtils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_inner_view)
 public class BaseInnerViewActivity extends AppCompatActivity {
     private static final String TAG = "BaseInnerViewActivity";
 
+    @ViewById(R.id.toolbar) public Toolbar toolbar;
+
     @AfterViews
     public void init() {
         setInitialFragment(getIntent());
         setActivityTitle();
+        setHomeButton(true);
     }
 
     @Override
@@ -35,6 +40,12 @@ public class BaseInnerViewActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String title = intent.getStringExtra("name");
         setTitle(title);
+    }
+
+    public void setHomeButton(boolean isActive) {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(isActive);
+        }
     }
 
     @Override
