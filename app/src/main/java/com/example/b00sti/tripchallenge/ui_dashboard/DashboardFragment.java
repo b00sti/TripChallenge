@@ -1,42 +1,108 @@
 package com.example.b00sti.tripchallenge.ui_dashboard;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 
 import com.example.b00sti.tripchallenge.R;
-import com.example.b00sti.tripchallenge.main.FragmentBuilder;
-import com.example.b00sti.tripchallenge.ui_settings.LogInActivity_;
-import com.example.b00sti.tripchallenge.utils.ActivityUtils;
-import com.example.skeleton.android_utils.firebase.FirebaseManager;
-import com.example.skeleton.data.Attraction;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.location.places.PlaceLikelihood;
+import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
+import com.google.android.gms.location.places.Places;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.ViewById;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-10
  */
 
 @EFragment(R.layout.fragment_dashboard)
-public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> implements DashboardContract.View {
+public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> implements DashboardContract.View, GoogleApiClient.OnConnectionFailedListener {
+    private static final String TAG = "DashboardFragment";
+
+    @Bean
+    DashboardPresenter dashboardPresenter;
+
+    private GoogleApiClient mGoogleApiClient;
+
+    public static Fragment newInstance() {
+        return new DashboardFragment_();
+    }
+
+    @Click(R.id.connectB)
+    void connect() {
+        presenter.connect();
+        showProgressBar();
+    }
+
+    @AfterViews
+    void init() {
+        ctx = getActivity();
+        mGoogleApiClient = new GoogleApiClient
+                .Builder(ctx)
+                .addApi(Places.GEO_DATA_API)
+                .addApi(Places.PLACE_DETECTION_API)
+                //.enableAutoManage(ctx, this)
+                .build();
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    public void showProgressBar() {
+        if (ActivityCompat.checkSelfPermission(ctx, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            Log.d(TAG, "showProgressBar: ng");
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            //return;
+        } else {
+            Log.d(TAG, "showProgressBar: gr");
+            PendingResult<PlaceLikelihoodBuffer> result = Places.PlaceDetectionApi.getCurrentPlace(mGoogleApiClient, null);
+
+            result.setResultCallback(likelyPlaces -> {
+                Log.d(TAG, "showProgressBar: size " + likelyPlaces.getCount());
+                for (PlaceLikelihood placeLikelihood : likelyPlaces) {
+                    Log.i(TAG, String.format("Place '%s' has likelihood: %g",
+                            placeLikelihood.getPlace().getName(),
+                            placeLikelihood.getLikelihood()));
+                }
+                likelyPlaces.release();
+            });
+        }
+
+
+    }
+
+    @Override
+    public void hideProgressBar() {
+
+    }
+
+    @Override
+    protected DashboardContract.Presenter setPresenterView() {
+        dashboardPresenter.setView(this);
+        return dashboardPresenter;
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Log.d(TAG, "onConnectionFailed: " + connectionResult.getErrorMessage());
+    }
+}
+/*
 
     private static final String TAG = "DashboardFragment";
     @ViewById(R.id.listView) public ListView listView;
@@ -178,10 +244,13 @@ public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> 
 
         return super.onOptionsItemSelected(item);
     }
+*/
 /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
-    }*/
+    }*//*
+
 }
+*/

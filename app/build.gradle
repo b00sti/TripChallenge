@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
 apply plugin: 'realm-android'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'android-apt'
@@ -17,6 +16,7 @@ android {
         jackOptions {
             enabled false
         }
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -41,9 +41,10 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    /*    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-                exclude group: 'com.android.support', module: 'support-annotations'
-            })*/
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-v4'
+    })
     //testCompile 'junit:junit:4.12'
     compile project(':skeleton')
     compile 'com.android.support:appcompat-v7:25.0.0'
@@ -59,5 +60,13 @@ dependencies {
     compile "org.greenrobot:eventbus:$rootProject.eventbusVersion"
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.facebook.android:facebook-android-sdk:4.16.1'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'com.google.android.gms:play-services:9.4.0'
+    compile 'com.android.support:multidex:1.0.1'
 }
+apply plugin: 'com.google.gms.google-services'
+
+
 

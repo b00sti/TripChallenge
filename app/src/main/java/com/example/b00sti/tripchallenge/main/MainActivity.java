@@ -1,6 +1,8 @@
 package com.example.b00sti.tripchallenge.main;
 
+import android.Manifest;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 
 import com.example.b00sti.tripchallenge.R;
@@ -30,6 +32,11 @@ public class MainActivity extends BaseMainActivity<DrawerItem, DrawerItemView, D
         setBottomDrawerFragment(DrawerBottomFragment.newInstance());
         setTopDrawerFragment(DrawerTopFragment.newInstance());
         onEvent(new SwitchDrawerFragmentEvent(LogInFragment.newInstance(), DrawerUtils.TAB_00));
+
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                0);
+
     }
 
     @AfterViews

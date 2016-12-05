@@ -3,6 +3,7 @@ package com.example.b00sti.tripchallenge;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.support.multidex.MultiDex;
 import android.util.Base64;
 import android.util.Log;
 
@@ -25,6 +26,7 @@ public class App extends BaseApp {
     @Override
     public void onCreate() {
         super.onCreate();
+        MultiDex.install(App.this);
         Log.d(TAG, "onCreate: ");
         FacebookSdk.sdkInitialize(getApplicationContext());
         try {

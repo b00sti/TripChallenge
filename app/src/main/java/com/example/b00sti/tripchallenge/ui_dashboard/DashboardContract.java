@@ -20,6 +20,8 @@ interface DashboardContract {
 
         void refreshAllViews();
 
+        void connect();
+
     }
 
 }
