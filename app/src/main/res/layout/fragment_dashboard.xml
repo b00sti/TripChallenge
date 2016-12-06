@@ -22,7 +22,7 @@
         android:gravity="center"
         android:text="Connect"/>
 
-    <developer.shivam.library.CrescentoImageView
+    <com.example.b00sti.tripchallenge.utils.helpers.crescento_view.CrescentoImageView
         android:id="@+id/crescentoImageView"
         android:layout_width="match_parent"
         android:layout_height="400dp"
