@@ -1,6 +1,7 @@
 package com.example.b00sti.tripchallenge.main;
 
 import android.Manifest;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -65,4 +66,8 @@ public class MainActivity extends BaseMainActivity<DrawerItem, DrawerItemView, D
         return drawerAdapter;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

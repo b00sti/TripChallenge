@@ -1,9 +1,6 @@
 package com.example.b00sti.tripchallenge.ui_dashboard;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
@@ -11,10 +8,6 @@ import com.example.b00sti.tripchallenge.R;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.location.places.PlaceLikelihood;
-import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
-import com.google.android.gms.location.places.Places;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -32,8 +25,6 @@ public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> 
     @Bean
     DashboardPresenter dashboardPresenter;
 
-    private GoogleApiClient mGoogleApiClient;
-
     public static Fragment newInstance() {
         return new DashboardFragment_();
     }
@@ -41,48 +32,25 @@ public class DashboardFragment extends MvpFragment<DashboardContract.Presenter> 
     @Click(R.id.connectB)
     void connect() {
         presenter.connect();
-        showProgressBar();
     }
 
     @AfterViews
     void init() {
         ctx = getActivity();
-        mGoogleApiClient = new GoogleApiClient
-                .Builder(ctx)
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                //.enableAutoManage(ctx, this)
-                .build();
-        mGoogleApiClient.connect();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
     }
 
     @Override
     public void showProgressBar() {
-        if (ActivityCompat.checkSelfPermission(ctx, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            Log.d(TAG, "showProgressBar: ng");
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            //return;
-        } else {
-            Log.d(TAG, "showProgressBar: gr");
-            PendingResult<PlaceLikelihoodBuffer> result = Places.PlaceDetectionApi.getCurrentPlace(mGoogleApiClient, null);
-
-            result.setResultCallback(likelyPlaces -> {
-                Log.d(TAG, "showProgressBar: size " + likelyPlaces.getCount());
-                for (PlaceLikelihood placeLikelihood : likelyPlaces) {
-                    Log.i(TAG, String.format("Place '%s' has likelihood: %g",
-                            placeLikelihood.getPlace().getName(),
-                            placeLikelihood.getLikelihood()));
-                }
-                likelyPlaces.release();
-            });
-        }
-
 
     }
 

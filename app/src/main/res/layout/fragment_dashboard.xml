@@ -22,4 +22,53 @@
         android:gravity="center"
         android:text="Connect"/>
 
+    <developer.shivam.library.CrescentoImageView
+        android:id="@+id/crescentoImageView"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:elevation="5dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wallpaper3_optimized"
+        app:curvature="40dp"
+        app:curvatureDirection="inward"
+        app:gradientDirection="bottom_to_top"
+        app:gradientEndColor="#FF5722"
+        app:gradientStartColor="#00000000"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="160dp"
+        android:layout_marginRight="40dp"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="#ff5722"
+        app:elevation="10dp"/>
+
+    <TextView
+        android:id="@+id/tvStory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/crescentoImageView"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="STORY"
+        android:textColor="#212121"/>
+
+    <TextView
+        android:id="@+id/tvStoryLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvStory"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="The Rebellion makes a risky move to steal the plans to the Death Star. Setting up the epic saga to follow."
+        android:textColor="#848484"
+        android:textSize="13sp"/>
+
 </RelativeLayout>
