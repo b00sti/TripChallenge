@@ -37,17 +37,11 @@ public class MainActivity extends BaseMainActivity<DrawerItem, DrawerItemView, D
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 0);
-
     }
 
     @AfterViews
     void runLogInActivity() {
         //ActivityUtils.startInnerViewActivity(this, FragmentBuilder.LOG_IN);
-    }
-
-    @Override
-    public int setHomeAsUpIndicatorAsDrawable() {
-        return R.drawable.common_plus_signin_btn_icon_dark_pressed;
     }
 
     @Nullable

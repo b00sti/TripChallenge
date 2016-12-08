@@ -22,7 +22,7 @@ import static android.app.Activity.RESULT_OK;
  * Created by Dominik (b00sti) Pawlik on 2016-11-10
  */
 
-@EFragment(R.layout.fragment_dashboard)
+@EFragment(R.layout.fragment_trips)
 public class TripsFragment extends MvpFragment<TripsContract.Presenter> implements TripsContract.View {
     private static final String TAG = "DashboardFragment";
 
@@ -42,6 +42,7 @@ public class TripsFragment extends MvpFragment<TripsContract.Presenter> implemen
     @AfterViews
     void init() {
         ctx = getActivity();
+
     }
 
     @Override

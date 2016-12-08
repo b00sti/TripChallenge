@@ -81,7 +81,7 @@ public class CrescentoContainer extends RelativeLayout {
         width = getMeasuredWidth();
         height = getMeasuredHeight();
 
-        mClipPath = PathProvider.getClipPath(width, height, curvatureHeight, 0,
+        mClipPath = PathProvider.getClipPath(width, height, curvatureHeight, 1,
                 getPaddingTop(), getPaddingBottom(), getPaddingLeft(), getPaddingRight());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

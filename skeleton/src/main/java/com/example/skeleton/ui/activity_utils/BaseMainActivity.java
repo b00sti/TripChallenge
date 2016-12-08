@@ -1,7 +1,6 @@
 package com.example.skeleton.ui.activity_utils;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -38,9 +37,7 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
     @ViewById(resName = "drawer_recycler_view") public RecyclerView drawerRecyclerView;
     public ActionBarDrawerToggle toggle;
     @ViewById(resName = "toolbar") public Toolbar toolbar;
-    @DrawerUtils.DrawerTab private int drawerCurrentlySelectedTab = DrawerUtils.TAB_NO;
-
-    public abstract int setHomeAsUpIndicatorAsDrawable();
+    @DrawerUtils.DrawerTab public int drawerCurrentlySelectedTab = DrawerUtils.TAB_NO;
 
     public abstract Fragment setFragmentForTab(@DrawerUtils.DrawerTab int tab);
 
@@ -61,8 +58,8 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
         prepareDrawerMenuRecyclerView();
 
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        toggle.setDrawerIndicatorEnabled(false);
-        toggle.setHomeAsUpIndicator(ContextCompat.getDrawable(this, setHomeAsUpIndicatorAsDrawable()));
+        //toggle.setDrawerIndicatorEnabled(false);
+        //toggle.setHomeAsUpIndicator(ContextCompat.getDrawable(this, setHomeAsUpIndicatorAsDrawable()));
         toggle.setToolbarNavigationClickListener(view -> {
             if (drawer.isDrawerVisible(GravityCompat.START)) {
                 drawer.closeDrawer(GravityCompat.START);

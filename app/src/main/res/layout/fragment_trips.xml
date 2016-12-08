@@ -6,50 +6,51 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/cardview_light_background"
-                android:fitsSystemWindows="true"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 tools:context="com.example.b00sti.tripchallenge.main.MainActivity">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.example.b00sti.tripchallenge.utils.helpers.crescento_view.CrescentoImageView
-            android:id="@+id/crescentoImageView"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:elevation="5dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/wallpaper3_optimized"
-            app:curvature="40dp"
-            app:curvatureDirection="inward"
-            app:gradientDirection="bottom_to_top"
-            app:gradientEndColor="#FF5722"
-            app:gradientStartColor="#00000000"/>
+            android:layout_height="wrap_content">
+
+            <com.example.b00sti.tripchallenge.utils.helpers.crescento_view.CrescentoContainer
+                android:id="@+id/crescentoImageView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                app:curvature="40dp">
+
+                <com.flaviofaria.kenburnsview.KenBurnsView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/wallpaper3_optimized"
+                    />
+            </com.example.b00sti.tripchallenge.utils.helpers.crescento_view.CrescentoContainer>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@drawable/bg_elevation"/>
+
+        </FrameLayout>
 
         <android.support.design.widget.FloatingActionButton
+            android:id="@+id/connectB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_marginEnd="40dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginEnd="@dimen/spacing_42dp"
+            android:layout_marginTop="160dp"
             android:src="@drawable/ic_add"
-            app:backgroundTint="#ff5722"
+            app:backgroundTint="@color/colorAccent"
             app:elevation="10dp"/>
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/connectB"
-            style="@style/TextViewLightNormal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_below="@id/crescentoImageView"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:text="Connect"/>
 
         <TextView
             android:id="@+id/tvStory"
@@ -61,7 +62,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-smallcaps"
             android:text="STORY"
-            android:textColor="@color/colorLightText"/>
+            android:textColor="@color/colorDarkText"/>
 
         <TextView
             android:id="@+id/tvStoryLine"
@@ -73,9 +74,9 @@
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif-smallcaps"
             android:text="The Rebellion makes a risky move to steal the plans to the Death Star. Setting up the epic saga to follow."
-            android:textColor="@color/colorLightText"
+            android:textColor="@color/colorDarkText"
             android:textSize="13sp"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

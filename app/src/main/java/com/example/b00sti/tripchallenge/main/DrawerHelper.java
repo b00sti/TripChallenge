@@ -61,7 +61,7 @@ public class DrawerHelper {
 
     public static List<DrawerItem> getDrawerItems() {
         List<DrawerItem> drawerItems = new ArrayList<>();
-        drawerItems.add(new DrawerItem(DrawerUtils.TAB_00, R.string.signup_error_title, R.drawable.common_google_signin_btn_icon_dark_focused));
+        drawerItems.add(new DrawerItem(DrawerUtils.TAB_00, R.string.trips, R.drawable.common_google_signin_btn_icon_dark_focused));
         drawerItems.add(new DrawerItem(DrawerUtils.TAB_01, R.string.signup_error_message, R.drawable.common_full_open_on_phone));
         drawerItems.add(new DrawerItem(DrawerUtils.TAB_02, R.string.login_error_title, R.drawable.common_google_signin_btn_text_dark_disabled));
         return drawerItems;

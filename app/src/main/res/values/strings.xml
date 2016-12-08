@@ -48,6 +48,7 @@
     <string name="log_in_with">Log in with</string>
     <string name="fragment_title_sign_up">Sign Up</string>
     <string name="fragment_title_login">Log In</string>
+    <string name="trips">Trips</string>
 
 
 </resources>
