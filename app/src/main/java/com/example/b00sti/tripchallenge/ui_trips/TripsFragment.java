@@ -1,10 +1,14 @@
 package com.example.b00sti.tripchallenge.ui_trips;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v4.app.Fragment;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.b00sti.tripchallenge.R;
+import com.example.b00sti.tripchallenge.utils.helpers.GooglePlacesManager;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -15,6 +19,11 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.UiThread;
+import org.androidannotations.annotations.ViewById;
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -28,6 +37,15 @@ public class TripsFragment extends MvpFragment<TripsContract.Presenter> implemen
 
     @Bean
     TripsPresenter tripsPresenter;
+
+    @Bean
+    GooglePlacesManager googlePlacesManager;
+
+    @ViewById(R.id.main_tripIV)
+    ImageView main_tripIV;
+
+    @ViewById(R.id.mainPlaceTV)
+    TextView mainPlaceTV;
 
     public static Fragment newInstance() {
         return new TripsFragment_();
@@ -60,9 +78,23 @@ public class TripsFragment extends MvpFragment<TripsContract.Presenter> implemen
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(data, ctx);
                 String toastMsg = String.format("Place: %s", place.getName());
+                mainPlaceTV.setText(place.getName());
+                place.getRating();
                 Toast.makeText(ctx, toastMsg, Toast.LENGTH_LONG).show();
+
+                googlePlacesManager.getPhotoObservable(place)
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(bitmap -> {
+                            main_tripIV.setImageBitmap(bitmap);
+                        });
             }
         }
+    }
+
+    @UiThread
+    void setPhotoToView(Bitmap image) {
+        main_tripIV.setImageBitmap(image);
     }
 
     @Override

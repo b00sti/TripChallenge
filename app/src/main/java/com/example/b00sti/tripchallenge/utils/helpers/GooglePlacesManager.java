@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
@@ -13,8 +14,12 @@ import com.example.skeleton.android_utils.util.CLog;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceLikelihood;
 import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
+import com.google.android.gms.location.places.PlacePhotoMetadata;
+import com.google.android.gms.location.places.PlacePhotoMetadataBuffer;
+import com.google.android.gms.location.places.PlacePhotoMetadataResult;
 import com.google.android.gms.location.places.Places;
 
 import org.androidannotations.annotations.AfterInject;
@@ -22,6 +27,7 @@ import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
 
 import rx.Observable;
+import rx.Subscriber;
 
 /**
  * Created by b00sti on 05.12.2016.
@@ -32,6 +38,14 @@ public class GooglePlacesManager {
 
     @RootContext
     Context ctx;
+
+    public GoogleApiClient getmGoogleApiClient() {
+        return mGoogleApiClient;
+    }
+
+    public void setmGoogleApiClient(GoogleApiClient mGoogleApiClient) {
+        this.mGoogleApiClient = mGoogleApiClient;
+    }
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -58,6 +72,34 @@ public class GooglePlacesManager {
         if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
+    }
+
+    public Observable<Bitmap> getPhotoObservable(Place place) {
+        return Observable.create(new Observable.OnSubscribe<Bitmap>() {
+            @Override
+            public void call(Subscriber<? super Bitmap> subscriber) {
+                Bitmap image = null;
+
+                PlacePhotoMetadataResult result = Places.GeoDataApi.getPlacePhotos(mGoogleApiClient, place.getId()).await();
+
+                if (result.getStatus().isSuccess()) {
+                    PlacePhotoMetadataBuffer photoMetadataBuffer = result.getPhotoMetadata();
+
+                    for (PlacePhotoMetadata placePhotoMetadata : photoMetadataBuffer) {
+                        image = placePhotoMetadata.getPhoto(mGoogleApiClient).await()
+                                .getBitmap();
+                        subscriber.onNext(image);
+                    }
+/*
+                    PlacePhotoMetadata photo = photoMetadataBuffer.get(0);
+                    image = photo.getPhoto(mGoogleApiClient).await()
+                            .getBitmap();
+                    CharSequence attribution = photo.getAttributions();
+                    CLog.d(TAG, "getPhoto: attribution ", attribution.toString())*/;
+                }
+                //subscriber.onNext(image);
+            }
+        });
     }
 
     private boolean isPermissionGranted(@NonNull Activity activity) {
