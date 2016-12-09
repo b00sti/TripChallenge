@@ -9,7 +9,6 @@
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 tools:context="com.example.b00sti.tripchallenge.main.MainActivity">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,27 +22,73 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:background="@color/colorAccent"
-                android:layout_marginTop="170dp">
+                android:layout_marginTop="170dp"
+                android:background="@color/colorAccent">
 
                 <com.example.b00sti.tripchallenge.utils.helpers.progress_bar_view.ArcProgress
                     android:id="@+id/arc_progress"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
-                    android:layout_centerInParent="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="12dp"
                     android:background="@android:color/transparent"
                     app:arc_angle="270"
                     app:arc_bottom_text="Completed"
-                    app:arc_finished_color="@color/colorPrimary800"
+                    app:arc_finished_color="@color/colorLightText"
                     app:arc_progress="75"
                     app:arc_suffix_text="%"
-                    app:arc_suffix_text_padding="1dp"
+                    app:arc_suffix_text_padding="0dp"
                     app:arc_suffix_text_size="@dimen/font_small"
                     app:arc_text_color="@color/colorLightText"
-                    app:arc_text_size="@dimen/font_large"
-                    app:arc_unfinished_color="@color/colorLightText"
+                    app:arc_text_size="@dimen/font_larger"
+                    app:arc_unfinished_color="@color/colorPrimaryDark"
                     app:paddingEnd="1dp"
                     app:paddingStart="1dp"/>
+
+                <com.example.b00sti.tripchallenge.utils.helpers.progress_bar_view.ArcProgress
+                    android:id="@+id/arc_progress2"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginStart="35dp"
+                    android:background="@android:color/transparent"
+                    app:arc_angle="270"
+                    app:arc_bottom_text="nie"
+                    app:arc_finished_color="@color/colorLightText"
+                    app:arc_progress="45"
+                    app:arc_suffix_text=" "
+                    app:arc_suffix_text_padding="0dp"
+                    app:arc_suffix_text_size="@dimen/font_small"
+                    app:arc_text_color="@color/colorLightText"
+                    app:arc_text_size="@dimen/font_smaller"
+                    app:arc_unfinished_color="@color/colorPrimaryDark"
+                    app:paddingEnd="0dp"
+                    app:paddingStart="0dp"/>
+
+                <com.example.b00sti.tripchallenge.utils.helpers.progress_bar_view.ArcProgress
+                    android:id="@+id/arc_progress3"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="12dp"
+                    android:layout_marginEnd="35dp"
+                    android:background="@android:color/transparent"
+                    app:arc_angle="270"
+                    app:arc_bottom_text="tak"
+                    app:arc_finished_color="@color/colorLightText"
+                    app:arc_progress="17"
+                    app:arc_suffix_text=" "
+                    app:arc_suffix_text_padding="0dp"
+                    app:arc_suffix_text_size="@dimen/font_small"
+                    app:arc_text_color="@color/colorLightText"
+                    app:arc_text_size="@dimen/font_smaller"
+                    app:arc_unfinished_color="@color/colorPrimaryDark"
+                    app:paddingEnd="0dp"
+                    app:paddingStart="0dp"/>
 
             </RelativeLayout>
 
@@ -71,14 +116,14 @@
 
         <TextView
             android:id="@+id/mainPlaceTV"
-            android:layout_below="@id/frame_lay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:layout_below="@id/frame_lay"
             android:background="@color/colorAccentDark"
             android:fontFamily="sans-serif-smallcaps"
             android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
             android:text="Venice"
             android:textColor="@color/colorLightText"
             android:textSize="@dimen/font_large"/>
