@@ -16,6 +16,18 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="no" parent="Theme.Design.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
     <style name="Theme.MainWithoutActionBar" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -71,6 +83,13 @@
         <item name="android:background">@color/mediumTransparent</item>
         <item name="android:textColor">@color/colorLightText</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="TextViewTitle">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/colorLightText</item>
+        <item name="android:fontFamily">sans-serif-smallcaps</item>
+        <item name="android:textSize">28sp</item>
     </style>
 
 </resources>

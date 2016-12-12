@@ -8,36 +8,79 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.b00sti.tripchallenge.main.MainActivity">
 
-    <FrameLayout
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:expanded="false">
 
-        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                     xmlns:app="http://schemas.android.com/apk/res-auto"
-                     xmlns:tools="http://schemas.android.com/tools"
-                     android:id="@+id/activity_main_placeholder"
-                     android:layout_width="match_parent"
-                     android:layout_height="match_parent"
-                     android:layout_marginTop="?attr/actionBarSize"
-                     android:background="@color/colorDarkBackground"
-                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                     tools:showIn="@layout/app_bar_main">
-
-        </FrameLayout>
-
-        <android.support.design.widget.AppBarLayout
+        <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:expandedTitleGravity="center_horizontal|bottom"
+            app:expandedTitleMarginBottom="28sp"
+            app:expandedTitleTextAppearance="@style/TextViewTitle"
+            app:title="place"
+            app:titleEnabled="true">
+
+<!--            <View
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@color/red_dark">
+
+            </View>-->
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                             xmlns:tools="http://schemas.android.com/tools"
+                             android:id="@+id/activity_main_placeholder"
+                             android:layout_width="match_parent"
+                             android:layout_height="match_parent"
+                             android:background="@color/colorDarkBackground"
+                             app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                             tools:showIn="@layout/app_bar_main">
+
+                </FrameLayout>
+
+<!--                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar2"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:visibility="gone"
+                    app:title="@string/accept"/>-->
+
+            </FrameLayout>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 style="@style/CustomActionBar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"/>
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"/>
+
             <!--app:popupTheme="@style/AppTheme.PopupOverlay"/>-->
 
-        </android.support.design.widget.AppBarLayout>
+        </android.support.design.widget.CollapsingToolbarLayout>
 
-    </FrameLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    </android.support.v4.widget.NestedScrollView>
+
 
 </android.support.design.widget.CoordinatorLayout>

@@ -112,19 +112,29 @@
                 android:layout_height="10dp"
                 android:background="@drawable/bg_elevation"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:text="Trip Details"
+                android:gravity="center_vertical"
+                style="@style/TextViewLightLarge"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:paddingStart="72dp"/>
+
         </FrameLayout>
 
         <TextView
             android:id="@+id/mainPlaceTV"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             android:layout_below="@id/frame_lay"
             android:background="@color/colorAccentDark"
             android:fontFamily="sans-serif-smallcaps"
             android:gravity="center"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="Venice"
+            android:text=""
             android:textColor="@color/colorLightText"
             android:textSize="@dimen/font_large"/>
 
@@ -135,7 +145,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:layout_marginEnd="@dimen/spacing_42dp"
-            android:layout_marginTop="460dp"
+            android:layout_marginTop="150dp"
             android:src="@drawable/ic_add"
             app:backgroundTint="@color/colorAccent"
             app:elevation="10dp"/>
@@ -143,10 +153,12 @@
         <TextView
             android:id="@+id/rateTV"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvStory"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_below="@id/mainPlaceTV"
             android:fontFamily="sans-serif-smallcaps"
             android:textColor="@color/colorDarkText"
+            android:text="2"
+            android:visibility="gone"
             android:textSize="13sp"/>
 
     </RelativeLayout>
