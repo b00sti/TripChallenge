@@ -20,19 +20,12 @@
             android:background="@android:color/transparent"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:expandedTitleGravity="center_horizontal|bottom"
             app:expandedTitleMarginBottom="28sp"
             app:expandedTitleTextAppearance="@style/TextViewTitle"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:title="place"
             app:titleEnabled="true">
-
-<!--            <View
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:background="@color/red_dark">
-
-            </View>-->
 
             <FrameLayout
                 android:layout_width="match_parent"
