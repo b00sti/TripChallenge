@@ -43,13 +43,6 @@
 
                 </FrameLayout>
 
-<!--                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar2"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:visibility="gone"
-                    app:title="@string/accept"/>-->
-
             </FrameLayout>
 
             <android.support.v7.widget.Toolbar
@@ -58,8 +51,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"/>
-
-            <!--app:popupTheme="@style/AppTheme.PopupOverlay"/>-->
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
@@ -72,8 +63,6 @@
         android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
     </android.support.v4.widget.NestedScrollView>
-
-
+    
 </android.support.design.widget.CoordinatorLayout>
