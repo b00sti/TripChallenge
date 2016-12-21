@@ -1,7 +1,7 @@
 package com.example.b00sti.tripchallenge.ui_trips;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,7 +19,6 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import rx.android.schedulers.AndroidSchedulers;
@@ -46,6 +45,9 @@ public class TripsFragment extends MvpFragment<TripsContract.Presenter> implemen
 
     @ViewById(R.id.mainPlaceTV)
     TextView mainPlaceTV;
+
+    @ViewById(R.id.collapsedTitleL)
+    CollapsingToolbarLayout collapsedTitleL;
 
     public static Fragment newInstance() {
         return new TripsFragment_();
@@ -90,11 +92,6 @@ public class TripsFragment extends MvpFragment<TripsContract.Presenter> implemen
                         });
             }
         }
-    }
-
-    @UiThread
-    void setPhotoToView(Bitmap image) {
-        main_tripIV.setImageBitmap(image);
     }
 
     @Override
