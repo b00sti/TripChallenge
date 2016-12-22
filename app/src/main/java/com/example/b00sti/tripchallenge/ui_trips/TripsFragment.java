@@ -1,13 +1,13 @@
 package com.example.b00sti.tripchallenge.ui_trips;
 
 import android.content.Intent;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.b00sti.tripchallenge.R;
+import com.example.b00sti.tripchallenge.main.MainActivity;
 import com.example.b00sti.tripchallenge.utils.helpers.GooglePlacesManager;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -46,9 +46,6 @@ public class TripsFragment extends MvpFragment<TripsContract.Presenter> implemen
     @ViewById(R.id.mainPlaceTV)
     TextView mainPlaceTV;
 
-    @ViewById(R.id.collapsedTitleL)
-    CollapsingToolbarLayout collapsedTitleL;
-
     public static Fragment newInstance() {
         return new TripsFragment_();
     }
@@ -80,10 +77,12 @@ public class TripsFragment extends MvpFragment<TripsContract.Presenter> implemen
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(data, ctx);
                 String toastMsg = String.format("Place: %s", place.getName());
-                mainPlaceTV.setText(place.getName());
+                //mainPlaceTV.setText(place.getName());
                 place.getRating();
                 Toast.makeText(ctx, toastMsg, Toast.LENGTH_LONG).show();
-
+                if (getActivity() instanceof MainActivity) {
+                    ((MainActivity) getActivity()).setCollapsedTitleL(place.getName().toString());
+                }
                 googlePlacesManager.getPhotoObservable(place)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())

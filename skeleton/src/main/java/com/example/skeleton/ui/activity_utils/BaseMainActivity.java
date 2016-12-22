@@ -1,5 +1,6 @@
 package com.example.skeleton.ui.activity_utils;
 
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -38,12 +39,17 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
     public ActionBarDrawerToggle toggle;
     @ViewById(resName = "toolbar") public Toolbar toolbar;
     @DrawerUtils.DrawerTab public int drawerCurrentlySelectedTab = DrawerUtils.TAB_NO;
+    @ViewById(resName = "collapsedTitleL") public CollapsingToolbarLayout collapsedTitleL;
 
     public abstract Fragment setFragmentForTab(@DrawerUtils.DrawerTab int tab);
 
     public abstract List<I> setDrawerItems();
 
     public abstract A setDrawerAdapter();
+
+    public void setCollapsedTitleL(String titleL) {
+        collapsedTitleL.setTitle(titleL);
+    }
 
     @AfterViews
     public void init() {
