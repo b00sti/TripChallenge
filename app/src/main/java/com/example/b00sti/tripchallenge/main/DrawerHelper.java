@@ -58,6 +58,50 @@ public class DrawerHelper {
         return fragment;
     }
 
+    public static Fragment getTopFragmentForTab(FragmentBuilder fragmentBuilder, @DrawerUtils.DrawerTab int tab) {
+        Fragment fragment = null;
+        switch (tab) {
+            case DrawerUtils.TAB_00:
+                fragment = fragmentBuilder.newFragment(FragmentBuilder.EMPTY);
+                break;
+            case DrawerUtils.TAB_01:
+                fragment = fragmentBuilder.newFragment(FragmentBuilder.TRIPS);
+                break;
+            case DrawerUtils.TAB_02:
+                fragment = fragmentBuilder.newFragment(FragmentBuilder.EMPTY);
+                break;
+            case DrawerUtils.TAB_03:
+                break;
+            case DrawerUtils.TAB_04:
+                break;
+            case DrawerUtils.TAB_05:
+                break;
+            case DrawerUtils.TAB_06:
+                break;
+            case DrawerUtils.TAB_07:
+                break;
+            case DrawerUtils.TAB_08:
+                break;
+            case DrawerUtils.TAB_09:
+                break;
+            case DrawerUtils.TAB_10:
+                break;
+            case DrawerUtils.TAB_11:
+                break;
+            case DrawerUtils.TAB_12:
+                break;
+            case DrawerUtils.TAB_13:
+                break;
+            case DrawerUtils.TAB_14:
+                break;
+            case DrawerUtils.TAB_15:
+                break;
+            case DrawerUtils.TAB_NO:
+                break;
+            default:
+        }
+        return fragment;
+    }
 
     public static List<DrawerItem> getDrawerItems() {
         List<DrawerItem> drawerItems = new ArrayList<>();

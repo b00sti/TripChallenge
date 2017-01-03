@@ -8,6 +8,7 @@ import com.example.b00sti.tripchallenge.ui_log_in.LogInFragment;
 import com.example.b00sti.tripchallenge.ui_sign_up.SignUpFragment;
 import com.example.b00sti.tripchallenge.ui_trips.TripsFragment;
 import com.example.skeleton.ui.activity_utils.BaseFragmentBuilder;
+import com.example.skeleton.ui.activity_utils.EmptyFragment;
 
 import org.androidannotations.annotations.EBean;
 
@@ -25,6 +26,7 @@ public class FragmentBuilder extends BaseFragmentBuilder {
     public static final int LOG_IN = 2;
     public static final int SIGN_IN = 3;
     public static final int TRIPS = 4;
+    public static final int EMPTY = 100;
 
     public Fragment newFragment(@FragBuild int fragmentId) {
 
@@ -37,6 +39,8 @@ public class FragmentBuilder extends BaseFragmentBuilder {
                 return LogInFragment.newInstance();
             case SIGN_IN:
                 return SignUpFragment.newInstance();
+            case EMPTY:
+                return EmptyFragment.newInstance();
             case TRIPS:
                 return TripsFragment.newInstance();
             default:
@@ -49,7 +53,8 @@ public class FragmentBuilder extends BaseFragmentBuilder {
             SETTINGS,
             LOG_IN,
             SIGN_IN,
-            TRIPS
+            TRIPS,
+            EMPTY
     })
     public @interface FragBuild {
     }

@@ -1,5 +1,6 @@
 package com.example.skeleton.ui.activity_utils;
 
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -40,8 +41,11 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
     @ViewById(resName = "toolbar") public Toolbar toolbar;
     @DrawerUtils.DrawerTab public int drawerCurrentlySelectedTab = DrawerUtils.TAB_NO;
     @ViewById(resName = "collapsedTitleL") public CollapsingToolbarLayout collapsedTitleL;
+    @ViewById(resName = "appBarL") public AppBarLayout appBarLayout;
 
     public abstract Fragment setFragmentForTab(@DrawerUtils.DrawerTab int tab);
+
+    public abstract Fragment setTopFragmentForTab(@DrawerUtils.DrawerTab int tab);
 
     public abstract List<I> setDrawerItems();
 
@@ -115,6 +119,7 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
 
         this.drawerCurrentlySelectedTab = event.getDrawerItemSelected();
         Fragment targetFragment = event.getTargetFragment();
+        Fragment topTargetFragment = event.getTopTargetFragment();
         @DrawerUtils.DrawerTab int tabToSelect;
 
         switch (this.drawerCurrentlySelectedTab) {
@@ -177,6 +182,7 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
         drawerAdapter.setDrawerAdapterData(setDrawerItems(), tabToSelect);
         drawerRecyclerView.setAdapter(drawerAdapter);
 
+        FragmentSwitcher.switchFragment(new FragmentSwitcherParams(getSupportFragmentManager(), topTargetFragment, R.id.activity_top_placeholder));
         FragmentSwitcher.switchFragment(new FragmentSwitcherParams(getSupportFragmentManager(), targetFragment, R.id.activity_main_placeholder));
     }
 
@@ -193,13 +199,14 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
 
         drawerRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, (view, position) -> {
             Fragment targetFragment = setFragmentForTab(position);
+            Fragment topTargetFragment = setTopFragmentForTab(position);
 
             // post event to switch fragment
-            EventBus.getDefault().post(new SwitchDrawerFragmentEvent(targetFragment, drawerItems.get(position).getTabId()));
+            EventBus.getDefault().post(new SwitchDrawerFragmentEvent(drawerItems.get(position).getTabId(), targetFragment, topTargetFragment));
 
             // set toolbar title to selected drawer item's title
             toolbar.setTitle(setDrawerItems().get(position).getTitleResource());
-
+            setCollapsedTitleL(getResources().getString(setDrawerItems().get(position).getTitleResource()));
             drawer.closeDrawers();
         }));
         // initialize adapter with selected position highlighted

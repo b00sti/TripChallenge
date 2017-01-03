@@ -11,6 +11,7 @@ import com.example.b00sti.tripchallenge.ui_log_in.LogInFragment;
 import com.example.skeleton.android_utils.eventbus.SwitchDrawerFragmentEvent;
 import com.example.skeleton.android_utils.navigation.drawer.DrawerUtils;
 import com.example.skeleton.ui.activity_utils.BaseMainActivity;
+import com.example.skeleton.ui.activity_utils.EmptyFragment;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
@@ -32,7 +33,7 @@ public class MainActivity extends BaseMainActivity<DrawerItem, DrawerItemView, D
     void setDrawerFragments() {
         setBottomDrawerFragment(DrawerBottomFragment.newInstance());
         setTopDrawerFragment(DrawerTopFragment.newInstance());
-        onEvent(new SwitchDrawerFragmentEvent(LogInFragment.newInstance(), DrawerUtils.TAB_00));
+        onEvent(new SwitchDrawerFragmentEvent(DrawerUtils.TAB_00, LogInFragment.newInstance(), EmptyFragment.newInstance()));
 
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
@@ -48,6 +49,12 @@ public class MainActivity extends BaseMainActivity<DrawerItem, DrawerItemView, D
     @Override
     public Fragment setFragmentForTab(@DrawerUtils.DrawerTab int tab) {
         return DrawerHelper.getFragmentForTab(fragmentBuilder, tab);
+    }
+
+    @Nullable
+    @Override
+    public Fragment setTopFragmentForTab(@DrawerUtils.DrawerTab int tab) {
+        return DrawerHelper.getTopFragmentForTab(fragmentBuilder, tab);
     }
 
     @Override
