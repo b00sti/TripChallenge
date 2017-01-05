@@ -8,12 +8,21 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.b00sti.tripchallenge.main.MainActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarMain"
+        style="@style/CustomActionBar2"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="16dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_collapseMode="pin"/>
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBarL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:expanded="false">
+        app:expanded="true">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsedTitleL"

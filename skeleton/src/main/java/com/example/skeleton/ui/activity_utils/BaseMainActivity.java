@@ -39,6 +39,7 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
     @ViewById(resName = "drawer_recycler_view") public RecyclerView drawerRecyclerView;
     public ActionBarDrawerToggle toggle;
     @ViewById(resName = "toolbar") public Toolbar toolbar;
+    @ViewById(resName = "toolbarMain") public Toolbar toolbarMain;
     @DrawerUtils.DrawerTab public int drawerCurrentlySelectedTab = DrawerUtils.TAB_NO;
     @ViewById(resName = "collapsedTitleL") public CollapsingToolbarLayout collapsedTitleL;
     @ViewById(resName = "appBarL") public AppBarLayout appBarLayout;
@@ -57,15 +58,14 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
 
     @AfterViews
     public void init() {
-        setSupportActionBar(toolbar);
-
         EventBus.getDefault().register(this);
 
-        initDrawer();
+        prepareDrawerMenuRecyclerView();
+        initDrawer(toolbar);
     }
 
-    private void initDrawer() {
-        prepareDrawerMenuRecyclerView();
+    private void initDrawer(Toolbar toolbar) {
+        setSupportActionBar(toolbar);
 
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         //toggle.setDrawerIndicatorEnabled(false);
@@ -182,6 +182,15 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
         drawerAdapter.setDrawerAdapterData(setDrawerItems(), tabToSelect);
         drawerRecyclerView.setAdapter(drawerAdapter);
 
+        if (topTargetFragment instanceof EmptyFragment) {
+            toolbarMain.setVisibility(View.VISIBLE);
+            appBarLayout.setVisibility(View.GONE);
+            initDrawer(toolbarMain);
+        } else {
+            toolbarMain.setVisibility(View.GONE);
+            appBarLayout.setVisibility(View.VISIBLE);
+            initDrawer(toolbar);
+        }
         FragmentSwitcher.switchFragment(new FragmentSwitcherParams(getSupportFragmentManager(), topTargetFragment, R.id.activity_top_placeholder));
         FragmentSwitcher.switchFragment(new FragmentSwitcherParams(getSupportFragmentManager(), targetFragment, R.id.activity_main_placeholder));
     }
@@ -206,6 +215,7 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
 
             // set toolbar title to selected drawer item's title
             toolbar.setTitle(setDrawerItems().get(position).getTitleResource());
+            toolbarMain.setTitle(setDrawerItems().get(position).getTitleResource());
             setCollapsedTitleL(getResources().getString(setDrawerItems().get(position).getTitleResource()));
             drawer.closeDrawers();
         }));

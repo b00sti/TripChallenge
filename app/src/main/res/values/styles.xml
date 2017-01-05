@@ -47,6 +47,11 @@
         <item name="background">@android:color/transparent</item>
     </style>
 
+    <style name="CustomActionBar2" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="background">@color/colorPrimary</item>
+    </style>
+
     <style name="AppThemeWithLightHint" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
