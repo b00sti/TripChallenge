@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/colorAccent">
+        android:background="@color/colorLightBackground">
 
         <FrameLayout
             android:id="@+id/drawer_top_placeholder"
@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:layout_above="@+id/drawer_bottom_placeholder"
             android:layout_below="@+id/drawer_top_placeholder"
-            android:background="@color/colorAccent"
+            android:background="@color/colorLightBackground"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"

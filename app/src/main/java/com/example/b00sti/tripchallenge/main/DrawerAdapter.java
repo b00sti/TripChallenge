@@ -18,12 +18,10 @@ import org.androidannotations.annotations.res.ColorRes;
 @EBean
 public class DrawerAdapter extends BaseDrawerAdapter<DrawerItem, DrawerItemView> {
 
-    @ColorRes(R.color.colorMediumBackground)
-    public int checked;
-    @ColorRes(R.color.colorAccentDark)
-    public int nonChecked;
-    @RootContext
-    Context context;
+    @ColorRes(R.color.colorMediumBackground) public int checked;
+    @ColorRes(R.color.colorLightBackground) public int nonChecked;
+
+    @RootContext Context context;
 
     @Override
     protected DrawerItemView onCreateItemView(ViewGroup parent, int viewType) {
@@ -37,9 +35,9 @@ public class DrawerAdapter extends BaseDrawerAdapter<DrawerItem, DrawerItemView>
         itemView.bind(drawerItem);
 
         if (drawerItem.getTabId() == selectedTabId) {
-            itemView.textView.setBackgroundColor(checked);
+            itemView.drawerItemMainRL.setBackgroundColor(checked);
         } else {
-            itemView.textView.setBackgroundColor(nonChecked);
+            itemView.drawerItemMainRL.setBackgroundColor(nonChecked);
         }
     }
 

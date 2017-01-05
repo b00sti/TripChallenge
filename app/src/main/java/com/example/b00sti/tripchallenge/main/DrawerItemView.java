@@ -17,11 +17,9 @@ import org.androidannotations.annotations.ViewById;
 @EViewGroup(R.layout.drawer_item)
 public class DrawerItemView extends RelativeLayout {
 
-    @ViewById(R.id.drawer_item_icon)
-    ImageView icon;
-
-    @ViewById(R.id.drawer_item_title)
-    TextView textView;
+    @ViewById(R.id.drawerItemIconIV) ImageView icon;
+    @ViewById(R.id.drawerItemTitleTV) TextView textView;
+    @ViewById(R.id.drawerItemMainRL) RelativeLayout drawerItemMainRL;
 
     Context context;
 

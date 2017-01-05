@@ -216,9 +216,9 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
             // set toolbar title to selected drawer item's title
             toolbar.setTitle(setDrawerItems().get(position).getTitleResource());
             toolbarMain.setTitle(setDrawerItems().get(position).getTitleResource());
-            setCollapsedTitleL(getResources().getString(setDrawerItems().get(position).getTitleResource()));
             drawer.closeDrawers();
         }));
+
         // initialize adapter with selected position highlighted
         A drawerAdapter = setDrawerAdapter();
         drawerAdapter.setDrawerAdapterData(setDrawerItems(), drawerCurrentlySelectedTab);
