@@ -113,14 +113,14 @@
                 android:background="@drawable/bg_elevation"/>
 
             <TextView
+                style="@style/TextViewLightLarge"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:text="Trip Details"
                 android:gravity="center_vertical"
-                style="@style/TextViewLightLarge"
+                android:paddingStart="72dp"
+                android:text="Trip Details"
                 android:textSize="22sp"
-                android:textStyle="bold"
-                android:paddingStart="72dp"/>
+                android:textStyle="bold"/>
 
         </FrameLayout>
 
@@ -156,10 +156,10 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_below="@id/mainPlaceTV"
             android:fontFamily="sans-serif-smallcaps"
-            android:textColor="@color/colorDarkText"
             android:text="2"
-            android:visibility="gone"
-            android:textSize="13sp"/>
+            android:textColor="@color/colorDarkText"
+            android:textSize="13sp"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 

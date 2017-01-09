@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.ui_trips;
+package com.example.b00sti.tripchallenge.ui_trip_details;
 
 
 import android.app.Activity;
@@ -15,8 +15,8 @@ import org.androidannotations.annotations.RootContext;
  */
 
 @EBean
-class TripsPresenter extends MvpPresenter<TripsContract.View> implements TripsContract.Presenter {
-    private static final String TAG = "TripsPresenter";
+class TripDetailsTopPresenter extends MvpPresenter<TripDetailsTopContract.View> implements TripDetailsTopContract.Presenter {
+    private static final String TAG = "TripDetailsTopPresenter";
 
     @Bean
     GooglePlacesManager googlePlacesManager;

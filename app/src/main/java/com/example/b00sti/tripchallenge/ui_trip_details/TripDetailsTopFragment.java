@@ -1,4 +1,4 @@
-package com.example.b00sti.tripchallenge.ui_trips;
+package com.example.b00sti.tripchallenge.ui_trip_details;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
@@ -30,12 +30,12 @@ import static android.app.Activity.RESULT_OK;
  * Created by Dominik (b00sti) Pawlik on 2016-11-10
  */
 
-@EFragment(R.layout.fragment_trips)
-public class TripsFragment extends MvpFragment<TripsContract.Presenter> implements TripsContract.View {
-    private static final String TAG = "DashboardFragment";
+@EFragment(R.layout.fragment_trip_details_top)
+public class TripDetailsTopFragment extends MvpFragment<TripDetailsTopContract.Presenter> implements TripDetailsTopContract.View {
+    private static final String TAG = "TripDetailsTopFragment";
 
     @Bean
-    TripsPresenter tripsPresenter;
+    TripDetailsTopPresenter tripDetailsTopPresenter;
 
     @Bean
     GooglePlacesManager googlePlacesManager;
@@ -47,7 +47,7 @@ public class TripsFragment extends MvpFragment<TripsContract.Presenter> implemen
     TextView mainPlaceTV;
 
     public static Fragment newInstance() {
-        return new TripsFragment_();
+        return new com.example.b00sti.tripchallenge.ui_trip_details.TripDetailsTopFragment_();
     }
 
     @Click(R.id.connectB)
@@ -94,9 +94,9 @@ public class TripsFragment extends MvpFragment<TripsContract.Presenter> implemen
     }
 
     @Override
-    protected TripsContract.Presenter setPresenterView() {
-        tripsPresenter.setView(this);
-        return tripsPresenter;
+    protected TripDetailsTopContract.Presenter setPresenterView() {
+        tripDetailsTopPresenter.setView(this);
+        return tripDetailsTopPresenter;
     }
 
     private void showPlacePicker() {

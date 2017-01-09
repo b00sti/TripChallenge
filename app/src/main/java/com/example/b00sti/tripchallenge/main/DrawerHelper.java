@@ -17,7 +17,7 @@ public class DrawerHelper {
         Fragment fragment = null;
         switch (tab) {
             case DrawerUtils.TAB_00:
-                fragment = fragmentBuilder.newFragment(FragmentBuilder.EMPTY);
+                fragment = fragmentBuilder.newFragment(FragmentBuilder.TRIPS_BOTTOM);
                 break;
             case DrawerUtils.TAB_01:
                 fragment = fragmentBuilder.newFragment(FragmentBuilder.LOG_IN);
@@ -62,10 +62,10 @@ public class DrawerHelper {
         Fragment fragment = null;
         switch (tab) {
             case DrawerUtils.TAB_00:
-                fragment = fragmentBuilder.newFragment(FragmentBuilder.TRIPS);
+                fragment = fragmentBuilder.newFragment(FragmentBuilder.TRIPS_TOP);
                 break;
             case DrawerUtils.TAB_01:
-                fragment = fragmentBuilder.newFragment(FragmentBuilder.TRIPS);
+                fragment = fragmentBuilder.newFragment(FragmentBuilder.TRIPS_TOP);
                 break;
             case DrawerUtils.TAB_02:
                 fragment = fragmentBuilder.newFragment(FragmentBuilder.EMPTY);
