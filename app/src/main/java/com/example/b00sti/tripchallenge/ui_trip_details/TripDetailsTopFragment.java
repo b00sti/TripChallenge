@@ -1,30 +1,18 @@
 package com.example.b00sti.tripchallenge.ui_trip_details;
 
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.b00sti.tripchallenge.R;
-import com.example.b00sti.tripchallenge.main.MainActivity;
 import com.example.b00sti.tripchallenge.utils.helpers.GooglePlacesManager;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlacePicker;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
-
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-10
@@ -59,7 +47,6 @@ public class TripDetailsTopFragment extends MvpFragment<TripDetailsTopContract.P
     @AfterViews
     void init() {
         ctx = getActivity();
-
     }
 
     @Override
@@ -71,7 +58,7 @@ public class TripDetailsTopFragment extends MvpFragment<TripDetailsTopContract.P
 
     }
 
-    @Override
+/*    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
@@ -91,7 +78,7 @@ public class TripDetailsTopFragment extends MvpFragment<TripDetailsTopContract.P
                         });
             }
         }
-    }
+    }*/
 
     @Override
     protected TripDetailsTopContract.Presenter setPresenterView() {
@@ -100,13 +87,13 @@ public class TripDetailsTopFragment extends MvpFragment<TripDetailsTopContract.P
     }
 
     private void showPlacePicker() {
-        int PLACE_PICKER_REQUEST = 1;
+/*        int PLACE_PICKER_REQUEST = 1;
         PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
         try {
             startActivityForResult(builder.build(ctx), PLACE_PICKER_REQUEST);
         } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }
 
