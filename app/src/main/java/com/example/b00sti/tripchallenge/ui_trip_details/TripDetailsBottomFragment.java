@@ -5,11 +5,13 @@ import android.graphics.Bitmap;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.example.b00sti.tripchallenge.R;
 import com.example.b00sti.tripchallenge.main.MainActivity;
+import com.example.b00sti.tripchallenge.model.Challenge;
+import com.example.b00sti.tripchallenge.model.RealmHelper;
+import com.example.b00sti.tripchallenge.model.Trip;
 import com.example.b00sti.tripchallenge.utils.helpers.GooglePlacesManager;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -23,9 +25,11 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -49,9 +53,11 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
     @Bean
     PlaceTodoAdapter placeTodoAdapter;
 
-    List<PlaceToDoItem> places = new ArrayList<>();
+    List<Challenge> challenges = new ArrayList<>();
 
     @ViewById(R.id.todoRV) RecyclerView todoRV;
+
+    int tripId = 0;
 
     public static Fragment newInstance() {
         return new com.example.b00sti.tripchallenge.ui_trip_details.TripDetailsBottomFragment_();
@@ -63,8 +69,18 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
     }
 
     @AfterViews
+    void fillChallengeAdapter() {
+        challenges = RealmHelper.getChallenges(tripId);
+    }
+
+    @AfterViews
     void init() {
         ctx = getActivity();
+        RealmHelper.saveTrip(new Trip());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        todoRV.setLayoutManager(mLayoutManager);
+        placeTodoAdapter.setDataSet(challenges);
+        todoRV.setAdapter(placeTodoAdapter);
     }
 
     @Override
@@ -75,6 +91,11 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
     @Override
     public void hideProgressBar() {
 
+    }
+
+    private void notifyChallanges() {
+        challenges = RealmHelper.getChallenges(tripId);
+        placeTodoAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -90,26 +111,34 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
                 Place place = PlacePicker.getPlace(data, ctx);
                 String toastMsg = String.format("Place: %s", place.getName());
                 //mainPlaceTV.setText(place.getName());
-                place.getRating();
                 Toast.makeText(ctx, toastMsg, Toast.LENGTH_LONG).show();
                 if (getActivity() instanceof MainActivity) {
                     ((MainActivity) getActivity()).setCollapsedTitleL(place.getName().toString());
                 }
-                final Bitmap[] bitmap2 = {null};
+
+                Challenge challenge = new Challenge(place);
+                String id = challenge.getId();
+                RealmHelper.saveChallenge(challenge);
+                notifyChallanges();
+
+//                Realm realm = Realm.getDefaultInstance();
+//                RealmResults<Challenge> challenges =realm.where(Challenge.class).findAll();
+//                for (Challenge challenge1 : challenges) {
+//                    CLog.d2(TAG, "onActivityResult: ", challenge1.getTitle(), "id", challenge.getId());
+//                }
 
                 googlePlacesManager.getPhotoObservable(place)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
+                        .first()
                         .subscribe(bitmap -> {
-                            if (bitmap2[0] == null) {
-                                bitmap2[0] = bitmap;
-                                places.add(new PlaceToDoItem(bitmap, place.getName().toString(), place.getRating()));
-                                Log.d(TAG, "onActivityResult: " + places.size());
-                                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-                                todoRV.setLayoutManager(mLayoutManager);
-                                placeTodoAdapter.setDataSet(places);
-                                todoRV.setAdapter(placeTodoAdapter);
-                            }
+                            Realm realm = Realm.getDefaultInstance();
+                            Challenge challenge1 = RealmHelper.getChallenge(id);
+                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                            challenge1.setBitmap(stream.toByteArray());
+                            RealmHelper.saveChallenge(challenge1);
+                            notifyChallanges();
                         });
             }
         }

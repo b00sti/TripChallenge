@@ -3,6 +3,7 @@ package com.example.b00sti.tripchallenge.ui_trip_details;
 import android.content.Context;
 import android.view.ViewGroup;
 
+import com.example.b00sti.tripchallenge.model.Challenge;
 import com.example.skeleton.ui.recyclers.BaseAdapter;
 import com.example.skeleton.ui.recyclers.ViewWrapper;
 
@@ -13,7 +14,7 @@ import org.androidannotations.annotations.RootContext;
  * Created by Dominik (b00sti) Pawlik on 2017-01-09
  */
 @EBean
-public class PlaceTodoAdapter extends BaseAdapter<PlaceToDoItem, PlaceToDoItemView> {
+public class PlaceTodoAdapter extends BaseAdapter<Challenge, PlaceToDoItemView> {
 
     @RootContext Context context;
 
@@ -25,7 +26,7 @@ public class PlaceTodoAdapter extends BaseAdapter<PlaceToDoItem, PlaceToDoItemVi
     @Override
     public void onBindViewHolder(ViewWrapper<PlaceToDoItemView> holder, int position) {
         PlaceToDoItemView itemView = holder.getView();
-        PlaceToDoItem placeToDoItem = dataSet.get(position);
+        Challenge placeToDoItem = dataSet.get(position);
         itemView.bind(placeToDoItem);
     }
 }

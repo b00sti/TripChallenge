@@ -1,10 +1,10 @@
-package com.example.b00sti.tripchallenge.ui_trip_details;
+/*package com.example.b00sti.tripchallenge.ui_trip_details;
 
 import android.graphics.Bitmap;
 
-/**
+*//**
  * Created by Dominik (b00sti) Pawlik on 2017-01-09
- */
+ *//*
 public class PlaceToDoItem {
 
     private Bitmap bitmap;
@@ -40,4 +40,4 @@ public class PlaceToDoItem {
     public void setCounter(float counter) {
         this.counter = counter;
     }
-}
+}*/
