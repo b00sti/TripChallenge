@@ -10,6 +10,8 @@ import io.realm.annotations.PrimaryKey;
  */
 
 public class RealmChallenge extends RealmObject {
+
+    //@Required
     private int tripId;
 
     @PrimaryKey
@@ -24,7 +26,8 @@ public class RealmChallenge extends RealmObject {
     public RealmChallenge() {
     }
 
-    public RealmChallenge(Place place) {
+    public RealmChallenge(Place place, int tripId) {
+        this.tripId = tripId;
         this.id = place.getId();
         this.title = place.getName().toString();
         this.lat = place.getLatLng().latitude;

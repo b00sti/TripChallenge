@@ -10,8 +10,8 @@ import android.widget.Toast;
 import com.example.b00sti.tripchallenge.R;
 import com.example.b00sti.tripchallenge.main.MainActivity;
 import com.example.b00sti.tripchallenge.model.RealmChallenge;
-import com.example.b00sti.tripchallenge.model.RealmHelper;
 import com.example.b00sti.tripchallenge.model.RealmTrip;
+import com.example.b00sti.tripchallenge.realm_services.TripsRealmService;
 import com.example.b00sti.tripchallenge.utils.helpers.GooglePlacesManager;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -19,6 +19,7 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
+import org.androidannotations.annotations.AfterInject;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
@@ -29,7 +30,6 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.realm.Realm;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -53,6 +53,9 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
     @Bean
     PlaceTodoAdapter placeTodoAdapter;
 
+    @Bean
+    TripsRealmService tripsRealmService;
+
     List<RealmChallenge> realmChallenges = new ArrayList<>();
 
     @ViewById(R.id.todoRV) RecyclerView todoRV;
@@ -67,20 +70,27 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
     void connect() {
         showPlacePicker();
     }
-
+/*
     @AfterViews
     void fillChallengeAdapter() {
-        realmChallenges = RealmHelper.getChallenges(tripId);
-    }
+      realmChallenges = RealmHelper.getChallenges(tripId);
+    }*/
 
     @AfterViews
     void init() {
         ctx = getActivity();
-        RealmHelper.saveTrip(new RealmTrip());
+
+        //RealmHelper.saveTrip(new RealmTrip());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         todoRV.setLayoutManager(mLayoutManager);
         placeTodoAdapter.setDataSet(realmChallenges);
         todoRV.setAdapter(placeTodoAdapter);
+    }
+
+    @AfterInject
+    void initR() {
+        tripsRealmService.addTripAsync(new RealmTrip(), null);
+        realmChallenges = tripsRealmService.getChallangesAsync(tripId);
     }
 
     @Override
@@ -94,7 +104,8 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
     }
 
     private void notifyChallanges() {
-        realmChallenges = RealmHelper.getChallenges(tripId);
+        //realmChallenges = RealmHelper.getChallenges(tripId);
+        realmChallenges = tripsRealmService.getChallangesAsync(tripId);
         placeTodoAdapter.notifyDataSetChanged();
     }
 
@@ -116,9 +127,10 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
                     ((MainActivity) getActivity()).setCollapsedTitleL(place.getName().toString());
                 }
 
-                RealmChallenge realmChallenge = new RealmChallenge(place);
+                RealmChallenge realmChallenge = new RealmChallenge(place, tripId);
                 String id = realmChallenge.getId();
-                RealmHelper.saveChallenge(realmChallenge);
+                //RealmHelper.saveChallenge(realmChallenge);
+                tripsRealmService.addChallangeAsync(realmChallenge, null);
                 notifyChallanges();
 
 //                Realm realm = Realm.getDefaultInstance();
@@ -132,12 +144,21 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
                         .observeOn(AndroidSchedulers.mainThread())
                         .first()
                         .subscribe(bitmap -> {
-                            Realm realm = Realm.getDefaultInstance();
-                            RealmChallenge realmChallenge1 = RealmHelper.getChallenge(id);
-                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                            realmChallenge1.setBitmap(stream.toByteArray());
-                            RealmHelper.saveChallenge(realmChallenge1);
+                            //Realm realm = Realm.getDefaultInstance();
+                            //RealmChallenge realmChallenge1 = RealmHelper.getChallenge(id);
+                            tripsRealmService.getChallangeAsyncAsObservable(id)
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    
+                                    .unsubscribeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(realmChallenge1 -> {
+                                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                                        realmChallenge1.setBitmap(stream.toByteArray());
+                                    });
+
+
+                            //RealmHelper.saveChallenge(realmChallenge1);
+
                             notifyChallanges();
                         });
             }
