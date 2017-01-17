@@ -13,37 +13,37 @@ import io.realm.Realm;
 public class RealmHelper {
     private static final String TAG = "RealmHelper";
 
-    public static List<Challenge> getChallenges(int tripId) {
+    public static List<RealmChallenge> getChallenges(int tripId) {
         Realm realm = Realm.getDefaultInstance();
-        List<Challenge> all = realm.where(Challenge.class).equalTo("tripId", tripId).findAll();
-        List<Challenge> challenges = realm.copyFromRealm(all);
+        List<RealmChallenge> all = realm.where(RealmChallenge.class).equalTo("tripId", tripId).findAll();
+        List<RealmChallenge> realmChallenges = realm.copyFromRealm(all);
         realm.close();
 
-        CLog.d(TAG, "getChallenges: size", challenges.size());
+        CLog.d(TAG, "getChallenges: size", realmChallenges.size());
 
-        return challenges;
+        return realmChallenges;
     }
 
-    public static Challenge getChallenge(String id) {
+    public static RealmChallenge getChallenge(String id) {
         Realm realm = Realm.getDefaultInstance();
-        Challenge realmCopy = realm.where(Challenge.class).equalTo("id", id).findFirst();
-        Challenge challenge = realm.copyFromRealm(realmCopy);
+        RealmChallenge realmCopy = realm.where(RealmChallenge.class).equalTo("id", id).findFirst();
+        RealmChallenge realmChallenge = realm.copyFromRealm(realmCopy);
         realm.close();
 
-        return challenge;
+        return realmChallenge;
     }
 
-    public static void saveChallenge(Challenge challenge) {
+    public static void saveChallenge(RealmChallenge realmChallenge) {
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
-        realm.copyToRealmOrUpdate(challenge);
+        realm.copyToRealmOrUpdate(realmChallenge);
         realm.commitTransaction();
         realm.close();
     }
 
-    public static List<Challenge> getTrips() {
+    public static List<RealmChallenge> getTrips() {
         Realm realm = Realm.getDefaultInstance();
-        List<Challenge> trips = realm.where(Challenge.class).findAll();
+        List<RealmChallenge> trips = realm.where(RealmChallenge.class).findAll();
         realm.close();
 
         CLog.d(TAG, "getTrips: size", trips.size());
@@ -51,10 +51,10 @@ public class RealmHelper {
         return trips;
     }
 
-    public static void saveTrip(Trip trip) {
+    public static void saveTrip(RealmTrip realmTrip) {
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
-        realm.copyToRealm(trip);
+        realm.copyToRealm(realmTrip);
         realm.commitTransaction();
         realm.close();
     }
@@ -62,8 +62,8 @@ public class RealmHelper {
     public static int getChallengeNextKey() {
         Realm realm = Realm.getDefaultInstance();
         int result;
-        if (realm.where(Trip.class).max("id") != null) {
-            result = realm.where(Trip.class).max("id").intValue() + 1;
+        if (realm.where(RealmTrip.class).max("id") != null) {
+            result = realm.where(RealmTrip.class).max("id").intValue() + 1;
         } else {
             result = 0;
         }

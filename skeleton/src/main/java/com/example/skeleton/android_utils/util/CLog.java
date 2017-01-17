@@ -71,7 +71,7 @@ public class CLog {
         Log.d(TAG, info + " = [" + s1 + "]");
     }
 
-    public static <T, S> void d2(String TAG, String info, T t, String info2, S s) {
+    public static <T, S> void d(String TAG, String info, T t, String info2, S s) {
         String s1 = null;
         String s2 = null;
         if (t != null) s1 = t.toString();
@@ -79,7 +79,7 @@ public class CLog {
         Log.d(TAG, info + " = [" + s1 + "], " + info2 + " = [" + s2 + "]");
     }
 
-    public static <T, S, W> void d3(String TAG, String info, T t, String info2, S s, String info3, W w) {
+    public static <T, S, W> void d(String TAG, String info, T t, String info2, S s, String info3, W w) {
         String s1 = null;
         String s2 = null;
         String s3 = null;
@@ -89,13 +89,13 @@ public class CLog {
         Log.d(TAG, info + " = [" + s1 + "], " + info2 + " = [" + s2 + "], " + info3 + " = [" + s3 + "]");
     }
 
-    public static <T> void i1(String TAG, String info, T t) {
+    public static <T> void i(String TAG, String info, T t) {
         String s1 = null;
         if (t != null) s1 = t.toString();
         Log.i(TAG, info + " = [" + s1 + "]");
     }
 
-    public static <T, S> void i2(String TAG, String info, T t, String info2, S s) {
+    public static <T, S> void i(String TAG, String info, T t, String info2, S s) {
         String s1 = null;
         String s2 = null;
         if (t != null) s1 = t.toString();
@@ -103,7 +103,7 @@ public class CLog {
         Log.i(TAG, info + " = [" + s1 + "], " + info2 + " = [" + s2 + "]");
     }
 
-    public static <T, S, W> void i3(String TAG, String info, T t, String info2, S s, String info3, W w) {
+    public static <T, S, W> void i(String TAG, String info, T t, String info2, S s, String info3, W w) {
         String s1 = null;
         String s2 = null;
         String s3 = null;

@@ -7,14 +7,14 @@ import io.realm.annotations.PrimaryKey;
  * Created by Dominik (b00sti) Pawlik on 2017-01-12
  */
 
-public class Trip extends RealmObject {
+public class RealmTrip extends RealmObject {
     @PrimaryKey
     private int id;
     private String type;
     private boolean done;
     private byte[] bitmap;
 
-    public Trip() {
+    public RealmTrip() {
         id = RealmHelper.getChallengeNextKey();
     }
 

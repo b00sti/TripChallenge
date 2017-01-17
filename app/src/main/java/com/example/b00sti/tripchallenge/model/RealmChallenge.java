@@ -9,7 +9,7 @@ import io.realm.annotations.PrimaryKey;
  * Created by Dominik (b00sti) Pawlik on 2017-01-12
  */
 
-public class Challenge extends RealmObject {
+public class RealmChallenge extends RealmObject {
     private int tripId;
 
     @PrimaryKey
@@ -21,10 +21,10 @@ public class Challenge extends RealmObject {
     private byte[] bitmap;
 
 
-    public Challenge() {
+    public RealmChallenge() {
     }
 
-    public Challenge(Place place) {
+    public RealmChallenge(Place place) {
         this.id = place.getId();
         this.title = place.getName().toString();
         this.lat = place.getLatLng().latitude;

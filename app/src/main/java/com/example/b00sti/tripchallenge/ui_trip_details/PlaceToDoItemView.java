@@ -7,7 +7,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.b00sti.tripchallenge.R;
-import com.example.b00sti.tripchallenge.model.Challenge;
+import com.example.b00sti.tripchallenge.model.RealmChallenge;
 
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
@@ -30,7 +30,7 @@ public class PlaceToDoItemView extends RelativeLayout {
         this.context = context;
     }
 
-    public void bind(Challenge placeToDoItem) {
+    public void bind(RealmChallenge placeToDoItem) {
         byte[] bitmap = placeToDoItem.getBitmap();
         if (bitmap != null && bitmap.length > 0) {
             icon.setImageBitmap(BitmapFactory.decodeByteArray(bitmap, 0, bitmap.length));
