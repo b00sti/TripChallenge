@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.b00sti.tripchallenge.R;
@@ -24,6 +25,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 
 import java.io.ByteArrayOutputStream;
@@ -90,7 +92,7 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
     @AfterInject
     void initR() {
         tripsRealmService.addTripAsync(new RealmTrip(), null);
-        realmChallenges = tripsRealmService.getChallangesAsync(tripId);
+        realmChallenges = tripsRealmService.getChallanges(tripId);
     }
 
     @Override
@@ -103,10 +105,13 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
 
     }
 
-    private void notifyChallanges() {
+    @UiThread
+    void notifyChallanges() {
         //realmChallenges = RealmHelper.getChallenges(tripId);
-        realmChallenges = tripsRealmService.getChallangesAsync(tripId);
-        placeTodoAdapter.notifyDataSetChanged();
+        //realmChallenges = tripsRealmService.getChallanges(tripId);
+        Log.d(TAG, "notifyChallanges: " + realmChallenges.size());
+        //placeTodoAdapter.notifyDataSetChanged();
+        placeTodoAdapter.setDataSet(realmChallenges);
     }
 
     @Override
@@ -130,8 +135,17 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
                 RealmChallenge realmChallenge = new RealmChallenge(place, tripId);
                 String id = realmChallenge.getId();
                 //RealmHelper.saveChallenge(realmChallenge);
-                tripsRealmService.addChallangeAsync(realmChallenge, null);
-                notifyChallanges();
+                tripsRealmService.addChallangeAsync(realmChallenge, new TripsRealmService.OnTransactionCallback() {
+                    @Override
+                    public void onRealmSuccess() {
+                        notifyChallanges();
+                    }
+
+                    @Override
+                    public void onRealmError(Throwable e) {
+
+                    }
+                });
 
 //                Realm realm = Realm.getDefaultInstance();
 //                RealmResults<RealmChallenge> realmChallenges =realm.where(RealmChallenge.class).findAll();
@@ -142,24 +156,35 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
                 googlePlacesManager.getPhotoObservable(place)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .first()
+                        .take(1)
                         .subscribe(bitmap -> {
+                            Log.d(TAG, "onActivityResult: " + "bitmap dupa` ");
                             //Realm realm = Realm.getDefaultInstance();
                             //RealmChallenge realmChallenge1 = RealmHelper.getChallenge(id);
-                            tripsRealmService.getChallangeAsyncAsObservable(id)
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    
-                                    .unsubscribeOn(AndroidSchedulers.mainThread())
+                            tripsRealmService.getChallangeAsObservable(id)
+                                    .take(1)
                                     .subscribe(realmChallenge1 -> {
-                                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                                        realmChallenge1.setBitmap(stream.toByteArray());
+                                        Log.d(TAG, "onActivityResult: bitmap tylek");
+                                        tripsRealmService.makaTransaction(new TripsRealmService.onTransaction() {
+                                            @Override
+                                            public void onTransaction() {
+                                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                                bitmap.compress(Bitmap.CompressFormat.JPEG, 10, stream);
+                                                realmChallenge1.setBitmap(stream.toByteArray());
+                                            }
+
+                                            @Override
+                                            public void afterTransaction() {
+                                                Toast.makeText(ctx, "Bitmap downloaded!", Toast.LENGTH_SHORT).show();
+                                                notifyChallanges();
+                                            }
+                                        });
                                     });
 
 
                             //RealmHelper.saveChallenge(realmChallenge1);
 
-                            notifyChallanges();
+
                         });
             }
         }

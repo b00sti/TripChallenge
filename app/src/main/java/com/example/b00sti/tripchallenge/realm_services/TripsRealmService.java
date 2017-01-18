@@ -29,6 +29,17 @@ public class TripsRealmService {
         Log.d(TAG, "TripsRealmService: " + realm);
     }
 
+    public Realm getRealm() {
+        return realm;
+    }
+
+    public void makaTransaction(onTransaction transaction) {
+        realm.beginTransaction();
+        transaction.onTransaction();
+        realm.commitTransaction();
+        transaction.afterTransaction();
+    }
+
     public void closeRealm() {
         if (!realm.isClosed()) {
             realm.close();
@@ -64,24 +75,30 @@ public class TripsRealmService {
         return realm.where(RealmChallenge.class).equalTo("id", id).findFirstAsync();
     }
 
-    public Observable<RealmChallenge> getChallangeAsyncAsObservable(String id) {
-        return realm.where(RealmChallenge.class).equalTo("id", id).findFirstAsync().asObservable();
+    public Observable<RealmChallenge> getChallangeAsObservable(String id) {
+        return realm.where(RealmChallenge.class).equalTo("id", id).findFirst().asObservable();
     }
 
     public RealmResults<RealmTrip> getTripsAsync() {
         return realm.where(RealmTrip.class).findAllAsync();
     }
 
-    public RealmResults<RealmChallenge> getChallangesAsync(int tripId) {
-        return realm.where(RealmChallenge.class).equalTo("tripId", tripId).findAllAsync();
+    public RealmResults<RealmChallenge> getChallanges(int tripId) {
+        return realm.where(RealmChallenge.class).equalTo("tripId", tripId).findAll();
     }
 
-    public Observable<RealmResults<RealmTrip>> getTripsAsyncAsObservable() {
-        return realm.where(RealmTrip.class).findAllAsync().asObservable();
+    public Observable<RealmResults<RealmTrip>> getTripsAsObservable() {
+        return realm.where(RealmTrip.class).findAll().asObservable();
     }
 
     public Observable<RealmResults<RealmChallenge>> getChallangesAsyncAsObservable(int tripId) {
         return realm.where(RealmChallenge.class).equalTo("tripId", tripId).findAllAsync().asObservable();
+    }
+
+    public interface onTransaction {
+        void onTransaction();
+
+        void afterTransaction();
     }
 
     public interface OnTransactionCallback {
@@ -90,3 +107,4 @@ public class TripsRealmService {
         void onRealmError(Throwable e);
     }
 }
+
