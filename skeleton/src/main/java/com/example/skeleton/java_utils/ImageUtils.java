@@ -103,9 +103,14 @@ public class ImageUtils {
         }
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
-        scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 85, out);
+        scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 60, out);
 
         byte[] byteArray = out.toByteArray();
+
+
+        if (byteArray.length > 1022252) {
+            return ImageUtils.getInstant().getCompressedBitmap(byteArray);
+        }
 
         Bitmap updatedBitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
 

@@ -2,13 +2,13 @@ package com.example.b00sti.tripchallenge.ui_trip_details;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.b00sti.tripchallenge.R;
 import com.example.b00sti.tripchallenge.model.RealmChallenge;
-import com.example.skeleton.java_utils.ImageUtils;
 
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EViewGroup;
@@ -40,7 +40,8 @@ public class PlaceToDoItemView extends RelativeLayout {
 
     @Background
     void getBitmap(byte[] bitmapInBytes) {
-        Bitmap bitmap = ImageUtils.getInstant().getCompressedBitmap(bitmapInBytes);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bitmapInBytes, 0, bitmapInBytes.length);
+        //Bitmap bitmap = ImageUtils.getInstant().getCompressedBitmap(bitmapInBytes);
         setImageBitmap(bitmap);
     }
 

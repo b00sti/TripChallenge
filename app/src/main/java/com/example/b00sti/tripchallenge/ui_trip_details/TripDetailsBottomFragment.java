@@ -2,6 +2,7 @@ package com.example.b00sti.tripchallenge.ui_trip_details;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,8 @@ import com.example.b00sti.tripchallenge.model.RealmChallenge;
 import com.example.b00sti.tripchallenge.model.RealmTrip;
 import com.example.b00sti.tripchallenge.realm_services.TripsRealmService;
 import com.example.b00sti.tripchallenge.utils.helpers.GooglePlacesManager;
+import com.example.skeleton.android_utils.util.CLog;
+import com.example.skeleton.java_utils.ImageUtils;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -110,6 +113,9 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
         //realmChallenges = RealmHelper.getChallenges(tripId);
         //realmChallenges = tripsRealmService.getChallanges(tripId);
         Log.d(TAG, "notifyChallanges: " + realmChallenges.size());
+        for (RealmChallenge realmChallenge : realmChallenges) {
+            CLog.d(TAG, "notifyChallanges: ", realmChallenge.getTitle());
+        }
         //placeTodoAdapter.notifyDataSetChanged();
         placeTodoAdapter.setDataSet(realmChallenges);
     }
@@ -169,8 +175,16 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
                                             @Override
                                             public void onTransaction() {
                                                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                                                bitmap.compress(Bitmap.CompressFormat.JPEG, 10, stream);
-                                                realmChallenge1.setBitmap(stream.toByteArray());
+                                                bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+                                                CLog.d(TAG, "onTransaction 1: ", stream.size());
+                                                byte[] bytesFirst = stream.toByteArray();
+                                                BitmapFactory.Options options = new BitmapFactory.Options();
+                                                options.inJustDecodeBounds = true;
+                                                Bitmap bmp = ImageUtils.getInstant().getCompressedBitmap(bytesFirst);
+                                                ByteArrayOutputStream stream2 = new ByteArrayOutputStream();
+                                                bmp.compress(Bitmap.CompressFormat.PNG, 0, stream2);
+                                                CLog.d(TAG, "onTransaction 2: ", stream2.size());
+                                                realmChallenge1.setBitmap(stream2.toByteArray());
                                             }
 
                                             @Override
