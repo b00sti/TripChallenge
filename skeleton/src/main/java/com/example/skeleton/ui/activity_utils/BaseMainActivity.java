@@ -43,6 +43,7 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
     @DrawerUtils.DrawerTab public int drawerCurrentlySelectedTab = DrawerUtils.TAB_NO;
     @ViewById(resName = "collapsedTitleL") public CollapsingToolbarLayout collapsedTitleL;
     @ViewById(resName = "appBarL") public AppBarLayout appBarLayout;
+    private A drawerAdapter;
 
     public abstract Fragment setFragmentForTab(@DrawerUtils.DrawerTab int tab);
 
@@ -117,70 +118,11 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
     @Subscribe
     public void onEvent(SwitchDrawerFragmentEvent event) {
 
-        this.drawerCurrentlySelectedTab = event.getDrawerItemSelected();
         Fragment targetFragment = event.getTargetFragment();
         Fragment topTargetFragment = event.getTopTargetFragment();
-        @DrawerUtils.DrawerTab int tabToSelect;
 
-        switch (this.drawerCurrentlySelectedTab) {
-            case DrawerUtils.TAB_00:
-                tabToSelect = DrawerUtils.TAB_00;
-                break;
-            case DrawerUtils.TAB_01:
-                tabToSelect = DrawerUtils.TAB_01;
-                break;
-            case DrawerUtils.TAB_02:
-                tabToSelect = DrawerUtils.TAB_02;
-                break;
-            case DrawerUtils.TAB_03:
-                tabToSelect = DrawerUtils.TAB_03;
-                break;
-            case DrawerUtils.TAB_04:
-                tabToSelect = DrawerUtils.TAB_04;
-                break;
-            case DrawerUtils.TAB_05:
-                tabToSelect = DrawerUtils.TAB_05;
-                break;
-            case DrawerUtils.TAB_06:
-                tabToSelect = DrawerUtils.TAB_06;
-                break;
-            case DrawerUtils.TAB_07:
-                tabToSelect = DrawerUtils.TAB_07;
-                break;
-            case DrawerUtils.TAB_08:
-                tabToSelect = DrawerUtils.TAB_08;
-                break;
-            case DrawerUtils.TAB_09:
-                tabToSelect = DrawerUtils.TAB_09;
-                break;
-            case DrawerUtils.TAB_10:
-                tabToSelect = DrawerUtils.TAB_10;
-                break;
-            case DrawerUtils.TAB_11:
-                tabToSelect = DrawerUtils.TAB_11;
-                break;
-            case DrawerUtils.TAB_12:
-                tabToSelect = DrawerUtils.TAB_12;
-                break;
-            case DrawerUtils.TAB_13:
-                tabToSelect = DrawerUtils.TAB_13;
-                break;
-            case DrawerUtils.TAB_14:
-                tabToSelect = DrawerUtils.TAB_14;
-                break;
-            case DrawerUtils.TAB_15:
-                tabToSelect = DrawerUtils.TAB_15;
-                break;
-            case DrawerUtils.TAB_NO:
-                tabToSelect = DrawerUtils.TAB_NO;
-                break;
-            default:
-                tabToSelect = this.drawerCurrentlySelectedTab;
-        }
+        //drawerAdapter = setDrawerAdapter();
 
-        A drawerAdapter = setDrawerAdapter();
-        drawerAdapter.setDrawerAdapterData(setDrawerItems(), tabToSelect);
-        drawerRecyclerView.setAdapter(drawerAdapter);
 
         if (topTargetFragment instanceof EmptyFragment) {
             toolbarMain.setVisibility(View.VISIBLE);
@@ -207,21 +149,47 @@ public abstract class BaseMainActivity<I extends BaseDrawerItem, H extends View,
         final List<I> drawerItems = setDrawerItems();
 
         drawerRecyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, (view, position) -> {
-            Fragment targetFragment = setFragmentForTab(position);
-            Fragment topTargetFragment = setTopFragmentForTab(position);
-
-            // post event to switch fragment
-            EventBus.getDefault().post(new SwitchDrawerFragmentEvent(drawerItems.get(position).getTabId(), targetFragment, topTargetFragment));
-
-            // set toolbar title to selected drawer item's title
-            toolbar.setTitle(setDrawerItems().get(position).getTitleResource());
-            toolbarMain.setTitle(setDrawerItems().get(position).getTitleResource());
+            drawerCurrentlySelectedTab = DrawerUtils.getDrawerTab(position);
             drawer.closeDrawers();
         }));
 
+        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                drawerAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+
+                // set toolbar title to selected drawer item's title
+                toolbar.setTitle(setDrawerItems().get(drawerCurrentlySelectedTab).getTitleResource());
+                toolbarMain.setTitle(setDrawerItems().get(drawerCurrentlySelectedTab).getTitleResource());
+
+                Fragment targetFragment = setFragmentForTab(drawerCurrentlySelectedTab);
+                Fragment topTargetFragment = setTopFragmentForTab(drawerCurrentlySelectedTab);
+
+                // post event to switch fragment
+                EventBus.getDefault().post(new SwitchDrawerFragmentEvent(drawerCurrentlySelectedTab, targetFragment, topTargetFragment));
+
+                drawerAdapter.setSelectedTabId(drawerCurrentlySelectedTab);
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
+
         // initialize adapter with selected position highlighted
-        A drawerAdapter = setDrawerAdapter();
+        drawerAdapter = setDrawerAdapter();
         drawerAdapter.setDrawerAdapterData(setDrawerItems(), drawerCurrentlySelectedTab);
         return drawerAdapter;
     }
+
 }

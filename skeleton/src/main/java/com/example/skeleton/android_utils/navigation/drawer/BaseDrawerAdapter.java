@@ -19,4 +19,9 @@ public abstract class BaseDrawerAdapter<I extends BaseDrawerItem, V extends View
         setDataSet(items);
         this.selectedTabId = selectedTabId;
     }
+
+    public void setSelectedTabId(@DrawerUtils.DrawerTab int selectedTabId) {
+        this.selectedTabId = selectedTabId;
+        notifyDataSetChanged();
+    }
 }
