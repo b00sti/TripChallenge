@@ -1,11 +1,16 @@
 package com.example.b00sti.tripchallenge.ui_trip_details;
 
+import android.graphics.Bitmap;
 import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.b00sti.tripchallenge.R;
+import com.example.b00sti.tripchallenge.model.RealmTrip;
+import com.example.b00sti.tripchallenge.realm_services.TripsRealmService;
 import com.example.b00sti.tripchallenge.utils.helpers.GooglePlacesManager;
+import com.example.skeleton.android_utils.util.CLog;
+import com.example.skeleton.java_utils.ImageUtils;
 import com.example.skeleton.ui.mvp_base.MvpFragment;
 
 import org.androidannotations.annotations.AfterViews;
@@ -13,6 +18,8 @@ import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
+
+import java.util.List;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-10
@@ -34,6 +41,9 @@ public class TripDetailsTopFragment extends MvpFragment<TripDetailsTopContract.P
     @ViewById(R.id.mainPlaceTV)
     TextView mainPlaceTV;
 
+    @Bean
+    TripsRealmService tripsRealmService;
+
     public static Fragment newInstance() {
         return new com.example.b00sti.tripchallenge.ui_trip_details.TripDetailsTopFragment_();
     }
@@ -47,6 +57,19 @@ public class TripDetailsTopFragment extends MvpFragment<TripDetailsTopContract.P
     @AfterViews
     void init() {
         ctx = getActivity();
+
+        List<RealmTrip> realmTrips = tripsRealmService.getTrips();
+
+        CLog.d(TAG, "init: ", realmTrips.size());
+
+        for (RealmTrip trip : realmTrips) {
+            if (trip.getBitmap() != null) {
+                CLog.d(TAG, "init: ", trip.getBitmap().length);
+                Bitmap bmp = ImageUtils.getInstant().getCompressedBitmap(trip.getBitmap());
+                main_tripIV.setImageBitmap(bmp);
+                break;
+            }
+        }
     }
 
     @Override

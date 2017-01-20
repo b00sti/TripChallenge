@@ -66,6 +66,7 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
     @ViewById(R.id.todoRV) RecyclerView todoRV;
 
     int tripId = 0;
+    RealmTrip realmTrip;
 
     public static Fragment newInstance() {
         return new com.example.b00sti.tripchallenge.ui_trip_details.TripDetailsBottomFragment_();
@@ -95,7 +96,8 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
 
     @AfterInject
     void initR() {
-        tripsRealmService.addTripAsync(new RealmTrip(), null);
+        realmTrip = new RealmTrip();
+        tripsRealmService.addTripAsync(realmTrip, null);
         realmChallenges = tripsRealmService.getChallanges(tripId);
     }
 
@@ -133,6 +135,7 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(data, ctx);
                 String toastMsg = String.format("Place: %s", place.getName());
+
                 //mainPlaceTV.setText(place.getName());
                 Toast.makeText(ctx, toastMsg, Toast.LENGTH_LONG).show();
                 if (getActivity() instanceof MainActivity) {
@@ -168,6 +171,30 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
                             Log.d(TAG, "onActivityResult: " + "bitmap dupa` ");
                             //Realm realm = Realm.getDefaultInstance();
                             //RealmChallenge realmChallenge1 = RealmHelper.getChallenge(id);
+
+                            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                            bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+                            CLog.d(TAG, "onTransaction 1: ", stream.size());
+
+                            RealmTrip realmTrip2 = new RealmTrip();
+                            realmTrip2.setBitmap(stream.toByteArray());
+                            tripsRealmService.addTripAsync(realmTrip2, null);
+
+                            /*if (realmTrip.getBitmap() == null) {
+                                tripsRealmService.makaTransaction(new TripsRealmService.onTransaction() {
+                                    @Override
+                                    public void onTransaction() {
+
+
+                                    }
+
+                                    @Override
+                                    public void afterTransaction() {
+
+                                    }
+                                });
+                            }
+                            */
                             tripsRealmService.getChallangeAsObservable(id)
                                     .take(1)
                                     .subscribe(realmChallenge1 -> {

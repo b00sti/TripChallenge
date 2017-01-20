@@ -147,6 +147,7 @@
             android:layout_marginEnd="@dimen/spacing_42dp"
             android:layout_marginTop="150dp"
             android:src="@drawable/ic_add"
+            android:visibility="gone"
             app:backgroundTint="@color/colorAccent"
             app:elevation="10dp"/>
 

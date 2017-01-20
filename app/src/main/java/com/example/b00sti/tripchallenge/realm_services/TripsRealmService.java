@@ -79,8 +79,8 @@ public class TripsRealmService {
         return realm.where(RealmChallenge.class).equalTo("id", id).findFirst().asObservable();
     }
 
-    public RealmResults<RealmTrip> getTripsAsync() {
-        return realm.where(RealmTrip.class).findAllAsync();
+    public RealmResults<RealmTrip> getTrips() {
+        return realm.where(RealmTrip.class).findAll();
     }
 
     public RealmResults<RealmChallenge> getChallanges(int tripId) {

@@ -65,7 +65,7 @@ public class PlaceToDoItemView extends RelativeLayout {
         } else {
             icon.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
         }
-        if (bitmap.length % 2 == 0) {
+        if ((bitmap != null ? bitmap.length : 0) % 2 == 0) {
             placeToDoDoneIV.setImageDrawable(iconDoneBlack);
         } else {
             placeToDoDoneIV.setImageDrawable(iconDoneGreen);
