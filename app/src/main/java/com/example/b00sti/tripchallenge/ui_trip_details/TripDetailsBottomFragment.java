@@ -90,6 +90,7 @@ public class TripDetailsBottomFragment extends MvpFragment<TripDetailsBottomCont
         todoRV.setLayoutManager(mLayoutManager);
         placeTodoAdapter.setDataSet(realmChallenges);
         todoRV.setAdapter(placeTodoAdapter);
+        todoRV.setNestedScrollingEnabled(false);
     }
 
     @AfterInject
