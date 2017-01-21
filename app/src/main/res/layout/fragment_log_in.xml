@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient"
     android:fitsSystemWindows="true"
-    android:paddingBottom="@dimen/spacing_12dp"
-    android:paddingEnd="@dimen/spacing_24dp"
-    android:paddingStart="@dimen/spacing_24dp"
-    android:paddingTop="@dimen/spacing_12dp">
+    android:paddingBottom="@dimen/size_12dp"
+    android:paddingEnd="@dimen/size_24dp"
+    android:paddingStart="@dimen/size_24dp"
+    android:paddingTop="@dimen/size_12dp">
 
     <include layout="@layout/progress_bar_layout"/>
 
@@ -20,32 +20,32 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:orientation="vertical"
-        android:paddingTop="@dimen/spacing_24dp">
+        android:paddingTop="@dimen/size_24dp">
 
         <include layout="@layout/app_logo"/>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/spacing_8dp"/>
+            android:layout_height="@dimen/size_8dp"/>
 
         <include layout="@layout/email_password_edit_texts"/>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/spacing_8dp"/>
+            android:layout_height="@dimen/size_8dp"/>
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/loginB"
             style="@style/ButtonHalfTransparent"
             android:layout_width="fill_parent"
-            android:layout_height="@dimen/view_normal"
+            android:layout_height="@dimen/size_42dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="@dimen/spacing_12dp"
-            android:layout_marginEnd="@dimen/spacing_24dp"
-            android:layout_marginStart="@dimen/spacing_24dp"
-            android:layout_marginTop="@dimen/spacing_12dp"
+            android:layout_marginBottom="@dimen/size_12dp"
+            android:layout_marginEnd="@dimen/size_24dp"
+            android:layout_marginStart="@dimen/size_24dp"
+            android:layout_marginTop="@dimen/size_12dp"
             android:gravity="center"
-            android:padding="@dimen/spacing_pretty_tiny"
+            android:padding="@dimen/size_4dp"
             android:text="@string/login_button_label"
             tools:text="@string/login_button_label"/>
 
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="@dimen/spacing_small"
+            android:padding="@dimen/size_12dp"
             android:text="@string/login_forgot_password"
             tools:text="@string/login_forgot_password"/>
 

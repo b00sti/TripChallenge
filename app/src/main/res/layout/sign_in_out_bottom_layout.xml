@@ -23,10 +23,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/spacing_48dp"
-        android:layout_marginTop="@dimen/spacing_12dp"
+        android:layout_marginBottom="@dimen/size_48dp"
+        android:layout_marginTop="@dimen/size_12dp"
         android:gravity="center"
-        android:padding="@dimen/spacing_4dp"
+        android:padding="@dimen/size_4dp"
         android:text="@string/already_a_member_login"
         tools:text="@string/already_a_member_login"/>
 </merge>

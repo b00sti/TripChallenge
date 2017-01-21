@@ -39,9 +39,9 @@
                     app:arc_progress="75"
                     app:arc_suffix_text="%"
                     app:arc_suffix_text_padding="0dp"
-                    app:arc_suffix_text_size="@dimen/font_small"
+                    app:arc_suffix_text_size="@dimen/font_14sp"
                     app:arc_text_color="@color/colorLightText"
-                    app:arc_text_size="@dimen/font_larger"
+                    app:arc_text_size="@dimen/font_26sp"
                     app:arc_unfinished_color="@color/colorPrimaryDark"
                     app:paddingEnd="1dp"
                     app:paddingStart="1dp"/>
@@ -61,9 +61,9 @@
                     app:arc_progress="45"
                     app:arc_suffix_text=" "
                     app:arc_suffix_text_padding="0dp"
-                    app:arc_suffix_text_size="@dimen/font_small"
+                    app:arc_suffix_text_size="@dimen/font_14sp"
                     app:arc_text_color="@color/colorLightText"
-                    app:arc_text_size="@dimen/font_smaller"
+                    app:arc_text_size="@dimen/font_12sp"
                     app:arc_unfinished_color="@color/colorPrimaryDark"
                     app:paddingEnd="0dp"
                     app:paddingStart="0dp"/>
@@ -83,9 +83,9 @@
                     app:arc_progress="17"
                     app:arc_suffix_text=" "
                     app:arc_suffix_text_padding="0dp"
-                    app:arc_suffix_text_size="@dimen/font_small"
+                    app:arc_suffix_text_size="@dimen/font_14sp"
                     app:arc_text_color="@color/colorLightText"
-                    app:arc_text_size="@dimen/font_smaller"
+                    app:arc_text_size="@dimen/font_12sp"
                     app:arc_unfinished_color="@color/colorPrimaryDark"
                     app:paddingEnd="0dp"
                     app:paddingStart="0dp"/>
@@ -136,7 +136,7 @@
             android:paddingTop="10dp"
             android:text=""
             android:textColor="@color/colorLightText"
-            android:textSize="@dimen/font_large"/>
+            android:textSize="@dimen/font_22sp"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/connectB"
@@ -144,7 +144,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_marginEnd="@dimen/spacing_42dp"
+            android:layout_marginEnd="@dimen/size_42dp"
             android:layout_marginTop="150dp"
             android:src="@drawable/ic_add"
             android:visibility="gone"
