@@ -10,8 +10,8 @@
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="@dimen/spacing_36dp"
-        android:layout_marginTop="@dimen/spacing_36dp"
+        android:layout_marginRight="@dimen/size_36dp"
+        android:layout_marginTop="@dimen/size_36dp"
         android:src="@drawable/ic_add"
         app:backgroundTint="@color/colorAccent"
         app:elevation="10dp"/>

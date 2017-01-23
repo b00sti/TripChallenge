@@ -9,8 +9,8 @@
         android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/spacing_4dp"
-        card_view:cardCornerRadius="@dimen/spacing_2dp">
+        android:layout_margin="@dimen/size_4dp"
+        card_view:cardCornerRadius="@dimen/size_2dp">
 
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         xmlns:tools="http://schemas.android.com/tools"
@@ -28,7 +28,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/placeToDoIconIV"
                 android:gravity="center"
-                android:padding="@dimen/spacing_4dp"
+                android:padding="@dimen/size_4dp"
                 android:src="@drawable/ic_done_green_900_24dp"
                 />
 
@@ -42,7 +42,7 @@
                 android:layout_toLeftOf="@+id/placeToDoIconIV"
                 android:gravity="center"
                 android:text="10"
-                android:textSize="@dimen/font_normal"
+                android:textSize="@dimen/font_18sp"
                 android:visibility="gone"
                 tools:text="5"
                 tools:visibility="visible"/>
@@ -67,7 +67,7 @@
                 android:layout_alignParentEnd="true"
                 android:background="@color/mediumTransparent"
                 android:gravity="center_vertical"
-                android:padding="@dimen/spacing_4dp"
+                android:padding="@dimen/size_4dp"
                 android:text="Trip Details"
                 android:textStyle="bold"/>
 

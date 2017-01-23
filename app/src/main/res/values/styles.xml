@@ -52,7 +52,7 @@
 
     <style name="TextViewLightSmall">
         <item name="android:textColor">@color/colorLightText</item>
-        <item name="android:textSize">@dimen/font_small</item>
+        <item name="android:textSize">@dimen/font_14sp</item>
         <item name="android:ellipsize">end</item>
         <item name="android:singleLine">true</item>
     </style>
@@ -60,14 +60,14 @@
 
     <style name="TextViewLightNormal">
         <item name="android:textColor">@color/colorLightText</item>
-        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:textSize">@dimen/font_18sp</item>
         <item name="android:ellipsize">end</item>
         <item name="android:singleLine">true</item>
     </style>
 
     <style name="TextViewLightLarge">
         <item name="android:textColor">@color/colorLightText</item>
-        <item name="android:textSize">@dimen/font_large</item>
+        <item name="android:textSize">@dimen/font_22sp</item>
         <item name="android:ellipsize">end</item>
         <item name="android:singleLine">true</item>
     </style>

@@ -7,7 +7,7 @@
     android:id="@+id/googleButtonL"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/spacing_1dp"
+    android:layout_margin="@dimen/size_1dp"
     android:layout_weight="1"
     android:background="@drawable/bg_google_login"
     android:clickable="true"
@@ -29,11 +29,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:clickable="false"
-        android:padding="@dimen/spacing_4dp"
-        android:paddingEnd="@dimen/spacing_1dp"
+        android:padding="@dimen/size_4dp"
+        android:paddingEnd="@dimen/size_1dp"
         android:paddingStart="20dp"
         android:text="@string/google"
-        android:textSize="@dimen/font_normal_small"
+        android:textSize="@dimen/font_16sp"
         android:textStyle="bold"
         tools:text="Google"/>
 
