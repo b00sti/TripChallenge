@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/userIconIV"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/view_large"
+    android:layout_height="@dimen/size_64dp"
     android:layout_gravity="center"
     android:src="@drawable/logo"
     tools:showIn="@layout/fragment_sign_up"

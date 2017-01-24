@@ -4,7 +4,7 @@
               android:layout_height="match_parent"
               android:background="@color/lightTransparent"
               android:orientation="vertical"
-              android:padding="@dimen/activity_horizontal_margin">
+              android:padding="@dimen/size_16dp">
 
     <TextView
         android:id="@+id/dialog_textView"

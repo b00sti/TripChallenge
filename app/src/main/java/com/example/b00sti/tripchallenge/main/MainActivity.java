@@ -31,8 +31,8 @@ public class MainActivity extends BaseMainActivity<DrawerItem, DrawerItemView, D
 
     @AfterViews
     void setDrawerFragments() {
-        setBottomDrawerFragment(DrawerBottomFragment.newInstance());
         setTopDrawerFragment(DrawerTopFragment.newInstance());
+        setBottomDrawerFragment(DrawerBottomFragment.newInstance());
         onEvent(new SwitchDrawerFragmentEvent(DrawerUtils.TAB_00, LogInFragment.newInstance(), EmptyFragment.newInstance()));
 
         ActivityCompat.requestPermissions(this,
