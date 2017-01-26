@@ -34,7 +34,7 @@
                     android:layout_marginBottom="12dp"
                     android:background="@android:color/transparent"
                     app:arc_angle="270"
-                    app:arc_bottom_text="Completed"
+                    app:arc_bottom_text="Done"
                     app:arc_finished_color="@color/colorLightText"
                     app:arc_progress="75"
                     app:arc_suffix_text="%"
