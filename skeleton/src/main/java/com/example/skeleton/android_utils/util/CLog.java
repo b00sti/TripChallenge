@@ -51,7 +51,7 @@ public class CLog {
         }
     }
 
-    //translation visibility of views to fiendly format
+    //translation visibility of views to friendly format
     public static String getFriendlyVisibility(int visibility) {
         switch (visibility) {
             case 0:
