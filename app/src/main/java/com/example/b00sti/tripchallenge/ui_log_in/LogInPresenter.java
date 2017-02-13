@@ -120,7 +120,7 @@ public class LogInPresenter extends MvpPresenter<LogInContract.View> implements 
     }
 
     @Override
-    public void unsubscribe() {
+    public void unSubscribe() {
     }
 
 }

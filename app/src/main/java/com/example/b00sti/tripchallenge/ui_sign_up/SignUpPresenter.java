@@ -78,7 +78,7 @@ public class SignUpPresenter extends MvpPresenter<SignUpContract.View> implement
     }
 
     @Override
-    public void unsubscribe() {
+    public void unSubscribe() {
 
     }
 

@@ -9,12 +9,11 @@ import android.util.Log;
 
 import com.example.b00sti.tripchallenge.utils.config.LastRealmMigration;
 import com.example.skeleton.android_utils.util.BaseApp;
+import com.example.skeleton.android_utils.util.RealmConfig;
 import com.facebook.FacebookSdk;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import io.realm.RealmMigration;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-15
@@ -22,6 +21,11 @@ import io.realm.RealmMigration;
 
 public class App extends BaseApp {
     private static final String TAG = "App";
+
+    @Override
+    protected RealmConfig setRealmConfigParams() {
+        return new RealmConfig(getApplicationContext().getResources().getString(R.string.app_name), new LastRealmMigration(), 1);
+    }
 
     @Override
     public void onCreate() {
@@ -43,16 +47,6 @@ public class App extends BaseApp {
         } catch (NoSuchAlgorithmException e) {
 
         }
-    }
-
-    @Override
-    public RealmMigration setRealmMigration() {
-        return new LastRealmMigration();
-    }
-
-    @Override
-    protected int setRealmSchemaVersion() {
-        return 1;
     }
 
 }

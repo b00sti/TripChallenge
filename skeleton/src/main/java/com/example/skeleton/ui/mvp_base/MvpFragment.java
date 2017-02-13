@@ -34,7 +34,7 @@ public abstract class MvpFragment<P extends BasePresenter> extends Fragment {
 
     @Override
     public void onDestroyView() {
-        presenter.unsubscribe();
+        presenter.unSubscribe();
         Log.d(TAG, "onDestroyView: unsubscribed");
         super.onDestroyView();
     }

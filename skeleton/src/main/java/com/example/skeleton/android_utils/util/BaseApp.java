@@ -2,8 +2,6 @@ package com.example.skeleton.android_utils.util;
 
 import android.app.Application;
 
-import com.example.skeleton.R;
-
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmMigration;
@@ -20,7 +18,7 @@ public abstract class BaseApp<P extends RealmMigration> extends Application {
         return instance;
     }
 
-    public abstract P setRealmMigration();
+    protected abstract RealmConfig setRealmConfigParams();
 
     @Override
     public void onCreate() {
@@ -30,16 +28,14 @@ public abstract class BaseApp<P extends RealmMigration> extends Application {
     }
 
     private void initRealmConfiguration() {
-        int schemaVersion = setRealmSchemaVersion();
+        int schemaVersion = setRealmConfigParams().getSchemaVersion();
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this)
-                .name(getResources().getString(R.string.app_name) + ".realm")
+                .name(setRealmConfigParams().getDataBaseName() + ".realm")
                 .schemaVersion(schemaVersion)
 //                .deleteRealmIfMigrationNeeded()
-                .migration(setRealmMigration())
+                .migration(setRealmConfigParams().getRealmMigration())
                 .build();
 
         Realm.setDefaultConfiguration(realmConfiguration);
     }
-
-    protected abstract int setRealmSchemaVersion();
 }

@@ -46,7 +46,7 @@ class TripDetailsTopPresenter extends MvpPresenter<TripDetailsTopContract.View> 
     }
 
     @Override
-    public void unsubscribe() {
+    public void unSubscribe() {
         googlePlacesManager.disconnect();
     }
 

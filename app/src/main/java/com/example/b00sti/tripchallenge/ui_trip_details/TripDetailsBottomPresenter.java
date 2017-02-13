@@ -27,7 +27,7 @@ public class TripDetailsBottomPresenter extends MvpPresenter<TripDetailsBottomCo
     }
 
     @Override
-    public void unsubscribe() {
+    public void unSubscribe() {
 
     }
 }

@@ -30,7 +30,7 @@ class DashboardPresenter extends MvpPresenter<DashboardContract.View> implements
     }
 
     @Override
-    public void unsubscribe() {
+    public void unSubscribe() {
 
     }
 

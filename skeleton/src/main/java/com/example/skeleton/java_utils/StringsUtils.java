@@ -1,7 +1,7 @@
 package com.example.skeleton.java_utils;
 
 /**
- * Created by b00sti on 16.11.2016.
+ * Created by b00sti on 16.11.2016
  */
 
 public class StringsUtils {

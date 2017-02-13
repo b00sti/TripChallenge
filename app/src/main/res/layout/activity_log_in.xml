@@ -52,4 +52,17 @@
         android:text="@string/sign_up_text">
     </TextView>
 
+    <TextView
+        android:id="@+id/myTV"
+        style="@style/Wrap"
+        />
+
+    <ImageView
+        android:id="@+id/myIV"
+        style="@style/MatchWidth"/>
+
+    <LinearLayout
+        android:id="@+id/myLL"
+        style="@style/MatchWidthVertical"/>
+
 </RelativeLayout>

@@ -1,10 +1,6 @@
 package com.example.skeleton.java_utils;
 
-import android.support.annotation.Nullable;
-
 import java.util.Collection;
-
-import rx.Subscription;
 
 /**
  * Created by Dominik (b00sti) Pawlik on 2016-11-15
@@ -26,18 +22,6 @@ public class SafeNull {
 
     public static <T> boolean isNonEmpty(Collection<T> collection) {
         return safeCount(collection) > 0;
-    }
-
-    public static void safeUnsubscribe(@Nullable rx.Subscription subscription) {
-        if (subscription != null && !subscription.isUnsubscribed()) {
-            subscription.unsubscribe();
-        }
-    }
-
-    public static void forceUnsubscribe(Subscription subscription) {
-        if (subscription != null) {
-            subscription.unsubscribe();
-        }
     }
 
     public static boolean stringNonEmpty(String s) {
